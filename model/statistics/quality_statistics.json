@@ -1,0 +1,11 @@
+{
+  "version": 0.1,
+  "metrics": {
+    "accuracy": {
+      "value": 0.85
+    },
+    "auc": {
+      "value": 0.9
+    }
+  }
+}

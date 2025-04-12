@@ -1,0 +1,11 @@
+{
+  "version": 0.1,
+  "regression_constraints": {
+    "accuracy": {
+      "threshold": 0.8
+    },
+    "auc": {
+      "threshold": 0.8
+    }
+  }
+}

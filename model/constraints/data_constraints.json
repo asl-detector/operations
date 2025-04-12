@@ -1,0 +1,1839 @@
+{
+  "version": 0.1,
+  "features": [
+    {
+      "name": "hand_presence_ratio",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.2,
+      "max": 2.2
+    },
+    {
+      "name": "any_hand_detected",
+      "inferred_type": "Integral",
+      "completeness": 1.0,
+      "min": -0.1,
+      "max": 1.1
+    },
+    {
+      "name": "right_hand_frames",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -26.6,
+      "max": 292.6
+    },
+    {
+      "name": "left_hand_frames",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -27.400000000000002,
+      "max": 301.4
+    },
+    {
+      "name": "right_wrist_velocity_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.06997519027608429,
+      "max": 0.7697270930369271
+    },
+    {
+      "name": "right_wrist_velocity_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.04480875403864151,
+      "max": 0.49289629442505656
+    },
+    {
+      "name": "right_wrist_velocity_max",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.11570781532998423,
+      "max": 1.2727859686298264
+    },
+    {
+      "name": "right_wrist_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.05,
+      "max": 0.55
+    },
+    {
+      "name": "right_thumb_velocity_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.06856265632551975,
+      "max": 0.7541892195807172
+    },
+    {
+      "name": "right_thumb_velocity_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.037785784990683184,
+      "max": 0.415643634897515
+    },
+    {
+      "name": "right_thumb_velocity_max",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.10002108581164243,
+      "max": 1.1002319439280666
+    },
+    {
+      "name": "right_thumb_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.05,
+      "max": 0.55
+    },
+    {
+      "name": "right_index_velocity_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.07598277991577396,
+      "max": 0.8358105790735135
+    },
+    {
+      "name": "right_index_velocity_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.03899843964108493,
+      "max": 0.4289828360519342
+    },
+    {
+      "name": "right_index_velocity_max",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.1122594364905454,
+      "max": 1.2348538013959993
+    },
+    {
+      "name": "right_index_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.05,
+      "max": 0.55
+    },
+    {
+      "name": "right_middle_velocity_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.07624554624615149,
+      "max": 0.8387010087076663
+    },
+    {
+      "name": "right_middle_velocity_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.03919733198072577,
+      "max": 0.43117065178798347
+    },
+    {
+      "name": "right_middle_velocity_max",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.10938938474281197,
+      "max": 1.2032832321709317
+    },
+    {
+      "name": "right_middle_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.05,
+      "max": 0.55
+    },
+    {
+      "name": "right_wrist_to_thumb_dist_0",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.08510073657730054,
+      "max": 0.9361081023503058
+    },
+    {
+      "name": "right_wrist_to_index_dist_0",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.1039858020141254,
+      "max": 1.1438438221553793
+    },
+    {
+      "name": "right_wrist_to_middle_dist_0",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09795809319962423,
+      "max": 1.0775390251958665
+    },
+    {
+      "name": "right_thumb_to_index_dist_0",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.05942245452057813,
+      "max": 0.6536469997263594
+    },
+    {
+      "name": "right_thumb_to_middle_dist_0",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.05891252211172474,
+      "max": 0.6480377432289721
+    },
+    {
+      "name": "right_index_to_middle_dist_0",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.040162751148906564,
+      "max": 0.44179026263797216
+    },
+    {
+      "name": "right_wrist_to_thumb_dist_1",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.0847095260355894,
+      "max": 0.9318047863914833
+    },
+    {
+      "name": "right_wrist_to_index_dist_1",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.1091832654068145,
+      "max": 1.2010159194749594
+    },
+    {
+      "name": "right_wrist_to_middle_dist_1",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.10661491434555492,
+      "max": 1.1727640578011043
+    },
+    {
+      "name": "right_thumb_to_index_dist_1",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.062302071492796846,
+      "max": 0.6853227864207653
+    },
+    {
+      "name": "right_thumb_to_middle_dist_1",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.055036697752284564,
+      "max": 0.6054036752751302
+    },
+    {
+      "name": "right_index_to_middle_dist_1",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.04109120986068431,
+      "max": 0.4520033084675274
+    },
+    {
+      "name": "right_wrist_3d_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.13958478971255384,
+      "max": 1.5354326868380923
+    },
+    {
+      "name": "right_thumb_3d_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.11442876933458526,
+      "max": 1.258716462680438
+    },
+    {
+      "name": "right_index_3d_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.13887778342982102,
+      "max": 1.527655617728031
+    },
+    {
+      "name": "right_middle_3d_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.14025609183706017,
+      "max": 1.5428170102076617
+    },
+    {
+      "name": "right_thumb_index_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "right_thumb_middle_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "right_index_middle_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "right_pinky_ring_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "right_thumb_flexion_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "right_index_flexion_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "right_middle_flexion_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "right_thumb_index_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.0992580981532959,
+      "max": 1.091839079686255
+    },
+    {
+      "name": "right_thumb_middle_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09932653719810826,
+      "max": 1.092591909179191
+    },
+    {
+      "name": "right_index_middle_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09921375343940741,
+      "max": 1.0913512878334815
+    },
+    {
+      "name": "right_thumb_index_mid_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.04265392549976105,
+      "max": 0.4691931804973715
+    },
+    {
+      "name": "right_thumb_middle_mid_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.043356904175503044,
+      "max": 0.47692594593053345
+    },
+    {
+      "name": "right_index_middle_mid_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.04219667933048516,
+      "max": 0.46416347263533675
+    },
+    {
+      "name": "right_thumb_index_high_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.06997391802883617,
+      "max": 0.7697130983171978
+    },
+    {
+      "name": "right_thumb_middle_high_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.06923321654288624,
+      "max": 0.7615653819717486
+    },
+    {
+      "name": "right_index_middle_high_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.06315570111556977,
+      "max": 0.6947127122712674
+    },
+    {
+      "name": "right_thumb_index_spectral_centroid",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.3179679197612089,
+      "max": 14.497647117373297
+    },
+    {
+      "name": "right_thumb_middle_spectral_centroid",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.2757251480565175,
+      "max": 14.032976628621691
+    },
+    {
+      "name": "right_index_middle_spectral_centroid",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.2533205110753196,
+      "max": 13.786525621828515
+    },
+    {
+      "name": "right_flexion_spectral_centroid",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.2730220807354113,
+      "max": 14.003242888089524
+    },
+    {
+      "name": "right_thumb_index_angle_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -8.984163692885598,
+      "max": 98.82580062174158
+    },
+    {
+      "name": "right_thumb_index_angle_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -4.554307505252706,
+      "max": 50.09738255777977
+    },
+    {
+      "name": "right_thumb_index_angle_min",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -7.6055385906597515,
+      "max": 83.66092449725726
+    },
+    {
+      "name": "right_thumb_index_angle_max",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -16.382546974449774,
+      "max": 180.2080167189475
+    },
+    {
+      "name": "right_thumb_index_angle_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -16.154816424594866,
+      "max": 177.7029806705435
+    },
+    {
+      "name": "right_thumb_middle_angle_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -10.949667784590249,
+      "max": 120.44634563049273
+    },
+    {
+      "name": "right_thumb_middle_angle_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -5.4735901352030965,
+      "max": 60.209491487234054
+    },
+    {
+      "name": "right_thumb_middle_angle_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -15.313734398362378,
+      "max": 168.45107838198615
+    },
+    {
+      "name": "right_index_middle_angle_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -5.624455453119887,
+      "max": 61.86900998431875
+    },
+    {
+      "name": "right_index_middle_angle_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -3.846428672624366,
+      "max": 42.31071539886802
+    },
+    {
+      "name": "right_index_middle_angle_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -12.063949311005441,
+      "max": 132.70344242105983
+    },
+    {
+      "name": "right_thumb_flexion_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -14.92201938670736,
+      "max": 164.14221325378094
+    },
+    {
+      "name": "right_thumb_flexion_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -6.772001262688888,
+      "max": 74.49201388957776
+    },
+    {
+      "name": "right_thumb_flexion_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -17.211637350891593,
+      "max": 189.32801085980753
+    },
+    {
+      "name": "right_index_flexion_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -16.698286143259512,
+      "max": 183.68114757585462
+    },
+    {
+      "name": "right_index_flexion_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -7.932070669778105,
+      "max": 87.25277736755915
+    },
+    {
+      "name": "right_index_flexion_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -17.910585434518943,
+      "max": 197.01643977970835
+    },
+    {
+      "name": "right_middle_flexion_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -17.7035277280935,
+      "max": 194.73880500902848
+    },
+    {
+      "name": "right_middle_flexion_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -8.038943622717756,
+      "max": 88.42837984989531
+    },
+    {
+      "name": "right_middle_flexion_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -17.93948768569439,
+      "max": 197.3343645426383
+    },
+    {
+      "name": "right_thumb_index_middle_corr",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.1973587572158095,
+      "max": 1.1990013053193456
+    },
+    {
+      "name": "right_flexion_corr",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.1982498854921126,
+      "max": 1.1995071153020813
+    },
+    {
+      "name": "right_overall_shape_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.4665687657115638,
+      "max": 1.1291073957212887
+    },
+    {
+      "name": "right_thumb_index_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.4766878742540515,
+      "max": 1.2231001472774798
+    },
+    {
+      "name": "right_thumb_middle_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.9616467736751658,
+      "max": 1.1764864075042227
+    },
+    {
+      "name": "right_thumb_ring_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.6163656365683123,
+      "max": 1.145554498466031
+    },
+    {
+      "name": "right_thumb_pinky_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5113180074989488,
+      "max": 1.1358390025229583
+    },
+    {
+      "name": "right_index_middle_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.0709185362420286,
+      "max": 1.1861736114945511
+    },
+    {
+      "name": "right_index_ring_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.7990940309355007,
+      "max": 1.1622710947503694
+    },
+    {
+      "name": "right_index_pinky_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.6300226366060362,
+      "max": 1.1468237432818715
+    },
+    {
+      "name": "right_middle_ring_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.7826300659301159,
+      "max": 1.1588596568898841
+    },
+    {
+      "name": "right_middle_pinky_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.7028785204600071,
+      "max": 1.1526870162587526
+    },
+    {
+      "name": "right_ring_pinky_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.9166347286665055,
+      "max": 1.1699759199491275
+    },
+    {
+      "name": "right_wrist_total_distance",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -12.721286337505822,
+      "max": 139.93414971256402
+    },
+    {
+      "name": "right_wrist_path_straightness",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09978696285592742,
+      "max": 1.0976565914152017
+    },
+    {
+      "name": "right_wrist_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5593745996122852,
+      "max": 6.153120595735137
+    },
+    {
+      "name": "right_wrist_x_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "right_wrist_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09988349836485556,
+      "max": 1.0987184820134113
+    },
+    {
+      "name": "right_wrist_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.4912614549220045,
+      "max": 5.40387600414205
+    },
+    {
+      "name": "right_wrist_y_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.4385614385614385,
+      "max": 15.824175824175821
+    },
+    {
+      "name": "right_wrist_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09988890599619932,
+      "max": 1.0987779659581924
+    },
+    {
+      "name": "right_wrist_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.6492701112399607,
+      "max": 7.141971223639567
+    },
+    {
+      "name": "right_wrist_z_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -2.997002997002997,
+      "max": 32.967032967032964
+    },
+    {
+      "name": "right_wrist_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09857765049060876,
+      "max": 1.0843541553966964
+    },
+    {
+      "name": "right_thumb_total_distance",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -11.929902200640436,
+      "max": 131.2289242070448
+    },
+    {
+      "name": "right_thumb_path_straightness",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09951116233556392,
+      "max": 1.0946227856912032
+    },
+    {
+      "name": "right_thumb_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5588196024069718,
+      "max": 6.14701562647669
+    },
+    {
+      "name": "right_thumb_x_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.052578999947421004,
+      "max": 0.578368999421631
+    },
+    {
+      "name": "right_thumb_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.0998845560640568,
+      "max": 1.0987301167046248
+    },
+    {
+      "name": "right_thumb_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5350411506237934,
+      "max": 5.885452656861727
+    },
+    {
+      "name": "right_thumb_y_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "right_thumb_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09988835169196018,
+      "max": 1.098771868611562
+    },
+    {
+      "name": "right_thumb_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.6065568323949241,
+      "max": 6.672125156344165
+    },
+    {
+      "name": "right_thumb_z_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -2.997002997002997,
+      "max": 32.967032967032964
+    },
+    {
+      "name": "right_thumb_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09830309776073785,
+      "max": 1.0813340753681162
+    },
+    {
+      "name": "right_index_total_distance",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -13.22100370534467,
+      "max": 145.43104075879134
+    },
+    {
+      "name": "right_index_path_straightness",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09948830998667296,
+      "max": 1.0943714098534025
+    },
+    {
+      "name": "right_index_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5393800173600621,
+      "max": 5.933180190960683
+    },
+    {
+      "name": "right_index_x_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.13622740895468166,
+      "max": 1.4985014985014984
+    },
+    {
+      "name": "right_index_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09988953952636885,
+      "max": 1.0987849347900573
+    },
+    {
+      "name": "right_index_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5660422277783198,
+      "max": 6.226464505561518
+    },
+    {
+      "name": "right_index_y_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.49950049950049946,
+      "max": 5.4945054945054945
+    },
+    {
+      "name": "right_index_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09988681988529013,
+      "max": 1.0987550187381914
+    },
+    {
+      "name": "right_index_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.6565043819682534,
+      "max": 7.221548201650788
+    },
+    {
+      "name": "right_index_z_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -2.9768888829291513,
+      "max": 32.745777712220665
+    },
+    {
+      "name": "right_index_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09858561759241855,
+      "max": 1.084441793516604
+    },
+    {
+      "name": "right_middle_total_distance",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -13.26672504683036,
+      "max": 145.93397551513397
+    },
+    {
+      "name": "right_middle_path_straightness",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09953377032714449,
+      "max": 1.0948714735985892
+    },
+    {
+      "name": "right_middle_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5311466696889978,
+      "max": 5.842613366578976
+    },
+    {
+      "name": "right_middle_x_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.13622740895468166,
+      "max": 1.4985014985014984
+    },
+    {
+      "name": "right_middle_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09988970841543772,
+      "max": 1.098786792569815
+    },
+    {
+      "name": "right_middle_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5783046796320099,
+      "max": 6.361351475952109
+    },
+    {
+      "name": "right_middle_y_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "right_middle_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09989320782808137,
+      "max": 1.098825286108895
+    },
+    {
+      "name": "right_middle_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.6817005773623754,
+      "max": 7.498706350986129
+    },
+    {
+      "name": "right_middle_z_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -2.997002997002997,
+      "max": 32.967032967032964
+    },
+    {
+      "name": "right_middle_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.0986584964378159,
+      "max": 1.085243460815975
+    },
+    {
+      "name": "left_wrist_velocity_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.08486573623092385,
+      "max": 0.9335230985401622
+    },
+    {
+      "name": "left_wrist_velocity_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.05144172623262239,
+      "max": 0.5658589885588463
+    },
+    {
+      "name": "left_wrist_velocity_max",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.12108553778418191,
+      "max": 1.331940915626001
+    },
+    {
+      "name": "left_wrist_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.05,
+      "max": 0.55
+    },
+    {
+      "name": "left_thumb_velocity_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.087861357908966,
+      "max": 0.966474936998626
+    },
+    {
+      "name": "left_thumb_velocity_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.05244877792076235,
+      "max": 0.5769365571283858
+    },
+    {
+      "name": "left_thumb_velocity_max",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.11978538806103128,
+      "max": 1.317639268671344
+    },
+    {
+      "name": "left_thumb_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.05,
+      "max": 0.55
+    },
+    {
+      "name": "left_index_velocity_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.08768392666162203,
+      "max": 0.9645231932778423
+    },
+    {
+      "name": "left_index_velocity_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.05078412469197183,
+      "max": 0.55862537161169
+    },
+    {
+      "name": "left_index_velocity_max",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.11753044490845882,
+      "max": 1.292834893993047
+    },
+    {
+      "name": "left_index_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.05,
+      "max": 0.55
+    },
+    {
+      "name": "left_middle_velocity_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.08863591160957794,
+      "max": 0.9749950277053573
+    },
+    {
+      "name": "left_middle_velocity_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.050742855898600385,
+      "max": 0.5581714148846042
+    },
+    {
+      "name": "left_middle_velocity_max",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.11537373207415008,
+      "max": 1.2691110528156508
+    },
+    {
+      "name": "left_middle_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.05,
+      "max": 0.55
+    },
+    {
+      "name": "left_wrist_to_thumb_dist_0",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.08187097337819109,
+      "max": 0.9005807071601019
+    },
+    {
+      "name": "left_wrist_to_index_dist_0",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.10694664098330833,
+      "max": 1.1764130508163917
+    },
+    {
+      "name": "left_wrist_to_middle_dist_0",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.10179031433400554,
+      "max": 1.119693457674061
+    },
+    {
+      "name": "left_thumb_to_index_dist_0",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.08705467024529577,
+      "max": 0.9576013726982534
+    },
+    {
+      "name": "left_thumb_to_middle_dist_0",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.08624865409876378,
+      "max": 0.9487351950864016
+    },
+    {
+      "name": "left_index_to_middle_dist_0",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.03812309806129927,
+      "max": 0.419354078674292
+    },
+    {
+      "name": "left_wrist_to_thumb_dist_1",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.08393566066853592,
+      "max": 0.923292267353895
+    },
+    {
+      "name": "left_wrist_to_index_dist_1",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.10330695913664034,
+      "max": 1.1363765505030439
+    },
+    {
+      "name": "left_wrist_to_middle_dist_1",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.10022889837599502,
+      "max": 1.1025178821359454
+    },
+    {
+      "name": "left_thumb_to_index_dist_1",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.08805964650810734,
+      "max": 0.9686561115891807
+    },
+    {
+      "name": "left_thumb_to_middle_dist_1",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.08674697107468154,
+      "max": 0.954216681821497
+    },
+    {
+      "name": "left_index_to_middle_dist_1",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.04774529947775436,
+      "max": 0.525198294255298
+    },
+    {
+      "name": "left_wrist_3d_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.13675927202274546,
+      "max": 1.5043519922502
+    },
+    {
+      "name": "left_thumb_3d_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.12622814001297036,
+      "max": 1.388509540142674
+    },
+    {
+      "name": "left_index_3d_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.1225423094616611,
+      "max": 1.347965404078272
+    },
+    {
+      "name": "left_middle_3d_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.12481905716742805,
+      "max": 1.3730096288417086
+    },
+    {
+      "name": "left_thumb_index_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "left_thumb_middle_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "left_index_middle_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "left_pinky_ring_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "left_thumb_flexion_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "left_index_flexion_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "left_middle_flexion_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "left_thumb_index_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09886806414261584,
+      "max": 1.0875487055687743
+    },
+    {
+      "name": "left_thumb_middle_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.0990628610849914,
+      "max": 1.0896914719349056
+    },
+    {
+      "name": "left_index_middle_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.0991590979963044,
+      "max": 1.0907500779593484
+    },
+    {
+      "name": "left_thumb_index_mid_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.04377577702317027,
+      "max": 0.48153354725487296
+    },
+    {
+      "name": "left_thumb_middle_mid_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.04575021712462067,
+      "max": 0.5032523883708273
+    },
+    {
+      "name": "left_index_middle_mid_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.04279385135046871,
+      "max": 0.4707323648551558
+    },
+    {
+      "name": "left_thumb_index_high_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.07168687482448537,
+      "max": 0.7885556230693389
+    },
+    {
+      "name": "left_thumb_middle_high_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.06674151893309348,
+      "max": 0.7341567082640281
+    },
+    {
+      "name": "left_index_middle_high_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.06488925229696221,
+      "max": 0.7137817752665843
+    },
+    {
+      "name": "left_thumb_index_spectral_centroid",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.358096199759797,
+      "max": 14.939058197357763
+    },
+    {
+      "name": "left_thumb_middle_spectral_centroid",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.2567688625822089,
+      "max": 13.824457488404297
+    },
+    {
+      "name": "left_index_middle_spectral_centroid",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.3419877072365072,
+      "max": 14.761864779601577
+    },
+    {
+      "name": "left_flexion_spectral_centroid",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.328467928395133,
+      "max": 14.613147212346462
+    },
+    {
+      "name": "left_thumb_index_angle_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -10.513357954843057,
+      "max": 115.64693750327362
+    },
+    {
+      "name": "left_thumb_index_angle_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -4.54230763688739,
+      "max": 49.965384005761294
+    },
+    {
+      "name": "left_thumb_index_angle_min",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -6.862185088805409,
+      "max": 75.48403597685949
+    },
+    {
+      "name": "left_thumb_index_angle_max",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -14.419209416192837,
+      "max": 158.6113035781212
+    },
+    {
+      "name": "left_thumb_index_angle_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -14.227781720823698,
+      "max": 156.50559892906065
+    },
+    {
+      "name": "left_thumb_middle_angle_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -12.360357075234518,
+      "max": 135.96392782757968
+    },
+    {
+      "name": "left_thumb_middle_angle_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -5.4466989873214,
+      "max": 59.913688860535395
+    },
+    {
+      "name": "left_thumb_middle_angle_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -14.817496904522981,
+      "max": 162.99246594975278
+    },
+    {
+      "name": "left_index_middle_angle_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -8.531269339740842,
+      "max": 93.84396273714925
+    },
+    {
+      "name": "left_index_middle_angle_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -3.867754788620388,
+      "max": 42.54530267482426
+    },
+    {
+      "name": "left_index_middle_angle_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -12.103471611504236,
+      "max": 133.1381877265466
+    },
+    {
+      "name": "left_thumb_flexion_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -14.41735563332213,
+      "max": 158.59091196654342
+    },
+    {
+      "name": "left_thumb_flexion_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -6.7718920066204795,
+      "max": 74.49081207282526
+    },
+    {
+      "name": "left_thumb_flexion_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -17.58268106639059,
+      "max": 193.4094917302965
+    },
+    {
+      "name": "left_index_flexion_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -16.79829114482703,
+      "max": 184.7812025930973
+    },
+    {
+      "name": "left_index_flexion_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -8.028956325600065,
+      "max": 88.31851958160071
+    },
+    {
+      "name": "left_index_flexion_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -17.91860916181718,
+      "max": 197.10470077998897
+    },
+    {
+      "name": "left_middle_flexion_mean",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -17.385128781207804,
+      "max": 191.23641659328584
+    },
+    {
+      "name": "left_middle_flexion_std",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -8.086616454509285,
+      "max": 88.95278099960213
+    },
+    {
+      "name": "left_middle_flexion_range",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -17.942209118007316,
+      "max": 197.36430029808048
+    },
+    {
+      "name": "left_thumb_index_middle_corr",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.195307736010804,
+      "max": 1.1974683940979183
+    },
+    {
+      "name": "left_flexion_corr",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.1940545900344417,
+      "max": 1.194547896646032
+    },
+    {
+      "name": "left_overall_shape_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.3329283636789262,
+      "max": 1.1176644600001153
+    },
+    {
+      "name": "left_thumb_index_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.9304634268738857,
+      "max": 1.1729595625526266
+    },
+    {
+      "name": "left_thumb_middle_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.6105147955038057,
+      "max": 1.1447217040718858
+    },
+    {
+      "name": "left_thumb_ring_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.6867643228644136,
+      "max": 1.1511097177183574
+    },
+    {
+      "name": "left_thumb_pinky_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5192413656907098,
+      "max": 1.1361143900306452
+    },
+    {
+      "name": "left_index_middle_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.8522419479300432,
+      "max": 1.2564116487876538
+    },
+    {
+      "name": "left_index_ring_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.1491750573673918,
+      "max": 1.1926352032262995
+    },
+    {
+      "name": "left_index_pinky_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.7854270494455703,
+      "max": 1.159778691488268
+    },
+    {
+      "name": "left_middle_ring_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.8703979037415575,
+      "max": 1.167095906092105
+    },
+    {
+      "name": "left_middle_pinky_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.7426732555761563,
+      "max": 1.155471230610576
+    },
+    {
+      "name": "left_ring_pinky_stability",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.0001550410686832,
+      "max": 1.1781422815163531
+    },
+    {
+      "name": "left_wrist_total_distance",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -14.375763050888384,
+      "max": 158.13339355977223
+    },
+    {
+      "name": "left_wrist_path_straightness",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09991115849511863,
+      "max": 1.099022743446305
+    },
+    {
+      "name": "left_wrist_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5641144739842846,
+      "max": 6.20525921382713
+    },
+    {
+      "name": "left_wrist_x_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "left_wrist_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09988810047644625,
+      "max": 1.0987691052409088
+    },
+    {
+      "name": "left_wrist_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5367469269963966,
+      "max": 5.904216196960363
+    },
+    {
+      "name": "left_wrist_y_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.12,
+      "max": 1.3199999999999998
+    },
+    {
+      "name": "left_wrist_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09988009381094301,
+      "max": 1.098681031920373
+    },
+    {
+      "name": "left_wrist_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.654752190956339,
+      "max": 7.202274100519728
+    },
+    {
+      "name": "left_wrist_z_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -2.997002997002997,
+      "max": 32.967032967032964
+    },
+    {
+      "name": "left_wrist_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.0982582042205702,
+      "max": 1.0808402464262723
+    },
+    {
+      "name": "left_thumb_total_distance",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -13.758711644478286,
+      "max": 151.34582808926115
+    },
+    {
+      "name": "left_thumb_path_straightness",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09989948110903286,
+      "max": 1.0988942921993614
+    },
+    {
+      "name": "left_thumb_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5380842790560497,
+      "max": 5.918927069616546
+    },
+    {
+      "name": "left_thumb_x_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "left_thumb_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09989629384675686,
+      "max": 1.0988592323143254
+    },
+    {
+      "name": "left_thumb_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5286660397394076,
+      "max": 5.815326437133484
+    },
+    {
+      "name": "left_thumb_y_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    {
+      "name": "left_thumb_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.0998724204169326,
+      "max": 1.0985966245862586
+    },
+    {
+      "name": "left_thumb_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.589390511192701,
+      "max": 6.483295623119711
+    },
+    {
+      "name": "left_thumb_z_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -1.5,
+      "max": 16.5
+    },
+    {
+      "name": "left_thumb_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09839368673273452,
+      "max": 1.0823305540600798
+    },
+    {
+      "name": "left_index_total_distance",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -14.906267532475745,
+      "max": 163.96894285723317
+    },
+    {
+      "name": "left_index_path_straightness",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09956844923414465,
+      "max": 1.0952529415755912
+    },
+    {
+      "name": "left_index_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5290873965745179,
+      "max": 5.819961362319696
+    },
+    {
+      "name": "left_index_x_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.23076923076923075,
+      "max": 2.5384615384615383
+    },
+    {
+      "name": "left_index_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09989142911150337,
+      "max": 1.0988057202265369
+    },
+    {
+      "name": "left_index_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.527917239611642,
+      "max": 5.807089635728063
+    },
+    {
+      "name": "left_index_y_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.06515223906528254,
+      "max": 0.7166746297181079
+    },
+    {
+      "name": "left_index_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09989638074718366,
+      "max": 1.09886018821902
+    },
+    {
+      "name": "left_index_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.6123381087077608,
+      "max": 6.735719195785368
+    },
+    {
+      "name": "left_index_z_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -2.997002997002997,
+      "max": 32.967032967032964
+    },
+    {
+      "name": "left_index_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09854530345101613,
+      "max": 1.0839983379611773
+    },
+    {
+      "name": "left_middle_total_distance",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -15.06810497362825,
+      "max": 165.74915470991073
+    },
+    {
+      "name": "left_middle_path_straightness",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09964084012458409,
+      "max": 1.096049241370425
+    },
+    {
+      "name": "left_middle_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5273175089635908,
+      "max": 5.800492598599497
+    },
+    {
+      "name": "left_middle_x_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.23076923076923075,
+      "max": 2.5384615384615383
+    },
+    {
+      "name": "left_middle_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09988778079652941,
+      "max": 1.0987655887618235
+    },
+    {
+      "name": "left_middle_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.5300041431311295,
+      "max": 5.830045574442424
+    },
+    {
+      "name": "left_middle_y_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.4615384615384615,
+      "max": 5.076923076923077
+    },
+    {
+      "name": "left_middle_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09987857386751997,
+      "max": 1.0986643125427196
+    },
+    {
+      "name": "left_middle_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.6060410045296052,
+      "max": 6.666451049825657
+    },
+    {
+      "name": "left_middle_z_dom_freq",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -2.997002997002997,
+      "max": 32.967032967032964
+    },
+    {
+      "name": "left_middle_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "completeness": 1.0,
+      "min": -0.09866691060423244,
+      "max": 1.0853360166465569
+    }
+  ]
+}

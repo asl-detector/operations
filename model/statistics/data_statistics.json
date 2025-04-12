@@ -1,0 +1,4459 @@
+{
+  "version": 0.1,
+  "features": [
+    {
+      "name": "hand_presence_ratio",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 2.0,
+      "mean": 1.4815260787863025,
+      "stddev": 0.6934630929255551,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.3258426966292134,
+          "quantile_50": 1.8426966292134832,
+          "quantile_75": 1.9444444444444444
+        }
+      }
+    },
+    {
+      "name": "any_hand_detected",
+      "inferred_type": "Integral",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.8933531746031746,
+      "stddev": 0.30866609286226226,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.0,
+          "quantile_50": 1.0,
+          "quantile_75": 1.0
+        }
+      }
+    },
+    {
+      "name": "right_hand_frames",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 266.0,
+      "mean": 65.04431733630952,
+      "stddev": 32.32204768301864,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 55.0,
+          "quantile_50": 80.0,
+          "quantile_75": 87.0
+        }
+      }
+    },
+    {
+      "name": "left_hand_frames",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 274.0,
+      "mean": 67.43849206349206,
+      "stddev": 34.21121477512273,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 57.0,
+          "quantile_50": 85.0,
+          "quantile_75": 89.0
+        }
+      }
+    },
+    {
+      "name": "right_wrist_velocity_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.6997519027608429,
+      "mean": 0.01797628637262637,
+      "stddev": 0.03087294253335074,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0058272535795322504,
+          "quantile_50": 0.0132244154004372,
+          "quantile_75": 0.02081567276663235
+        }
+      }
+    },
+    {
+      "name": "right_wrist_velocity_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.4480875403864151,
+      "mean": 0.026590934134380274,
+      "stddev": 0.03307956571604203,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.00663555905167485,
+          "quantile_50": 0.016703409287606198,
+          "quantile_75": 0.035466627294484854
+        }
+      }
+    },
+    {
+      "name": "right_wrist_velocity_max",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.1570781532998422,
+      "mean": 0.14020831367714678,
+      "stddev": 0.13553784355827617,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0331710223454904,
+          "quantile_50": 0.1085342022146295,
+          "quantile_75": 0.2132148379533101
+        }
+      }
+    },
+    {
+      "name": "right_wrist_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.5,
+      "mean": 0.08314973846857134,
+      "stddev": 0.06365829029225833,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0384615384615384,
+          "quantile_50": 0.073170731707317,
+          "quantile_75": 0.119047619047619
+        }
+      }
+    },
+    {
+      "name": "right_thumb_velocity_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.6856265632551974,
+      "mean": 0.021347540245033284,
+      "stddev": 0.03153039459080488,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.007212921094091974,
+          "quantile_50": 0.01668304760064595,
+          "quantile_75": 0.02618397159865855
+        }
+      }
+    },
+    {
+      "name": "right_thumb_velocity_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.3778578499068318,
+      "mean": 0.029595791503003198,
+      "stddev": 0.03366775525073941,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.008007040147226275,
+          "quantile_50": 0.020902328069698647,
+          "quantile_75": 0.040063750158608975
+        }
+      }
+    },
+    {
+      "name": "right_thumb_velocity_max",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.0002108581164242,
+      "mean": 0.1587563874715919,
+      "stddev": 0.14626031484048646,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0388589242821449,
+          "quantile_50": 0.1281731916913143,
+          "quantile_75": 0.2387987132806637
+        }
+      }
+    },
+    {
+      "name": "right_thumb_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.5,
+      "mean": 0.08815577047515259,
+      "stddev": 0.06174893207103288,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0470588235294117,
+          "quantile_50": 0.0845070422535211,
+          "quantile_75": 0.125
+        }
+      }
+    },
+    {
+      "name": "right_index_velocity_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.7598277991577396,
+      "mean": 0.02460791324736682,
+      "stddev": 0.03307158859551686,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.00892478036224505,
+          "quantile_50": 0.0199642223308898,
+          "quantile_75": 0.030953157577862524
+        }
+      }
+    },
+    {
+      "name": "right_index_velocity_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.3899843964108493,
+      "mean": 0.03362426907889464,
+      "stddev": 0.035888539096724674,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.010042046627751676,
+          "quantile_50": 0.02514353667039905,
+          "quantile_75": 0.04599413398492505
+        }
+      }
+    },
+    {
+      "name": "right_index_velocity_max",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.122594364905454,
+      "mean": 0.18033310373124534,
+      "stddev": 0.15977336920697588,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0481941905578082,
+          "quantile_50": 0.14942058072233433,
+          "quantile_75": 0.2743047724112072
+        }
+      }
+    },
+    {
+      "name": "right_index_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.5,
+      "mean": 0.09057375725407926,
+      "stddev": 0.06099456268885518,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.05,
+          "quantile_50": 0.0898876404494382,
+          "quantile_75": 0.1267605633802817
+        }
+      }
+    },
+    {
+      "name": "right_middle_velocity_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.7624554624615149,
+      "mean": 0.024652611509877402,
+      "stddev": 0.03282071801416687,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.00899751355296765,
+          "quantile_50": 0.0201918524983603,
+          "quantile_75": 0.031108662882960273
+        }
+      }
+    },
+    {
+      "name": "right_middle_velocity_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.3919733198072577,
+      "mean": 0.033877102741071564,
+      "stddev": 0.03587641725740603,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.01018314367076845,
+          "quantile_50": 0.02554688796801505,
+          "quantile_75": 0.04631851523908623
+        }
+      }
+    },
+    {
+      "name": "right_middle_velocity_max",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.0938938474281197,
+      "mean": 0.18143300743345633,
+      "stddev": 0.15984488763227453,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0493944689458961,
+          "quantile_50": 0.14984379421356625,
+          "quantile_75": 0.2754992175155075
+        }
+      }
+    },
+    {
+      "name": "right_middle_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.5,
+      "mean": 0.09065022798505584,
+      "stddev": 0.06049347218492241,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0512820512820512,
+          "quantile_50": 0.0909090909090909,
+          "quantile_75": 0.1265822784810126
+        }
+      }
+    },
+    {
+      "name": "right_wrist_to_thumb_dist_0",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.8510073657730053,
+      "mean": 0.10747044094584446,
+      "stddev": 0.05960324843627024,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0799084537142424,
+          "quantile_50": 0.11421087445796985,
+          "quantile_75": 0.145149118019504
+        }
+      }
+    },
+    {
+      "name": "right_wrist_to_index_dist_0",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.039858020141254,
+      "mean": 0.11240268951025377,
+      "stddev": 0.06832426878351548,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0790687551912116,
+          "quantile_50": 0.1137133641089755,
+          "quantile_75": 0.15180521740363512
+        }
+      }
+    },
+    {
+      "name": "right_wrist_to_middle_dist_0",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9795809319962422,
+      "mean": 0.09625113178832938,
+      "stddev": 0.06516747212870078,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.060455551127625226,
+          "quantile_50": 0.0914366602945817,
+          "quantile_75": 0.13077238231833266
+        }
+      }
+    },
+    {
+      "name": "right_thumb_to_index_dist_0",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.5942245452057813,
+      "mean": 0.04662835359419147,
+      "stddev": 0.033985535649562124,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.020685747759367552,
+          "quantile_50": 0.04389392564387945,
+          "quantile_75": 0.0690609659500751
+        }
+      }
+    },
+    {
+      "name": "right_thumb_to_middle_dist_0",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.5891252211172474,
+      "mean": 0.056644069312293786,
+      "stddev": 0.03945754632140919,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.026503048346707348,
+          "quantile_50": 0.05440987822461965,
+          "quantile_75": 0.08498471137228913
+        }
+      }
+    },
+    {
+      "name": "right_index_to_middle_dist_0",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.4016275114890656,
+      "mean": 0.026949901439228468,
+      "stddev": 0.024661278078354793,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.012985577542044375,
+          "quantile_50": 0.0222506207739254,
+          "quantile_75": 0.033898858695237497
+        }
+      }
+    },
+    {
+      "name": "right_wrist_to_thumb_dist_1",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.847095260355894,
+      "mean": 0.10698706839710545,
+      "stddev": 0.059570488138672155,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.07927056188249679,
+          "quantile_50": 0.1137912636595555,
+          "quantile_75": 0.14472539079646407
+        }
+      }
+    },
+    {
+      "name": "right_wrist_to_index_dist_1",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.091832654068145,
+      "mean": 0.11168987302844625,
+      "stddev": 0.06806598917616548,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.07818214648644857,
+          "quantile_50": 0.11295906478885726,
+          "quantile_75": 0.1509320116091129
+        }
+      }
+    },
+    {
+      "name": "right_wrist_to_middle_dist_1",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.0661491434555492,
+      "mean": 0.09543751111747693,
+      "stddev": 0.06496089594347261,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.05965145034613363,
+          "quantile_50": 0.09051075161376229,
+          "quantile_75": 0.12989908621571944
+        }
+      }
+    },
+    {
+      "name": "right_thumb_to_index_dist_1",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.6230207149279684,
+      "mean": 0.046407982090181044,
+      "stddev": 0.0339928885734126,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.02021215408118215,
+          "quantile_50": 0.0436520286799977,
+          "quantile_75": 0.06883291188147672
+        }
+      }
+    },
+    {
+      "name": "right_thumb_to_middle_dist_1",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.5503669775228456,
+      "mean": 0.05626425883939942,
+      "stddev": 0.03945347107622795,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.025995358626756324,
+          "quantile_50": 0.0539524099075264,
+          "quantile_75": 0.08468294509910212
+        }
+      }
+    },
+    {
+      "name": "right_index_to_middle_dist_1",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.4109120986068431,
+      "mean": 0.026800249844724358,
+      "stddev": 0.0246141145775284,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.012782800347636975,
+          "quantile_50": 0.0220972787181557,
+          "quantile_75": 0.033723474008984
+        }
+      }
+    },
+    {
+      "name": "right_wrist_3d_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.3958478971255384,
+      "mean": 0.2672807368976787,
+      "stddev": 0.18354562700093494,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.1057703043140245,
+          "quantile_50": 0.2797010826917111,
+          "quantile_75": 0.3951092691493211
+        }
+      }
+    },
+    {
+      "name": "right_thumb_3d_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.1442876933458526,
+      "mean": 0.30771953585826434,
+      "stddev": 0.2047611133017711,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.1384065954217475,
+          "quantile_50": 0.32506440753201227,
+          "quantile_75": 0.45026961243597885
+        }
+      }
+    },
+    {
+      "name": "right_index_3d_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.38877783429821,
+      "mean": 0.35201540175535784,
+      "stddev": 0.23090291507747948,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.1575229421518495,
+          "quantile_50": 0.3768403709280703,
+          "quantile_75": 0.519923402553383
+        }
+      }
+    },
+    {
+      "name": "right_middle_3d_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.4025609183706016,
+      "mean": 0.35438721636210163,
+      "stddev": 0.23253198833626804,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.1576758809897942,
+          "quantile_50": 0.3806083646248044,
+          "quantile_75": 0.5253928574820104
+        }
+      }
+    },
+    {
+      "name": "right_thumb_index_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_thumb_middle_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_index_middle_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_pinky_ring_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_thumb_flexion_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_index_flexion_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_middle_flexion_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_thumb_index_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.992580981532959,
+      "mean": 0.5644246205494322,
+      "stddev": 0.26795890576322834,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.49983837347799775,
+          "quantile_50": 0.6293908842038747,
+          "quantile_75": 0.7439637367679965
+        }
+      }
+    },
+    {
+      "name": "right_thumb_middle_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9932653719810826,
+      "mean": 0.5665825255339388,
+      "stddev": 0.2669697012790611,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5090918196119095,
+          "quantile_50": 0.6343329528319469,
+          "quantile_75": 0.7413188516411438
+        }
+      }
+    },
+    {
+      "name": "right_index_middle_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.992137534394074,
+      "mean": 0.5241623417745862,
+      "stddev": 0.25229135943464837,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.45748879592234515,
+          "quantile_50": 0.5796653106270433,
+          "quantile_75": 0.6888318450740333
+        }
+      }
+    },
+    {
+      "name": "right_thumb_index_mid_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.4265392549976105,
+      "mean": 0.10660262407081902,
+      "stddev": 0.07021228942978366,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.05776030235309662,
+          "quantile_50": 0.10861964986076081,
+          "quantile_75": 0.15236107627713835
+        }
+      }
+    },
+    {
+      "name": "right_thumb_middle_mid_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.4335690417550304,
+      "mean": 0.10675679585959073,
+      "stddev": 0.06974410458687243,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.05881796206687907,
+          "quantile_50": 0.10955369612496495,
+          "quantile_75": 0.15233673639204556
+        }
+      }
+    },
+    {
+      "name": "right_index_middle_mid_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.4219667933048516,
+      "mean": 0.11849225938241154,
+      "stddev": 0.07402367317372577,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0701114010779759,
+          "quantile_50": 0.12350459563787924,
+          "quantile_75": 0.16772821459494305
+        }
+      }
+    },
+    {
+      "name": "right_thumb_index_high_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.6997391802883617,
+      "mean": 0.17948118791943124,
+      "stddev": 0.12112103379077853,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.09100114569707946,
+          "quantile_50": 0.1786297596685616,
+          "quantile_75": 0.2608118022161897
+        }
+      }
+    },
+    {
+      "name": "right_thumb_middle_high_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.6923321654288623,
+      "mean": 0.17716911114615294,
+      "stddev": 0.11801040929631997,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.09317033429722078,
+          "quantile_50": 0.177596614214937,
+          "quantile_75": 0.2554254105938901
+        }
+      }
+    },
+    {
+      "name": "right_index_middle_high_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.6315570111556976,
+      "mean": 0.2078538313826847,
+      "stddev": 0.12847353660001953,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.12375079231397275,
+          "quantile_50": 0.2151639435137364,
+          "quantile_75": 0.29668010401571204
+        }
+      }
+    },
+    {
+      "name": "right_thumb_index_spectral_centroid",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 13.179679197612089,
+      "mean": 2.2801676843368655,
+      "stddev": 1.4343556388879524,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.3225099047124906,
+          "quantile_50": 2.349995689102336,
+          "quantile_75": 3.2424309693718003
+        }
+      }
+    },
+    {
+      "name": "right_thumb_middle_spectral_centroid",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 12.757251480565174,
+      "mean": 2.256889610733305,
+      "stddev": 1.3976707412918448,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.3561505011561314,
+          "quantile_50": 2.3404255406265353,
+          "quantile_75": 3.180932004825867
+        }
+      }
+    },
+    {
+      "name": "right_index_middle_spectral_centroid",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 12.533205110753196,
+      "mean": 2.5964545305928506,
+      "stddev": 1.5082035944043057,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.7092347959022143,
+          "quantile_50": 2.7647311293773713,
+          "quantile_75": 3.626094708762418
+        }
+      }
+    },
+    {
+      "name": "right_flexion_spectral_centroid",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 12.730220807354112,
+      "mean": 2.714475866366652,
+      "stddev": 1.550262332887885,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.7994803228613137,
+          "quantile_50": 2.9465844644005097,
+          "quantile_75": 3.803537067850742
+        }
+      }
+    },
+    {
+      "name": "right_thumb_index_angle_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 89.84163692885598,
+      "mean": 15.445743313883458,
+      "stddev": 9.72849270606348,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 10.080536837544365,
+          "quantile_50": 15.498381635590835,
+          "quantile_75": 20.898832311190457
+        }
+      }
+    },
+    {
+      "name": "right_thumb_index_angle_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 45.54307505252706,
+      "mean": 7.206723081708469,
+      "stddev": 5.64044031065672,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 2.917110130812757,
+          "quantile_50": 6.462964172066146,
+          "quantile_75": 10.675126993440564
+        }
+      }
+    },
+    {
+      "name": "right_thumb_index_angle_min",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 76.05538590659751,
+      "mean": 4.613951214708844,
+      "stddev": 5.210860223581648,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.3089696217996853,
+          "quantile_50": 3.235344673517962,
+          "quantile_75": 6.039911707122487
+        }
+      }
+    },
+    {
+      "name": "right_thumb_index_angle_max",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 163.82546974449772,
+      "mean": 37.34319310160601,
+      "stddev": 24.83576444624623,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 21.107763157945676,
+          "quantile_50": 35.79788052174109,
+          "quantile_75": 53.072434622495265
+        }
+      }
+    },
+    {
+      "name": "right_thumb_index_angle_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 161.54816424594864,
+      "mean": 32.729241886897164,
+      "stddev": 24.37770209188567,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 14.35267722385837,
+          "quantile_50": 30.04198694925509,
+          "quantile_75": 48.460914371830704
+        }
+      }
+    },
+    {
+      "name": "right_thumb_middle_angle_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 109.49667784590248,
+      "mean": 20.812662865086764,
+      "stddev": 13.030162072735203,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 13.726337852611014,
+          "quantile_50": 21.024584049255715,
+          "quantile_75": 28.132385549840826
+        }
+      }
+    },
+    {
+      "name": "right_thumb_middle_angle_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 54.73590135203096,
+      "mean": 9.38353832889816,
+      "stddev": 6.897388169697147,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 4.231378055559633,
+          "quantile_50": 8.852364823586859,
+          "quantile_75": 13.723364046975743
+        }
+      }
+    },
+    {
+      "name": "right_thumb_middle_angle_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 153.13734398362377,
+      "mean": 42.645308200371566,
+      "stddev": 29.552491141965184,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 20.691607476541748,
+          "quantile_50": 41.44123569239389,
+          "quantile_75": 63.05047014664359
+        }
+      }
+    },
+    {
+      "name": "right_index_middle_angle_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 56.244554531198865,
+      "mean": 8.706593741026554,
+      "stddev": 5.691116673342044,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 5.740853254376784,
+          "quantile_50": 8.536940952964354,
+          "quantile_75": 11.618304551155909
+        }
+      }
+    },
+    {
+      "name": "right_index_middle_angle_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 38.46428672624366,
+      "mean": 4.904013187651915,
+      "stddev": 4.233687299339061,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 2.005783507696133,
+          "quantile_50": 4.104891390544432,
+          "quantile_75": 6.8236625114557405
+        }
+      }
+    },
+    {
+      "name": "right_index_middle_angle_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 120.6394931100544,
+      "mean": 23.5554235756592,
+      "stddev": 19.310548102822118,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 9.8451775851245,
+          "quantile_50": 20.08665966663157,
+          "quantile_75": 33.611215992883054
+        }
+      }
+    },
+    {
+      "name": "right_thumb_flexion_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 149.2201938670736,
+      "mean": 14.009684199191181,
+      "stddev": 13.04320931194438,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 5.3102225568704045,
+          "quantile_50": 12.05671800360273,
+          "quantile_75": 18.999107473056057
+        }
+      }
+    },
+    {
+      "name": "right_thumb_flexion_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 67.72001262688887,
+      "mean": 9.710224070005777,
+      "stddev": 9.170090626607095,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 2.5984553493476414,
+          "quantile_50": 8.014555355746605,
+          "quantile_75": 13.999015132653385
+        }
+      }
+    },
+    {
+      "name": "right_thumb_flexion_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 172.11637350891593,
+      "mean": 42.107628052651044,
+      "stddev": 34.318431865842584,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 12.850744180795516,
+          "quantile_50": 37.439400982772554,
+          "quantile_75": 65.12112231476216
+        }
+      }
+    },
+    {
+      "name": "right_index_flexion_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 166.98286143259512,
+      "mean": 30.390921390719672,
+      "stddev": 23.332270497626865,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 13.111021407218038,
+          "quantile_50": 27.276397763589664,
+          "quantile_75": 44.6453848587216
+        }
+      }
+    },
+    {
+      "name": "right_index_flexion_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 79.32070669778105,
+      "mean": 19.90958598002221,
+      "stddev": 15.475124272273996,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 7.612911576399245,
+          "quantile_50": 17.869821472373797,
+          "quantile_75": 29.95386138345849
+        }
+      }
+    },
+    {
+      "name": "right_index_flexion_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 179.1058543451894,
+      "mean": 80.25961280209346,
+      "stddev": 52.129936221050386,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 37.72492709437096,
+          "quantile_50": 83.64253225518667,
+          "quantile_75": 125.00814447351159
+        }
+      }
+    },
+    {
+      "name": "right_middle_flexion_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 177.035277280935,
+      "mean": 39.168587615832735,
+      "stddev": 27.865377222650956,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 18.17899586715599,
+          "quantile_50": 37.438136694646666,
+          "quantile_75": 57.96169990955086
+        }
+      }
+    },
+    {
+      "name": "right_middle_flexion_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 80.38943622717755,
+      "mean": 23.81938356611505,
+      "stddev": 17.66878963798666,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 8.97102288555252,
+          "quantile_50": 22.055467330763282,
+          "quantile_75": 37.7542707373985
+        }
+      }
+    },
+    {
+      "name": "right_middle_flexion_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 179.3948768569439,
+      "mean": 91.53214759434614,
+      "stddev": 57.04639052158598,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 44.74327782863587,
+          "quantile_50": 100.92573835541882,
+          "quantile_75": 141.93740101575418
+        }
+      }
+    },
+    {
+      "name": "right_thumb_index_middle_corr",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.99766208533788,
+      "max": 0.999304633441416,
+      "mean": 0.29448606043509873,
+      "stddev": 0.36948748365792616,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.29167500369592425,
+          "quantile_75": 0.604423675458959
+        }
+      }
+    },
+    {
+      "name": "right_flexion_corr",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.9984368020925966,
+      "max": 0.9996940319025652,
+      "mean": 0.010366026499546238,
+      "stddev": 0.33987626539676463,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": -0.19529983588145794,
+          "quantile_50": 0.0,
+          "quantile_75": 0.21191988327536995
+        }
+      }
+    },
+    {
+      "name": "right_overall_shape_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.3335957522588261,
+      "max": 0.996134382268551,
+      "mean": 0.562678771919193,
+      "stddev": 0.27165923582470514,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.4646274990602242,
+          "quantile_50": 0.6174620616519726,
+          "quantile_75": 0.7577214812024851
+        }
+      }
+    },
+    {
+      "name": "right_thumb_index_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -1.2517055391264238,
+      "max": 0.9981178121498522,
+      "mean": 0.5362904406286171,
+      "stddev": 0.27605349996530437,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.420254449455191,
+          "quantile_50": 0.5943584481687583,
+          "quantile_75": 0.7340270556077146
+        }
+      }
+    },
+    {
+      "name": "right_thumb_middle_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.7834690085768834,
+      "max": 0.9983086424059404,
+      "mean": 0.5438810739402063,
+      "stddev": 0.2808254892256279,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.4176787461956678,
+          "quantile_50": 0.5988428992423808,
+          "quantile_75": 0.7504699443395815
+        }
+      }
+    },
+    {
+      "name": "right_thumb_ring_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.4695389586487837,
+      "max": 0.9987278205465024,
+      "mean": 0.5792147941211035,
+      "stddev": 0.28009929336555617,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.4892448244357603,
+          "quantile_50": 0.6367306342951686,
+          "quantile_75": 0.7768745225819196
+        }
+      }
+    },
+    {
+      "name": "right_thumb_pinky_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.3740549233304566,
+      "max": 0.998575918354466,
+      "mean": 0.6079176261507019,
+      "stddev": 0.2835369595343266,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5381375947691068,
+          "quantile_50": 0.6712002689787788,
+          "quantile_75": 0.8038493573718473
+        }
+      }
+    },
+    {
+      "name": "right_index_middle_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.8828275239306469,
+      "max": 0.9980825991831694,
+      "mean": 0.46878785831980924,
+      "stddev": 0.32197777262266214,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.17734362490985833,
+          "quantile_50": 0.5311315449786913,
+          "quantile_75": 0.7478129636820284
+        }
+      }
+    },
+    {
+      "name": "right_index_ring_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.6356469371283449,
+      "max": 0.9988240009432134,
+      "mean": 0.5622969940631886,
+      "stddev": 0.2953447310693442,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.3998452971017138,
+          "quantile_50": 0.633621051909806,
+          "quantile_75": 0.7970598208451722
+        }
+      }
+    },
+    {
+      "name": "right_index_pinky_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.4819521049487105,
+      "max": 0.998753211624546,
+      "mean": 0.6254502122569537,
+      "stddev": 0.288655434353245,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5510219677950154,
+          "quantile_50": 0.703387064556037,
+          "quantile_75": 0.829328070384706
+        }
+      }
+    },
+    {
+      "name": "right_middle_ring_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.6208392556951159,
+      "max": 0.997068846654884,
+      "mean": 0.5563583417774184,
+      "stddev": 0.3143340172299172,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.3491256312385675,
+          "quantile_50": 0.6687408543496774,
+          "quantile_75": 0.7987568487347098
+        }
+      }
+    },
+    {
+      "name": "right_middle_pinky_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.5482480590667771,
+      "max": 0.9980565548655226,
+      "mean": 0.6006128806697953,
+      "stddev": 0.2880379940424395,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.4978806161916982,
+          "quantile_50": 0.6821145336743627,
+          "quantile_75": 0.8116249174806507
+        }
+      }
+    },
+    {
+      "name": "right_ring_pinky_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.7427505079485361,
+      "max": 0.996091699231158,
+      "mean": 0.5459774972641358,
+      "stddev": 0.2874768762635599,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.4106512827902048,
+          "quantile_50": 0.6170630614473573,
+          "quantile_75": 0.7673366691496695
+        }
+      }
+    },
+    {
+      "name": "right_wrist_total_distance",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 127.2128633750582,
+      "mean": 1.3726458850963923,
+      "stddev": 3.7220324135237464,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.3701448958827789,
+          "quantile_50": 0.9824650344329147,
+          "quantile_75": 1.5080325476327794
+        }
+      }
+    },
+    {
+      "name": "right_wrist_path_straightness",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9978696285592742,
+      "mean": 0.12116867889821727,
+      "stddev": 0.15229015415788938,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.023902026530163878,
+          "quantile_50": 0.07272919114803136,
+          "quantile_75": 0.1562667448680097
+        }
+      }
+    },
+    {
+      "name": "right_wrist_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.593745996122852,
+      "mean": 1.3057061075234933,
+      "stddev": 0.7526967885748757,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.0906876037674624,
+          "quantile_50": 1.2750498719586005,
+          "quantile_75": 1.6035047540083818
+        }
+      }
+    },
+    {
+      "name": "right_wrist_x_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_wrist_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9988349836485556,
+      "mean": 0.7967772709671774,
+      "stddev": 0.34277230702092776,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.8581606384025195,
+          "quantile_50": 0.9626139647366256,
+          "quantile_75": 0.9808202275352884
+        }
+      }
+    },
+    {
+      "name": "right_wrist_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 4.912614549220045,
+      "mean": 1.4816216693064443,
+      "stddev": 0.7683816864912111,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.145640867947094,
+          "quantile_50": 1.591257546021648,
+          "quantile_75": 1.9811516725147986
+        }
+      }
+    },
+    {
+      "name": "right_wrist_y_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 14.385614385614383,
+      "mean": 0.0002602532945724909,
+      "stddev": 0.05703250982424274,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_wrist_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9988890599619932,
+      "mean": 0.7890172094723525,
+      "stddev": 0.33636330266722736,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.8639775804047405,
+          "quantile_50": 0.9352677542295105,
+          "quantile_75": 0.9670171161849065
+        }
+      }
+    },
+    {
+      "name": "right_wrist_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 6.492701112399606,
+      "mean": 3.557971603830017,
+      "stddev": 1.6416850721292402,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 3.3478567383443165,
+          "quantile_50": 4.221254508830739,
+          "quantile_75": 4.622909841159463
+        }
+      }
+    },
+    {
+      "name": "right_wrist_z_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 29.97002997002997,
+      "mean": 0.22979487179677166,
+      "stddev": 1.069582095326425,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_wrist_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9857765049060876,
+      "mean": 0.43765554871214396,
+      "stddev": 0.2289630933404988,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.33857137381272295,
+          "quantile_50": 0.479855853538035,
+          "quantile_75": 0.5938263658762595
+        }
+      }
+    },
+    {
+      "name": "right_thumb_total_distance",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 119.29902200640436,
+      "mean": 1.5987441798100062,
+      "stddev": 3.697811904191016,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.45089935656798974,
+          "quantile_50": 1.2520012729673153,
+          "quantile_75": 1.9112139807976967
+        }
+      }
+    },
+    {
+      "name": "right_thumb_path_straightness",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9951116233556392,
+      "mean": 0.11551532880711421,
+      "stddev": 0.1406805901179999,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.027227776795843102,
+          "quantile_50": 0.07267940449426985,
+          "quantile_75": 0.1485824191668837
+        }
+      }
+    },
+    {
+      "name": "right_thumb_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.588196024069718,
+      "mean": 1.3206848568770813,
+      "stddev": 0.7392663248761562,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.0808225833647822,
+          "quantile_50": 1.325750228500685,
+          "quantile_75": 1.6777553852999632
+        }
+      }
+    },
+    {
+      "name": "right_thumb_x_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.52578999947421,
+      "mean": 1.5893019887380786e-05,
+      "stddev": 0.0028552953600556623,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_thumb_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.998845560640568,
+      "mean": 0.7978695375191733,
+      "stddev": 0.3422011702889265,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.8750761421364655,
+          "quantile_50": 0.9563930660152281,
+          "quantile_75": 0.9798781487626129
+        }
+      }
+    },
+    {
+      "name": "right_thumb_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.350411506237934,
+      "mean": 1.6781071983636504,
+      "stddev": 0.8937858901539654,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.178272238428566,
+          "quantile_50": 1.8343121925035084,
+          "quantile_75": 2.2998096698536235
+        }
+      }
+    },
+    {
+      "name": "right_thumb_y_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_thumb_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9988835169196018,
+      "mean": 0.7672554048095378,
+      "stddev": 0.3295825491058866,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.8153132852786172,
+          "quantile_50": 0.9044848464751833,
+          "quantile_75": 0.9510171049757992
+        }
+      }
+    },
+    {
+      "name": "right_thumb_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 6.065568323949241,
+      "mean": 2.9041430141541187,
+      "stddev": 1.4156666872784038,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 2.4331861194861224,
+          "quantile_50": 3.3171492418386777,
+          "quantile_75": 3.8988182305396846
+        }
+      }
+    },
+    {
+      "name": "right_thumb_z_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 29.97002997002997,
+      "mean": 0.029830275264573505,
+      "stddev": 0.4942746189850653,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_thumb_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9830309776073785,
+      "mean": 0.5754191274662637,
+      "stddev": 0.2728938500588597,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5066355166559172,
+          "quantile_50": 0.6570013398584515,
+          "quantile_75": 0.7629078113410461
+        }
+      }
+    },
+    {
+      "name": "right_index_total_distance",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 132.21003705344668,
+      "mean": 1.836525165570696,
+      "stddev": 3.8017062402449455,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5493000352712396,
+          "quantile_50": 1.5000502301841556,
+          "quantile_75": 2.2589853415107806
+        }
+      }
+    },
+    {
+      "name": "right_index_path_straightness",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9948830998667296,
+      "mean": 0.11252529760681096,
+      "stddev": 0.13947522196764972,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.025626429138499926,
+          "quantile_50": 0.0698090268260067,
+          "quantile_75": 0.14390146180060986
+        }
+      }
+    },
+    {
+      "name": "right_index_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.393800173600621,
+      "mean": 1.3527308360110324,
+      "stddev": 0.7566964649806409,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.0939436457880403,
+          "quantile_50": 1.359307407481273,
+          "quantile_75": 1.7311136827179838
+        }
+      }
+    },
+    {
+      "name": "right_index_x_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.3622740895468166,
+      "mean": 4.5450967296978424e-05,
+      "stddev": 0.007098717616111801,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_index_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9988953952636884,
+      "mean": 0.7947839115888754,
+      "stddev": 0.3411521408966148,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.8681682064461433,
+          "quantile_50": 0.952025425731419,
+          "quantile_75": 0.9780422543669757
+        }
+      }
+    },
+    {
+      "name": "right_index_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.660422277783198,
+      "mean": 1.7943859624739327,
+      "stddev": 0.9648892533797425,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.2239282809148586,
+          "quantile_50": 1.9676147789476661,
+          "quantile_75": 2.48780700177631
+        }
+      }
+    },
+    {
+      "name": "right_index_y_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 4.995004995004995,
+      "mean": 0.00019215697284695812,
+      "stddev": 0.02825561956662249,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_index_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9988681988529012,
+      "mean": 0.7539562843651475,
+      "stddev": 0.325709987844837,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.7869104376066423,
+          "quantile_50": 0.8856763159842791,
+          "quantile_75": 0.9411654842992954
+        }
+      }
+    },
+    {
+      "name": "right_index_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 6.5650438196825345,
+      "mean": 2.773218104522006,
+      "stddev": 1.3594761402931512,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 2.2996402697099527,
+          "quantile_50": 3.1460241171383734,
+          "quantile_75": 3.7268424731384746
+        }
+      }
+    },
+    {
+      "name": "right_index_z_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 29.768888829291512,
+      "mean": 0.017358833750254443,
+      "stddev": 0.4088504744896456,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_index_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9858561759241854,
+      "mean": 0.5972825709101669,
+      "stddev": 0.2776462782687437,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5438147545292968,
+          "quantile_50": 0.6857481744463969,
+          "quantile_75": 0.7816208560636773
+        }
+      }
+    },
+    {
+      "name": "right_middle_total_distance",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 132.6672504683036,
+      "mean": 1.8458926030108649,
+      "stddev": 3.7779140890403857,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5460966690420678,
+          "quantile_50": 1.5193283195915885,
+          "quantile_75": 2.274683049822684
+        }
+      }
+    },
+    {
+      "name": "right_middle_path_straightness",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9953377032714448,
+      "mean": 0.11197188938695884,
+      "stddev": 0.14000818761876885,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0255846771512253,
+          "quantile_50": 0.06903279269540995,
+          "quantile_75": 0.14296997147619345
+        }
+      }
+    },
+    {
+      "name": "right_middle_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.311466696889978,
+      "mean": 1.3531804297074819,
+      "stddev": 0.7570795434795592,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.0996816437643573,
+          "quantile_50": 1.3590833354045369,
+          "quantile_75": 1.7244230226876631
+        }
+      }
+    },
+    {
+      "name": "right_middle_x_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.3622740895468166,
+      "mean": 6.910222596938371e-05,
+      "stddev": 0.008377094357589314,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_middle_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9988970841543772,
+      "mean": 0.7944402029275899,
+      "stddev": 0.34106909292700105,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.8668975404864594,
+          "quantile_50": 0.9522714869790978,
+          "quantile_75": 0.9774336353000441
+        }
+      }
+    },
+    {
+      "name": "right_middle_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.783046796320099,
+      "mean": 1.7797244059253992,
+      "stddev": 0.9548818068349276,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.2135180209186327,
+          "quantile_50": 1.954875102234284,
+          "quantile_75": 2.4667273025567775
+        }
+      }
+    },
+    {
+      "name": "right_middle_y_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_middle_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9989320782808137,
+      "mean": 0.7557763777074837,
+      "stddev": 0.32601219682915256,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.7924135017244605,
+          "quantile_50": 0.8875835045893175,
+          "quantile_75": 0.9413577321558009
+        }
+      }
+    },
+    {
+      "name": "right_middle_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 6.817005773623754,
+      "mean": 2.7658247848579247,
+      "stddev": 1.344673661439333,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 2.33954075266284,
+          "quantile_50": 3.148471273923319,
+          "quantile_75": 3.690789973089031
+        }
+      }
+    },
+    {
+      "name": "right_middle_z_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 29.97002997002997,
+      "mean": 0.017347837317504684,
+      "stddev": 0.4519416407848538,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "right_middle_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.986584964378159,
+      "mean": 0.5993660400236418,
+      "stddev": 0.27650549461192114,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5540120026159064,
+          "quantile_50": 0.6899023434372867,
+          "quantile_75": 0.7786357403016664
+        }
+      }
+    },
+    {
+      "name": "left_wrist_velocity_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.8486573623092384,
+      "mean": 0.017134092251550794,
+      "stddev": 0.033871006549424716,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.004188272806664075,
+          "quantile_50": 0.01054411605683395,
+          "quantile_75": 0.019170377092361503
+        }
+      }
+    },
+    {
+      "name": "left_wrist_velocity_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.5144172623262239,
+      "mean": 0.02807590022547204,
+      "stddev": 0.03647697988529737,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0047630189722325,
+          "quantile_50": 0.0152005864774515,
+          "quantile_75": 0.0401013456427477
+        }
+      }
+    },
+    {
+      "name": "left_wrist_velocity_max",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.210855377841819,
+      "mean": 0.14156899840056764,
+      "stddev": 0.14476795002563989,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.024955542090504726,
+          "quantile_50": 0.0981814606742943,
+          "quantile_75": 0.22849662411755783
+        }
+      }
+    },
+    {
+      "name": "left_wrist_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.5,
+      "mean": 0.08084908060259345,
+      "stddev": 0.06530321219942849,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.034090909090909,
+          "quantile_50": 0.0689655172413793,
+          "quantile_75": 0.119047619047619
+        }
+      }
+    },
+    {
+      "name": "left_thumb_velocity_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.87861357908966,
+      "mean": 0.019866719112445894,
+      "stddev": 0.03452952850442256,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.005317783467205275,
+          "quantile_50": 0.0134925685572603,
+          "quantile_75": 0.0234456867490771
+        }
+      }
+    },
+    {
+      "name": "left_thumb_velocity_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.5244877792076235,
+      "mean": 0.02960396280029251,
+      "stddev": 0.03640370461905515,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0060002979315014245,
+          "quantile_50": 0.01851725499831065,
+          "quantile_75": 0.04058393926103035
+        }
+      }
+    },
+    {
+      "name": "left_thumb_velocity_max",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.1978538806103127,
+      "mean": 0.15252233814069274,
+      "stddev": 0.1506201069710817,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.03175663443231405,
+          "quantile_50": 0.1104637739275481,
+          "quantile_75": 0.23717471011681085
+        }
+      }
+    },
+    {
+      "name": "left_thumb_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.5,
+      "mean": 0.08495204499070744,
+      "stddev": 0.062406681690098706,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0444444444444444,
+          "quantile_50": 0.081081081081081,
+          "quantile_75": 0.1235955056179775
+        }
+      }
+    },
+    {
+      "name": "left_index_velocity_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.8768392666162202,
+      "mean": 0.02170771113175324,
+      "stddev": 0.035337387976552226,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0054876069196165755,
+          "quantile_50": 0.01505000840318965,
+          "quantile_75": 0.026659912896979422
+        }
+      }
+    },
+    {
+      "name": "left_index_velocity_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.5078412469197182,
+      "mean": 0.03226361263250518,
+      "stddev": 0.038373724620661576,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0058876467446175,
+          "quantile_50": 0.02129120020759545,
+          "quantile_75": 0.04505715644053548
+        }
+      }
+    },
+    {
+      "name": "left_index_velocity_max",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.175304449084588,
+      "mean": 0.1683830163081807,
+      "stddev": 0.16486874753475927,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0300374699227064,
+          "quantile_50": 0.12225666765325716,
+          "quantile_75": 0.2678563137687701
+        }
+      }
+    },
+    {
+      "name": "left_index_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.5,
+      "mean": 0.08681027335198938,
+      "stddev": 0.06295420132313702,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0444444444444444,
+          "quantile_50": 0.0843373493975903,
+          "quantile_75": 0.125
+        }
+      }
+    },
+    {
+      "name": "left_middle_velocity_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.8863591160957793,
+      "mean": 0.021715698907783756,
+      "stddev": 0.03532053074063526,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.005139865380361225,
+          "quantile_50": 0.0149122965673818,
+          "quantile_75": 0.026917272031134424
+        }
+      }
+    },
+    {
+      "name": "left_middle_velocity_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.5074285589860038,
+      "mean": 0.03267156026393167,
+      "stddev": 0.038732501917818817,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.005277357727078574,
+          "quantile_50": 0.02168887721335075,
+          "quantile_75": 0.046035783398351425
+        }
+      }
+    },
+    {
+      "name": "left_middle_velocity_max",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.1537373207415007,
+      "mean": 0.1706236140205122,
+      "stddev": 0.16741347738677798,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.027369017705614,
+          "quantile_50": 0.1252508789867062,
+          "quantile_75": 0.2728690974186633
+        }
+      }
+    },
+    {
+      "name": "left_middle_rapid_movement_ratio",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.5,
+      "mean": 0.08676419176356003,
+      "stddev": 0.0627352899033006,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0444444444444444,
+          "quantile_50": 0.0845070422535211,
+          "quantile_75": 0.125
+        }
+      }
+    },
+    {
+      "name": "left_wrist_to_thumb_dist_0",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.8187097337819108,
+      "mean": 0.1032890576229645,
+      "stddev": 0.05820813544390853,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.07845923730258587,
+          "quantile_50": 0.10741509453220724,
+          "quantile_75": 0.13958879869503005
+        }
+      }
+    },
+    {
+      "name": "left_wrist_to_index_dist_0",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.0694664098330833,
+      "mean": 0.101912915543146,
+      "stddev": 0.06592465290802943,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.070796293619939,
+          "quantile_50": 0.10029139382153959,
+          "quantile_75": 0.13501863080809615
+        }
+      }
+    },
+    {
+      "name": "left_wrist_to_middle_dist_0",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.0179031433400554,
+      "mean": 0.08931197129971585,
+      "stddev": 0.06434923605220148,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.054027742168815875,
+          "quantile_50": 0.08383965024091694,
+          "quantile_75": 0.11980495918269655
+        }
+      }
+    },
+    {
+      "name": "left_thumb_to_index_dist_0",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.8705467024529576,
+      "mean": 0.0495418398710145,
+      "stddev": 0.03642750125364217,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.02368134444123905,
+          "quantile_50": 0.04563098734197305,
+          "quantile_75": 0.0753708523700702
+        }
+      }
+    },
+    {
+      "name": "left_thumb_to_middle_dist_0",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.8624865409876378,
+      "mean": 0.0623079986262419,
+      "stddev": 0.0439209585742778,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.03108224512715735,
+          "quantile_50": 0.0587029599590961,
+          "quantile_75": 0.0934734208840011
+        }
+      }
+    },
+    {
+      "name": "left_index_to_middle_dist_0",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.3812309806129927,
+      "mean": 0.025319050216685395,
+      "stddev": 0.02202521880080082,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.01361487424354065,
+          "quantile_50": 0.0226914486487936,
+          "quantile_75": 0.03178435916489195
+        }
+      }
+    },
+    {
+      "name": "left_wrist_to_thumb_dist_1",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.8393566066853592,
+      "mean": 0.10266581502291858,
+      "stddev": 0.05830387284129583,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.07741271042047805,
+          "quantile_50": 0.10666315370881975,
+          "quantile_75": 0.13899543498533382
+        }
+      }
+    },
+    {
+      "name": "left_wrist_to_index_dist_1",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.0330695913664034,
+      "mean": 0.10113177685340852,
+      "stddev": 0.06594638504901704,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.07005451941488611,
+          "quantile_50": 0.0992896970416624,
+          "quantile_75": 0.1343397738259017
+        }
+      }
+    },
+    {
+      "name": "left_wrist_to_middle_dist_1",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.0022889837599502,
+      "mean": 0.08853735558950818,
+      "stddev": 0.06412705182417977,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.053288632357268675,
+          "quantile_50": 0.0827768324884606,
+          "quantile_75": 0.11910317241028127
+        }
+      }
+    },
+    {
+      "name": "left_thumb_to_index_dist_1",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.8805964650810734,
+      "mean": 0.049359293453641886,
+      "stddev": 0.03656502238450012,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.023379263397244672,
+          "quantile_50": 0.04522197664314065,
+          "quantile_75": 0.07523939095388228
+        }
+      }
+    },
+    {
+      "name": "left_thumb_to_middle_dist_1",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.8674697107468154,
+      "mean": 0.06194953620294922,
+      "stddev": 0.043778685895097806,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0306269208076866,
+          "quantile_50": 0.05830421635358295,
+          "quantile_75": 0.09319905584998707
+        }
+      }
+    },
+    {
+      "name": "left_index_to_middle_dist_1",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.4774529947775436,
+      "mean": 0.02514281619506593,
+      "stddev": 0.022027891430274414,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.013410711269533524,
+          "quantile_50": 0.0225086941500987,
+          "quantile_75": 0.03154996834748365
+        }
+      }
+    },
+    {
+      "name": "left_wrist_3d_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.3675927202274545,
+      "mean": 0.244944750603756,
+      "stddev": 0.1891918998670874,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0569997920833943,
+          "quantile_50": 0.24869367483826954,
+          "quantile_75": 0.38418947018346616
+        }
+      }
+    },
+    {
+      "name": "left_thumb_3d_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.2622814001297036,
+      "mean": 0.287360565451601,
+      "stddev": 0.20910531696601298,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.09207045920991742,
+          "quantile_50": 0.2985930263087948,
+          "quantile_75": 0.4461994915058721
+        }
+      }
+    },
+    {
+      "name": "left_index_3d_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.225423094616611,
+      "mean": 0.31786781770197875,
+      "stddev": 0.23720236484090262,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0843865906456156,
+          "quantile_50": 0.3308824847234893,
+          "quantile_75": 0.5072742973173381
+        }
+      }
+    },
+    {
+      "name": "left_middle_3d_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.2481905716742805,
+      "mean": 0.32056231037202854,
+      "stddev": 0.24228993604292945,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.07947896353783185,
+          "quantile_50": 0.33177447528686305,
+          "quantile_75": 0.5144180870943409
+        }
+      }
+    },
+    {
+      "name": "left_thumb_index_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_thumb_middle_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_index_middle_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_pinky_ring_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_thumb_flexion_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_index_flexion_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_middle_flexion_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_thumb_index_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9886806414261584,
+      "mean": 0.5879687780965213,
+      "stddev": 0.28333411074286824,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5317182454713236,
+          "quantile_50": 0.6717071518914495,
+          "quantile_75": 0.7802728354314359
+        }
+      }
+    },
+    {
+      "name": "left_thumb_middle_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.990628610849914,
+      "mean": 0.5932263668984495,
+      "stddev": 0.2845897997884516,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5402646695054028,
+          "quantile_50": 0.6798003351566033,
+          "quantile_75": 0.7841439268717114
+        }
+      }
+    },
+    {
+      "name": "left_index_middle_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.991590979963044,
+      "mean": 0.5460304903257552,
+      "stddev": 0.26797962777095646,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.4797856895732262,
+          "quantile_50": 0.6195880637859978,
+          "quantile_75": 0.7269841062077207
+        }
+      }
+    },
+    {
+      "name": "left_thumb_index_mid_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.4377577702317027,
+      "mean": 0.09227842441457819,
+      "stddev": 0.06577759862576413,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.04417017479978445,
+          "quantile_50": 0.09006031522055045,
+          "quantile_75": 0.1347565753535079
+        }
+      }
+    },
+    {
+      "name": "left_thumb_middle_mid_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.4575021712462067,
+      "mean": 0.09194082223550211,
+      "stddev": 0.06572977989969923,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.04428166943371292,
+          "quantile_50": 0.08967181165704616,
+          "quantile_75": 0.13379382637904885
+        }
+      }
+    },
+    {
+      "name": "left_index_middle_mid_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.4279385135046871,
+      "mean": 0.10515555052177834,
+      "stddev": 0.0695840093036336,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.058169351243536026,
+          "quantile_50": 0.1067584309207438,
+          "quantile_75": 0.15029740803643063
+        }
+      }
+    },
+    {
+      "name": "left_thumb_index_high_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.7168687482448536,
+      "mean": 0.1593795336000115,
+      "stddev": 0.11299496949455222,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.07761830196795405,
+          "quantile_50": 0.15381734093866534,
+          "quantile_75": 0.23289354350264496
+        }
+      }
+    },
+    {
+      "name": "left_thumb_middle_high_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.6674151893309347,
+      "mean": 0.15445954697715938,
+      "stddev": 0.10980030713905826,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.07500899237461164,
+          "quantile_50": 0.1493340991949677,
+          "quantile_75": 0.22466907642341427
+        }
+      }
+    },
+    {
+      "name": "left_index_middle_high_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.6488925229696221,
+      "mean": 0.18844069526357746,
+      "stddev": 0.12407014453071405,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.1037278052598126,
+          "quantile_50": 0.18955652385971045,
+          "quantile_75": 0.2717203448796529
+        }
+      }
+    },
+    {
+      "name": "left_thumb_index_spectral_centroid",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 13.580961997597967,
+      "mean": 2.0471918732682055,
+      "stddev": 1.3549055189647041,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.1525539539277507,
+          "quantile_50": 2.0550651419380728,
+          "quantile_75": 2.924048045533655
+        }
+      }
+    },
+    {
+      "name": "left_thumb_middle_spectral_centroid",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 12.567688625822088,
+      "mean": 1.9977364234548354,
+      "stddev": 1.3227265072690948,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.1332260789898596,
+          "quantile_50": 2.0056735079849592,
+          "quantile_75": 2.834817334406517
+        }
+      }
+    },
+    {
+      "name": "left_index_middle_spectral_centroid",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 13.41987707236507,
+      "mean": 2.376905242497257,
+      "stddev": 1.4712344177386907,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.482323663923532,
+          "quantile_50": 2.465442177000897,
+          "quantile_75": 3.3553106313821113
+        }
+      }
+    },
+    {
+      "name": "left_flexion_spectral_centroid",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 13.284679283951329,
+      "mean": 2.682243885361102,
+      "stddev": 1.5581765494518183,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.84287546402337,
+          "quantile_50": 2.8725437690828226,
+          "quantile_75": 3.7240863555329846
+        }
+      }
+    },
+    {
+      "name": "left_thumb_index_angle_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 105.13357954843056,
+      "mean": 18.49012104559644,
+      "stddev": 11.536266271055423,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 11.946813466086088,
+          "quantile_50": 18.842324279360895,
+          "quantile_75": 25.704272087786478
+        }
+      }
+    },
+    {
+      "name": "left_thumb_index_angle_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 45.4230763688739,
+      "mean": 7.493613973124114,
+      "stddev": 5.708557112593309,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 3.1028726275063194,
+          "quantile_50": 7.070892284928878,
+          "quantile_75": 11.001105309339865
+        }
+      }
+    },
+    {
+      "name": "left_thumb_index_angle_min",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 68.62185088805408,
+      "mean": 5.903015349826978,
+      "stddev": 6.425329828678262,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.83961532573082,
+          "quantile_50": 4.140378994714943,
+          "quantile_75": 7.640802006004623
+        }
+      }
+    },
+    {
+      "name": "left_thumb_index_angle_max",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 144.19209416192837,
+      "mean": 38.62992848353541,
+      "stddev": 24.37617702777115,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 24.762655847191564,
+          "quantile_50": 39.15230493204828,
+          "quantile_75": 53.102059922945585
+        }
+      }
+    },
+    {
+      "name": "left_thumb_index_angle_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 142.27781720823697,
+      "mean": 32.72691313370843,
+      "stddev": 23.559375480609106,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 15.608311693297571,
+          "quantile_50": 31.515710588362992,
+          "quantile_75": 47.233131994412204
+        }
+      }
+    },
+    {
+      "name": "left_thumb_middle_angle_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 123.60357075234516,
+      "mean": 25.236302592869436,
+      "stddev": 15.924839572171448,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 15.634340078738928,
+          "quantile_50": 25.581607022294712,
+          "quantile_75": 35.584793849191804
+        }
+      }
+    },
+    {
+      "name": "left_thumb_middle_angle_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 54.466989873214,
+      "mean": 9.970069667083116,
+      "stddev": 7.286794427667462,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 4.259360489969014,
+          "quantile_50": 9.746046205651975,
+          "quantile_75": 14.683298402075817
+        }
+      }
+    },
+    {
+      "name": "left_thumb_middle_angle_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 148.1749690452298,
+      "mean": 42.98989282574176,
+      "stddev": 29.297330697276447,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 21.32988363549833,
+          "quantile_50": 43.278307700053794,
+          "quantile_75": 62.56230263832208
+        }
+      }
+    },
+    {
+      "name": "left_index_middle_angle_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 85.31269339740841,
+      "mean": 9.649975022179063,
+      "stddev": 6.495630449819715,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 5.835875946474323,
+          "quantile_50": 9.599570492881211,
+          "quantile_75": 13.30518508462366
+        }
+      }
+    },
+    {
+      "name": "left_index_middle_angle_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 38.677547886203875,
+      "mean": 4.749096854706055,
+      "stddev": 3.9969055750722102,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 2.0666455566488953,
+          "quantile_50": 4.181018318074276,
+          "quantile_75": 6.521325441989854
+        }
+      }
+    },
+    {
+      "name": "left_index_middle_angle_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 121.03471611504236,
+      "mean": 22.00665364758185,
+      "stddev": 17.420987316319145,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 10.147712125393085,
+          "quantile_50": 19.52049003790631,
+          "quantile_75": 31.055675458007595
+        }
+      }
+    },
+    {
+      "name": "left_thumb_flexion_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 144.17355633322128,
+      "mean": 19.40428433022663,
+      "stddev": 21.24076098180423,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 6.67157305801157,
+          "quantile_50": 14.342773066072324,
+          "quantile_75": 22.93288126666473
+        }
+      }
+    },
+    {
+      "name": "left_thumb_flexion_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 67.71892006620479,
+      "mean": 11.52811070249584,
+      "stddev": 11.392486700123936,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 3.261033597868309,
+          "quantile_50": 8.729267426652132,
+          "quantile_75": 15.606776475295886
+        }
+      }
+    },
+    {
+      "name": "left_thumb_flexion_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 175.82681066390592,
+      "mean": 47.47189077641209,
+      "stddev": 38.74678807003458,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 15.304237238679548,
+          "quantile_50": 41.136054502822496,
+          "quantile_75": 72.68338275445343
+        }
+      }
+    },
+    {
+      "name": "left_index_flexion_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 167.98291144827027,
+      "mean": 25.195236795237697,
+      "stddev": 21.822284634892856,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 9.71672152927415,
+          "quantile_50": 20.749216655693896,
+          "quantile_75": 36.28636672738766
+        }
+      }
+    },
+    {
+      "name": "left_index_flexion_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 80.28956325600065,
+      "mean": 16.68593558494087,
+      "stddev": 14.779318815551742,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 5.103946283656566,
+          "quantile_50": 13.244272044139397,
+          "quantile_75": 24.99019749976485
+        }
+      }
+    },
+    {
+      "name": "left_index_flexion_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 179.1860916181718,
+      "mean": 69.54055515790083,
+      "stddev": 51.39965539720939,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 25.43130063903916,
+          "quantile_50": 64.67759137216996,
+          "quantile_75": 111.7498329131954
+        }
+      }
+    },
+    {
+      "name": "left_middle_flexion_mean",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 173.85128781207803,
+      "mean": 32.144635574534085,
+      "stddev": 26.79233868383943,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 12.83959853515862,
+          "quantile_50": 27.083610343132456,
+          "quantile_75": 46.75286325857625
+        }
+      }
+    },
+    {
+      "name": "left_middle_flexion_std",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 80.86616454509284,
+      "mean": 20.17954753674069,
+      "stddev": 16.82323816559601,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 5.9840158527446,
+          "quantile_50": 16.85108585748648,
+          "quantile_75": 32.15165600001049
+        }
+      }
+    },
+    {
+      "name": "left_middle_flexion_range",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 179.42209118007315,
+      "mean": 81.99557250050488,
+      "stddev": 57.47775342415854,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 29.71100081535363,
+          "quantile_50": 82.87308360911324,
+          "quantile_75": 133.3355161519955
+        }
+      }
+    },
+    {
+      "name": "left_thumb_index_middle_corr",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.9959097251684104,
+      "max": 0.9980703832555248,
+      "mean": 0.2794427280880843,
+      "stddev": 0.38565404983007817,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.27350475931976137,
+          "quantile_75": 0.6039421347260853
+        }
+      }
+    },
+    {
+      "name": "left_flexion_corr",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.9950043828110688,
+      "max": 0.9954976894226591,
+      "mean": 0.019093309245995015,
+      "stddev": 0.35544028974872194,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": -0.20115052103689857,
+          "quantile_50": 0.0,
+          "quantile_75": 0.23127528626130783
+        }
+      }
+    },
+    {
+      "name": "left_overall_shape_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.2120456283723394,
+      "max": 0.9967817246935284,
+      "mean": 0.5899005700254043,
+      "stddev": 0.28323421995126175,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5185059724421239,
+          "quantile_50": 0.6604823223262488,
+          "quantile_75": 0.7859991055951554
+        }
+      }
+    },
+    {
+      "name": "left_thumb_index_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.7551781777550097,
+      "max": 0.9976743134337506,
+      "mean": 0.5539847919232882,
+      "stddev": 0.2877483500066557,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.43972919007649686,
+          "quantile_50": 0.6227350547424781,
+          "quantile_75": 0.7589598478607714
+        }
+      }
+    },
+    {
+      "name": "left_thumb_middle_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.4642450872058314,
+      "max": 0.9984519957739114,
+      "mean": 0.5692674607321424,
+      "stddev": 0.2928480197465181,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.4556811180714121,
+          "quantile_50": 0.6409438323227691,
+          "quantile_75": 0.7805885104056397
+        }
+      }
+    },
+    {
+      "name": "left_thumb_ring_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.5336081528158494,
+      "max": 0.997953547669793,
+      "mean": 0.6037138930911157,
+      "stddev": 0.2956453300144273,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5191906743978106,
+          "quantile_50": 0.6804755715969808,
+          "quantile_75": 0.8144377371588529
+        }
+      }
+    },
+    {
+      "name": "left_thumb_pinky_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.3812950527139302,
+      "max": 0.9981680770538656,
+      "mean": 0.6260198638725079,
+      "stddev": 0.29898066457298095,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5552642226475186,
+          "quantile_50": 0.7088412389080415,
+          "quantile_75": 0.8373579779862532
+        }
+      }
+    },
+    {
+      "name": "left_index_middle_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -1.5931874815369018,
+      "max": 0.9973571823945122,
+      "mean": 0.5243384007266289,
+      "stddev": 0.318779451342373,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.2889175582605196,
+          "quantile_50": 0.6149535786824505,
+          "quantile_75": 0.7882719949033943
+        }
+      }
+    },
+    {
+      "name": "left_index_ring_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.9540242023179176,
+      "max": 0.9974843481768252,
+      "mean": 0.5999492899081339,
+      "stddev": 0.3079070501739887,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.46357066167763183,
+          "quantile_50": 0.6962494275619132,
+          "quantile_75": 0.8381861120669429
+        }
+      }
+    },
+    {
+      "name": "left_index_pinky_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.6233265710344171,
+      "max": 0.9976782130771148,
+      "mean": 0.6416046623484905,
+      "stddev": 0.30346290062799824,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5739964810677614,
+          "quantile_50": 0.7401179446505723,
+          "quantile_75": 0.8554581481606329
+        }
+      }
+    },
+    {
+      "name": "left_middle_ring_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.7006067529220856,
+      "max": 0.997304755272633,
+      "mean": 0.5907820919105026,
+      "stddev": 0.3073819941401421,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.4708315381269033,
+          "quantile_50": 0.6908130446798679,
+          "quantile_75": 0.8196555679378863
+        }
+      }
+    },
+    {
+      "name": "left_middle_pinky_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.5844945483939286,
+      "max": 0.9972925234283484,
+      "mean": 0.6170799381227514,
+      "stddev": 0.296413387395083,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5417738399922806,
+          "quantile_50": 0.7068422657924593,
+          "quantile_75": 0.8269228020541887
+        }
+      }
+    },
+    {
+      "name": "left_ring_pinky_stability",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": -0.8186302641865968,
+      "max": 0.9966175046342668,
+      "mean": 0.5722653076184812,
+      "stddev": 0.29002395392575725,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.4629181570301247,
+          "quantile_50": 0.6489618929556187,
+          "quantile_75": 0.7880728104152187
+        }
+      }
+    },
+    {
+      "name": "left_wrist_total_distance",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 143.75763050888384,
+      "mean": 1.3785342490927446,
+      "stddev": 4.104534010363395,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.2885894399568438,
+          "quantile_50": 0.7980809276164915,
+          "quantile_75": 1.4505966069017386
+        }
+      }
+    },
+    {
+      "name": "left_wrist_path_straightness",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9991115849511862,
+      "mean": 0.11531408583250141,
+      "stddev": 0.15471083333973648,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.01619455648410495,
+          "quantile_50": 0.06153842800382195,
+          "quantile_75": 0.14778057659282634
+        }
+      }
+    },
+    {
+      "name": "left_wrist_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.641144739842845,
+      "mean": 1.2395356257393473,
+      "stddev": 0.7229768791840109,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.0391534588705893,
+          "quantile_50": 1.192621595493669,
+          "quantile_75": 1.605615268327067
+        }
+      }
+    },
+    {
+      "name": "left_wrist_x_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_wrist_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9988810047644624,
+      "mean": 0.7909515653017839,
+      "stddev": 0.3528718149202279,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.8619718242848939,
+          "quantile_50": 0.9647792324695058,
+          "quantile_75": 0.9859475545826762
+        }
+      }
+    },
+    {
+      "name": "left_wrist_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.367469269963966,
+      "mean": 1.3641646524855027,
+      "stddev": 0.7541518760241617,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.0827513329606746,
+          "quantile_50": 1.3916787964831765,
+          "quantile_75": 1.8475028187521294
+        }
+      }
+    },
+    {
+      "name": "left_wrist_y_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 1.2,
+      "mean": 1.8601190476190474e-05,
+      "stddev": 0.00472455591261534,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_wrist_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.99880093810943,
+      "mean": 0.7866488450857054,
+      "stddev": 0.3492925203935455,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.8666478854964259,
+          "quantile_50": 0.9469393527964631,
+          "quantile_75": 0.977361995287864
+        }
+      }
+    },
+    {
+      "name": "left_wrist_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 6.547521909563389,
+      "mean": 3.362270692205309,
+      "stddev": 1.6872333234551589,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 2.6632145488174954,
+          "quantile_50": 4.019403822680609,
+          "quantile_75": 4.603673156308375
+        }
+      }
+    },
+    {
+      "name": "left_wrist_z_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 29.97002997002997,
+      "mean": 0.2689371452257304,
+      "stddev": 1.321060877520619,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_wrist_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.982582042205702,
+      "mean": 0.47562812145634425,
+      "stddev": 0.26136385864560385,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.3492583713531276,
+          "quantile_50": 0.5205369814200249,
+          "quantile_75": 0.6602557620894214
+        }
+      }
+    },
+    {
+      "name": "left_thumb_total_distance",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 137.58711644478285,
+      "mean": 1.5678784132005115,
+      "stddev": 4.082795261859108,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.3568323787540789,
+          "quantile_50": 1.0170689344139703,
+          "quantile_75": 1.7829411407090796
+        }
+      }
+    },
+    {
+      "name": "left_thumb_path_straightness",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9989948110903286,
+      "mean": 0.1178754380273657,
+      "stddev": 0.14151333890098555,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.023925832676769676,
+          "quantile_50": 0.074873040339972,
+          "quantile_75": 0.15750389014613994
+        }
+      }
+    },
+    {
+      "name": "left_thumb_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.3808427905604965,
+      "mean": 1.254994668030907,
+      "stddev": 0.7132327527177303,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.0428046031299634,
+          "quantile_50": 1.260726847627176,
+          "quantile_75": 1.6138315027250636
+        }
+      }
+    },
+    {
+      "name": "left_thumb_x_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_thumb_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9989629384675686,
+      "mean": 0.7927248801851398,
+      "stddev": 0.3530134486972642,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.876803172045988,
+          "quantile_50": 0.9612958444309001,
+          "quantile_75": 0.9837630704697189
+        }
+      }
+    },
+    {
+      "name": "left_thumb_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.286660397394076,
+      "mean": 1.5194585830795833,
+      "stddev": 0.8658670823780806,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.089956628984372,
+          "quantile_50": 1.5625206217227743,
+          "quantile_75": 2.1293267037269934
+        }
+      }
+    },
+    {
+      "name": "left_thumb_y_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "stddev": 0.0,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_thumb_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.998724204169326,
+      "mean": 0.771782374346875,
+      "stddev": 0.344512866260302,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.8285682866102166,
+          "quantile_50": 0.9243636120435132,
+          "quantile_75": 0.9701792647955055
+        }
+      }
+    },
+    {
+      "name": "left_thumb_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.89390511192701,
+      "mean": 2.925936515848952,
+      "stddev": 1.506127903991306,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 2.310670363950564,
+          "quantile_50": 3.324571824735388,
+          "quantile_75": 4.021971531294325
+        }
+      }
+    },
+    {
+      "name": "left_thumb_z_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 15.0,
+      "mean": 0.05104099466062712,
+      "stddev": 0.5337815277753335,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_thumb_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9839368673273452,
+      "mean": 0.5631572997526849,
+      "stddev": 0.28166947926746916,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.47680652350758257,
+          "quantile_50": 0.6467954018434008,
+          "quantile_75": 0.762670732171472
+        }
+      }
+    },
+    {
+      "name": "left_index_total_distance",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 149.06267532475744,
+      "mean": 1.703214519718489,
+      "stddev": 4.122775049119889,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.357489694561559,
+          "quantile_50": 1.1283858014427852,
+          "quantile_75": 2.032296224355677
+        }
+      }
+    },
+    {
+      "name": "left_index_path_straightness",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9956844923414464,
+      "mean": 0.11386098894595649,
+      "stddev": 0.14250885105240668,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.021596192790040526,
+          "quantile_50": 0.06824626975330965,
+          "quantile_75": 0.14899818978520774
+        }
+      }
+    },
+    {
+      "name": "left_index_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.290873965745178,
+      "mean": 1.26217456827983,
+      "stddev": 0.717275683516536,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.0438467340567292,
+          "quantile_50": 1.2722045283631682,
+          "quantile_75": 1.622803405329399
+        }
+      }
+    },
+    {
+      "name": "left_index_x_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 2.3076923076923075,
+      "mean": 3.577152014652014e-05,
+      "stddev": 0.00908568444733719,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_index_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9989142911150336,
+      "mean": 0.7919717436312931,
+      "stddev": 0.35269829368196526,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.8766197991453073,
+          "quantile_50": 0.959284450130366,
+          "quantile_75": 0.9827384848355307
+        }
+      }
+    },
+    {
+      "name": "left_index_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.2791723961164205,
+      "mean": 1.5925463177918966,
+      "stddev": 0.9301153220484095,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.0711866470179943,
+          "quantile_50": 1.6296641544006496,
+          "quantile_75": 2.2723188814491095
+        }
+      }
+    },
+    {
+      "name": "left_index_y_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.6515223906528254,
+      "mean": 1.0099243406696821e-05,
+      "stddev": 0.002565128302466739,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_index_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9989638074718364,
+      "mean": 0.763862530403936,
+      "stddev": 0.3423718157284365,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.8077555360546513,
+          "quantile_50": 0.9123881054542855,
+          "quantile_75": 0.9663827550396873
+        }
+      }
+    },
+    {
+      "name": "left_index_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 6.1233810870776075,
+      "mean": 2.703398365208294,
+      "stddev": 1.4018488447279762,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 2.141230778820203,
+          "quantile_50": 3.0314108690787833,
+          "quantile_75": 3.7036247527936554
+        }
+      }
+    },
+    {
+      "name": "left_index_z_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 29.97002997002997,
+      "mean": 0.021914955433218676,
+      "stddev": 0.42983016398968255,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_index_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9854530345101612,
+      "mean": 0.6005308861599227,
+      "stddev": 0.29016676575187456,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5440776955452756,
+          "quantile_50": 0.6977957201401763,
+          "quantile_75": 0.7983333084788031
+        }
+      }
+    },
+    {
+      "name": "left_middle_total_distance",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 150.6810497362825,
+      "mean": 1.7095941078563006,
+      "stddev": 4.125961408409311,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.3378421928579207,
+          "quantile_50": 1.1222537163322173,
+          "quantile_75": 2.056807701476811
+        }
+      }
+    },
+    {
+      "name": "left_middle_path_straightness",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9964084012458408,
+      "mean": 0.11428655406754624,
+      "stddev": 0.14477363364169923,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.02104503494829965,
+          "quantile_50": 0.06764654489970595,
+          "quantile_75": 0.14743667465801086
+        }
+      }
+    },
+    {
+      "name": "left_middle_x_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.273175089635907,
+      "mean": 1.2639468145828059,
+      "stddev": 0.7181195744352998,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.0448445359051242,
+          "quantile_50": 1.273621526163051,
+          "quantile_75": 1.6258477613340043
+        }
+      }
+    },
+    {
+      "name": "left_middle_x_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 2.3076923076923075,
+      "mean": 3.577152014652014e-05,
+      "stddev": 0.00908568444733719,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_middle_x_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.998877807965294,
+      "mean": 0.7915913395694103,
+      "stddev": 0.35253441121051804,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.8754466694849156,
+          "quantile_50": 0.9588555727462592,
+          "quantile_75": 0.9823159278191952
+        }
+      }
+    },
+    {
+      "name": "left_middle_y_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 5.300041431311295,
+      "mean": 1.5869210941430587,
+      "stddev": 0.9296578660362006,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 1.0662258980263954,
+          "quantile_50": 1.6183720251701033,
+          "quantile_75": 2.2690521464931033
+        }
+      }
+    },
+    {
+      "name": "left_middle_y_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 4.615384615384615,
+      "mean": 0.00013823630148711316,
+      "stddev": 0.02196934183639108,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_middle_y_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9987857386751996,
+      "mean": 0.7642327547195924,
+      "stddev": 0.34255614436557624,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.8078621144627675,
+          "quantile_50": 0.9128936711279574,
+          "quantile_75": 0.9672620776157499
+        }
+      }
+    },
+    {
+      "name": "left_middle_z_spectral_entropy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 6.060410045296051,
+      "mean": 2.696421802268526,
+      "stddev": 1.3917966218048954,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 2.170056848274823,
+          "quantile_50": 3.0224946357258835,
+          "quantile_75": 3.6723775673146566
+        }
+      }
+    },
+    {
+      "name": "left_middle_z_dom_freq",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 29.97002997002997,
+      "mean": 0.02330290047929745,
+      "stddev": 0.45148548698646157,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.0,
+          "quantile_50": 0.0,
+          "quantile_75": 0.0
+        }
+      }
+    },
+    {
+      "name": "left_middle_z_low_freq_energy",
+      "inferred_type": "Fractional",
+      "count": 64512,
+      "completeness": 1.0,
+      "min": 0.0,
+      "max": 0.9866691060423244,
+      "mean": 0.602883480999586,
+      "stddev": 0.29028196658025607,
+      "distribution": {
+        "quantiles": {
+          "quantile_25": 0.5497281905982887,
+          "quantile_50": 0.7019208176135067,
+          "quantile_75": 0.8003835603442457
+        }
+      }
+    }
+  ]
+}
