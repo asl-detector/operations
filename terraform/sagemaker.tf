@@ -4,7 +4,7 @@ resource "aws_sagemaker_model" "asl_model" {
   execution_role_arn = aws_iam_role.sagemaker_role.arn
 
   primary_container {
-    image          = "683313688378.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-xgboost:1.5-1"
+    image          = "433757028032.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1"
     model_data_url = "s3://${aws_s3_bucket.baseline_dataset.bucket}/models/initial-model.tar.gz"
 
     environment = {

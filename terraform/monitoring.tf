@@ -52,10 +52,10 @@ resource "aws_sagemaker_monitoring_schedule" "data_monitoring_schedule" {
   monitoring_schedule_config {
     monitoring_type = "DataQuality"
 
-    data_quality_job_definition_name = aws_sagemaker_data_quality_job_definition.data_quality_job.name
+    monitoring_job_definition_name = aws_sagemaker_data_quality_job_definition.data_quality_job.name
 
     schedule_config {
-      schedule_expression = "cron(0 12 * * ? *)" # Daily at noon
+      schedule_expression = "cron(0 12 ? * MON *)" # Weekly on Monday at noon
     }
   }
 }
@@ -68,7 +68,7 @@ resource "aws_cloudwatch_metric_alarm" "model_accuracy_alarm" {
   evaluation_periods  = 1
   metric_name         = "ModelAccuracy"
   namespace           = "AWS/SageMaker"
-  period              = 86400 # 24 hours
+  period              = 604800 # 7 days (in seconds) instead of 86400 (1 day)
   statistic           = "Average"
   threshold           = 0.8 # 80% accuracy threshold
   alarm_description   = "Alarm when model accuracy drops below 80%"

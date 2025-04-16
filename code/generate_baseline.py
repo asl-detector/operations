@@ -39,16 +39,16 @@ def generate_baseline_files(input_csv=None, input_json_dir=None, output_dir="mod
         features_df = df[feature_cols]
     elif input_json_dir:
         print(f"Extracting features from JSON files in: {input_json_dir}")
-        # Placeholder - you'll need to adapt this to your actual data structure
         features = []
 
-        # Simplified version of your feature extraction for a few samples
+        # Find all JSON files
         import glob
 
         json_files = glob.glob(os.path.join(input_json_dir, "*.json"))
+        print(f"Found {len(json_files)} JSON files")
 
-        # Process a small sample (first 10 files)
-        for file_path in json_files[:10]:
+        # Process files
+        for file_path in json_files:
             try:
                 with open(file_path, "r") as f:
                     data = json.load(f)
@@ -57,19 +57,39 @@ def generate_baseline_files(input_csv=None, input_json_dir=None, output_dir="mod
                 frames = data.get("frames", [])
 
                 if not frames:
+                    print(f"Warning: No frames found in {file_path}")
                     continue
 
-                # Take a small window of frames
+                # Instead of just using first window, process multiple windows with overlap
                 window_size_sec = 3.0
                 window_frames = int(window_size_sec * fps)
-                if len(frames) > window_frames:
-                    window_data = frames[:window_frames]
-                else:
-                    window_data = frames
+                overlap_ratio = 0.5
+                step_size = int(window_frames * (1 - overlap_ratio))
+                step_size = max(1, step_size)
 
-                # Extract features from this window
-                feature_set = extract_features(window_data, fps)
-                features.append(feature_set)
+                # Process up to 5 windows per file to keep baseline generation efficient
+                window_count = 0
+                for i in range(0, min(len(frames), 5 * step_size), step_size):
+                    end_idx = min(i + window_frames, len(frames))
+                    if end_idx - i < window_frames // 2:
+                        continue
+
+                    window_data = frames[i:end_idx]
+
+                    # Extract features from this window
+                    feature_set = extract_features(window_data, fps)
+
+                    # Only add if we got meaningful features
+                    if feature_set.get("hand_presence_ratio", 0) > 0.1:
+                        features.append(feature_set)
+                        window_count += 1
+
+                    # Limit number of windows per file
+                    if window_count >= 5:
+                        break
+
+                print(f"Extracted {window_count} feature windows from {file_path}")
+
             except Exception as e:
                 print(f"Error processing {file_path}: {e}")
 
@@ -77,6 +97,7 @@ def generate_baseline_files(input_csv=None, input_json_dir=None, output_dir="mod
             raise ValueError("No features extracted from JSON files")
 
         features_df = pd.DataFrame(features)
+        print(f"Created feature dataframe with {len(features_df)} samples")
     else:
         raise ValueError("Either input_csv or input_json_dir must be provided")
 
