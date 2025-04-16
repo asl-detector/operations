@@ -28,6 +28,10 @@ provider "aws" {
   }
 }
 
+provider "awscc" {
+  region = var.aws_region
+}
+
 data "aws_caller_identity" "current" {}
 
 output "account_id" {

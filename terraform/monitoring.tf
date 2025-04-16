@@ -1,4 +1,4 @@
-# Data Quality Job Definition
+# Edge Model Data Quality Monitoring Job
 resource "aws_sagemaker_data_quality_job_definition" "data_quality_job" {
   name     = "${var.project_name}-${var.environment}-data-quality-job"
   role_arn = aws_iam_role.sagemaker_role.arn
@@ -8,9 +8,12 @@ resource "aws_sagemaker_data_quality_job_definition" "data_quality_job" {
   }
 
   data_quality_job_input {
-    endpoint_input {
-      endpoint_name = aws_sagemaker_endpoint.asl_endpoint.name
-      local_path    = "/opt/ml/processing/input/endpoint"
+    batch_transform_input {
+      data_captured_destination_s3_uri = "s3://${aws_s3_bucket.monitoring_data.bucket}/batch-transform-capture"
+      dataset_format {
+        csv {}
+      }
+      local_path = "/opt/ml/processing/input/batch"
     }
   }
 
@@ -35,7 +38,7 @@ resource "aws_sagemaker_data_quality_job_definition" "data_quality_job" {
   job_resources {
     cluster_config {
       instance_count    = 1
-      instance_type     = "ml.m5.xlarge"
+      instance_type     = "ml.t3.medium" # Smaller instance type
       volume_size_in_gb = 20
     }
   }
@@ -45,7 +48,7 @@ resource "aws_sagemaker_data_quality_job_definition" "data_quality_job" {
   }
 }
 
-# Data Quality Monitoring Schedule
+# Data Quality Monitoring Schedule (runs weekly)
 resource "aws_sagemaker_monitoring_schedule" "data_monitoring_schedule" {
   name = "${var.project_name}-${var.environment}-data-monitoring-schedule"
 
@@ -60,22 +63,17 @@ resource "aws_sagemaker_monitoring_schedule" "data_monitoring_schedule" {
   }
 }
 
-# Model quality will be implemented via CloudWatch alarms instead
-# Since aws_sagemaker_model_quality_job_definition is not supported
+# CloudWatch metric for model evaluation results
 resource "aws_cloudwatch_metric_alarm" "model_accuracy_alarm" {
   alarm_name          = "${var.project_name}-${var.environment}-accuracy-alarm"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = 1
   metric_name         = "ModelAccuracy"
-  namespace           = "AWS/SageMaker"
-  period              = 604800 # 7 days (in seconds) instead of 86400 (1 day)
+  namespace           = "Custom/ModelMetrics"
+  period              = 604800 # 7 days (in seconds)
   statistic           = "Average"
   threshold           = 0.8 # 80% accuracy threshold
   alarm_description   = "Alarm when model accuracy drops below 80%"
-
-  dimensions = {
-    EndpointName = aws_sagemaker_endpoint.asl_endpoint.name
-  }
 
   alarm_actions = [aws_sns_topic.model_alerts.arn]
 }
@@ -83,4 +81,107 @@ resource "aws_cloudwatch_metric_alarm" "model_accuracy_alarm" {
 # SNS Topic for model alerts
 resource "aws_sns_topic" "model_alerts" {
   name = "${var.project_name}-${var.environment}-model-alerts"
+}
+
+# Lambda function to publish model metrics to CloudWatch - use inline code instead of S3
+resource "aws_lambda_function" "publish_model_metrics" {
+  function_name = "${var.project_name}-${var.environment}-publish-metrics"
+  role          = aws_iam_role.lambda_exec.arn
+  handler       = "index.handler"
+  runtime       = "python3.11"
+  timeout       = 60
+
+  filename         = "${path.module}/lambda/publish_metrics.zip"
+  source_code_hash = filebase64sha256("${path.module}/lambda/publish_metrics.zip")
+
+  environment {
+    variables = {
+      MODEL_BUCKET = aws_s3_bucket.monitoring_data.bucket
+    }
+  }
+
+  # Add this lifecycle block to prevent issues if the zip file doesn't exist yet
+  lifecycle {
+    ignore_changes = [
+      filename,
+      source_code_hash,
+    ]
+  }
+}
+
+# IAM role for Lambda function
+resource "aws_iam_role" "lambda_exec" {
+  name = "${var.project_name}-${var.environment}-lambda-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "lambda.amazonaws.com"
+        }
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+}
+
+# Policy for Lambda to read S3 and publish CloudWatch metrics
+resource "aws_iam_role_policy" "lambda_s3_cloudwatch" {
+  name = "S3CloudWatchAccess"
+  role = aws_iam_role.lambda_exec.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:GetObject",
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+          "cloudwatch:PutMetricData"
+        ]
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+# EventBridge rule to trigger Lambda when evaluation results are created
+resource "aws_cloudwatch_event_rule" "evaluation_completed" {
+  name        = "${var.project_name}-${var.environment}-evaluation-completed"
+  description = "Detect when model evaluation is completed"
+
+  event_pattern = jsonencode({
+    "source" : ["aws.s3"],
+    "detail-type" : ["Object Created"],
+    "detail" : {
+      "bucket" : {
+        "name" : [aws_s3_bucket.monitoring_data.bucket]
+      },
+      "object" : {
+        "key" : [{
+          "prefix" : "evaluation/"
+        }]
+      }
+    }
+  })
+}
+
+resource "aws_cloudwatch_event_target" "invoke_metrics_lambda" {
+  rule      = aws_cloudwatch_event_rule.evaluation_completed.name
+  target_id = "InvokeMetricsLambda"
+  arn       = aws_lambda_function.publish_model_metrics.arn
+}
+
+# Lambda permission to be invoked by EventBridge
+resource "aws_lambda_permission" "allow_eventbridge" {
+  statement_id  = "AllowExecutionFromEventBridge"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.publish_model_metrics.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.evaluation_completed.arn
 }
