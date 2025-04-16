@@ -213,34 +213,34 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
         },
         {
           "Name" : "RegisterModel",
-          "Type" : "Model",
+          "Type" : "RegisterModel",
           "DependsOn" : ["PackageModel"],
           "Arguments" : {
-            "Containers" : [
-              {
-                "Image" : "433757028032.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1",
-                "ModelDataUrl" : {
-                  "Get" : "Steps.PackageModel.ProcessingOutputConfig.Outputs['packaged-model'].S3Output.S3Uri"
-                },
-                "Environment" : {
-                  "SAGEMAKER_PROGRAM" : "inference.py",
-                  "SAGEMAKER_SUBMIT_DIRECTORY" : "/opt/ml/model/code"
+            "ModelPackageGroupName" : "${var.project_name}-${var.environment}-models",
+            "ModelPackageDescription" : "ASL detection model for edge deployment",
+            "ModelApprovalStatus" : "Approved",
+            "ModelMetrics" : {
+              "ModelQuality" : {
+                "Statistics" : {
+                  "ContentType" : "application/json",
+                  "S3Uri" : {
+                    "Get" : "Steps.ModelEvaluation.ProcessingOutputConfig.Outputs['evaluation'].S3Output.S3Uri"
+                  }
                 }
               }
-            ],
-            "PrimaryContainer" : {
-              "Image" : "433757028032.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1",
-              "ModelDataUrl" : {
-                "Get" : "Steps.PackageModel.ProcessingOutputConfig.Outputs['packaged-model'].S3Output.S3Uri"
-              },
-              "Environment" : {
-                "SAGEMAKER_PROGRAM" : "inference.py",
-                "SAGEMAKER_SUBMIT_DIRECTORY" : "/opt/ml/model/code"
-              }
             },
-            "ExecutionRoleArn" : "${aws_iam_role.sagemaker_role.arn}",
-            "ModelName" : "${var.project_name}-${var.environment}-model",
-            "ModelPackageGroupName" : "${var.project_name}-${var.environment}-models"
+            "InferenceSpecification" : {
+              "Containers" : [
+                {
+                  "Image" : "433757028032.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1",
+                  "ModelDataUrl" : {
+                    "Get" : "Steps.PackageModel.ProcessingOutputConfig.Outputs['packaged-model'].S3Output.S3Uri"
+                  }
+                }
+              ],
+              "SupportedContentTypes" : ["text/csv"],
+              "SupportedResponseMIMETypes" : ["text/csv"]
+            }
           }
         }
       ]

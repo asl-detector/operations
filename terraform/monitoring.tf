@@ -83,6 +83,11 @@ resource "aws_sns_topic" "model_alerts" {
   name = "${var.project_name}-${var.environment}-model-alerts"
 }
 
+# SNS Topic for edge client notifications
+resource "aws_sns_topic" "edge_client_notifications" {
+  name = "${var.project_name}-${var.environment}-edge-client-notifications"
+}
+
 # Lambda function to publish model metrics to CloudWatch - use inline code instead of S3
 resource "aws_lambda_function" "publish_model_metrics" {
   function_name = "${var.project_name}-${var.environment}-publish-metrics"
@@ -109,9 +114,100 @@ resource "aws_lambda_function" "publish_model_metrics" {
   }
 }
 
+# Lambda function to notify edge clients about new model versions
+resource "aws_lambda_function" "notify_edge_clients" {
+  function_name = "${var.project_name}-${var.environment}-notify-clients"
+  role          = aws_iam_role.lambda_notify_role.arn
+  handler       = "notify_clients.handler"
+  runtime       = "python3.11"
+  timeout       = 60
+
+  filename         = "${path.module}/lambda/notify_clients.zip"
+  source_code_hash = filebase64sha256("${path.module}/lambda/notify_clients.zip")
+
+  environment {
+    variables = {
+      MODEL_PACKAGE_GROUP = aws_sagemaker_model_package_group.asl_model_group.model_package_group_name
+      MODEL_BUCKET        = aws_s3_bucket.monitoring_data.bucket
+      SNS_TOPIC_ARN       = aws_sns_topic.edge_client_notifications.arn
+    }
+  }
+
+  # Add this lifecycle block to prevent issues if the zip file doesn't exist yet
+  lifecycle {
+    ignore_changes = [
+      filename,
+      source_code_hash,
+    ]
+  }
+}
+
+# Lambda function to update the "latest" model in S3
+resource "aws_lambda_function" "update_latest_model" {
+  function_name = "${var.project_name}-${var.environment}-update-latest"
+  role          = aws_iam_role.lambda_s3_role.arn
+  handler       = "update_latest.handler"
+  runtime       = "python3.11"
+  timeout       = 120
+
+  filename         = "${path.module}/lambda/update_latest.zip"
+  source_code_hash = filebase64sha256("${path.module}/lambda/update_latest.zip")
+
+  environment {
+    variables = {
+      MODEL_BUCKET        = aws_s3_bucket.monitoring_data.bucket
+      MODEL_PACKAGE_GROUP = aws_sagemaker_model_package_group.asl_model_group.model_package_group_name
+    }
+  }
+
+  # Add this lifecycle block to prevent issues if the zip file doesn't exist yet
+  lifecycle {
+    ignore_changes = [
+      filename,
+      source_code_hash,
+    ]
+  }
+}
+
 # IAM role for Lambda function
 resource "aws_iam_role" "lambda_exec" {
   name = "${var.project_name}-${var.environment}-lambda-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "lambda.amazonaws.com"
+        }
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+}
+
+# IAM role for notification Lambda
+resource "aws_iam_role" "lambda_notify_role" {
+  name = "${var.project_name}-${var.environment}-lambda-notify-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "lambda.amazonaws.com"
+        }
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+}
+
+# IAM role for S3 update Lambda
+resource "aws_iam_role" "lambda_s3_role" {
+  name = "${var.project_name}-${var.environment}-lambda-s3-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -150,6 +246,57 @@ resource "aws_iam_role_policy" "lambda_s3_cloudwatch" {
   })
 }
 
+# Policy for Lambda to access SageMaker, SNS, and CloudWatch Logs
+resource "aws_iam_role_policy" "lambda_notify_policy" {
+  name = "NotifyClientsPolicy"
+  role = aws_iam_role.lambda_notify_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "sagemaker:ListModelPackages",
+          "sagemaker:DescribeModelPackage",
+          "sns:Publish",
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ]
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+# Policy for Lambda to access S3 and SageMaker
+resource "aws_iam_role_policy" "lambda_s3_policy" {
+  name = "UpdateLatestModelPolicy"
+  role = aws_iam_role.lambda_s3_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:GetObject",
+          "s3:PutObject",
+          "s3:ListBucket",
+          "s3:CopyObject",
+          "sagemaker:ListModelPackages",
+          "sagemaker:DescribeModelPackage",
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ]
+        Resource = "*"
+      }
+    ]
+  })
+}
+
 # EventBridge rule to trigger Lambda when evaluation results are created
 resource "aws_cloudwatch_event_rule" "evaluation_completed" {
   name        = "${var.project_name}-${var.environment}-evaluation-completed"
@@ -171,10 +318,39 @@ resource "aws_cloudwatch_event_rule" "evaluation_completed" {
   })
 }
 
+# EventBridge rule to detect new model registration
+resource "aws_cloudwatch_event_rule" "model_registered" {
+  name        = "${var.project_name}-${var.environment}-model-registered"
+  description = "Detect when a new model is registered"
+
+  event_pattern = jsonencode({
+    "source" : ["aws.sagemaker"],
+    "detail-type" : ["SageMaker Model Package State Change"],
+    "detail" : {
+      "ModelPackageGroupName" : [aws_sagemaker_model_package_group.asl_model_group.model_package_group_name],
+      "ModelApprovalStatus" : ["Approved"]
+    }
+  })
+}
+
 resource "aws_cloudwatch_event_target" "invoke_metrics_lambda" {
   rule      = aws_cloudwatch_event_rule.evaluation_completed.name
   target_id = "InvokeMetricsLambda"
   arn       = aws_lambda_function.publish_model_metrics.arn
+}
+
+# Event target to update the latest model
+resource "aws_cloudwatch_event_target" "update_latest_model" {
+  rule      = aws_cloudwatch_event_rule.model_registered.name
+  target_id = "UpdateLatestModel"
+  arn       = aws_lambda_function.update_latest_model.arn
+}
+
+# Event target to notify edge clients
+resource "aws_cloudwatch_event_target" "notify_edge_clients" {
+  rule      = aws_cloudwatch_event_rule.model_registered.name
+  target_id = "NotifyEdgeClients"
+  arn       = aws_lambda_function.notify_edge_clients.arn
 }
 
 # Lambda permission to be invoked by EventBridge
@@ -184,4 +360,22 @@ resource "aws_lambda_permission" "allow_eventbridge" {
   function_name = aws_lambda_function.publish_model_metrics.function_name
   principal     = "events.amazonaws.com"
   source_arn    = aws_cloudwatch_event_rule.evaluation_completed.arn
+}
+
+# Lambda permission for update_latest_model
+resource "aws_lambda_permission" "allow_eventbridge_update_latest" {
+  statement_id  = "AllowExecutionFromEventBridge_UpdateLatest"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.update_latest_model.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.model_registered.arn
+}
+
+# Lambda permission for notify_edge_clients
+resource "aws_lambda_permission" "allow_eventbridge_notify" {
+  statement_id  = "AllowExecutionFromEventBridge_Notify"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.notify_edge_clients.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.model_registered.arn
 }
