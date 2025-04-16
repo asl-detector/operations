@@ -11,7 +11,179 @@ resource "aws_cloudformation_stack" "sagemaker_pipeline" {
       "Properties": {
         "PipelineName": "${var.project_name}-${var.environment}-retraining-pipeline",
         "PipelineDefinition": {
-          "PipelineDefinitionBody": "{\"Version\":\"2020-12-01\",\"Steps\":[{\"Name\":\"FeatureProcessing\",\"Type\":\"Processing\",\"Arguments\":{\"ProcessingResources\":{\"ClusterConfig\":{\"InstanceCount\":1,\"InstanceType\":\"ml.m5.xlarge\",\"VolumeSizeInGB\":30}},\"AppSpecification\":{\"ImageUri\":\"683313688378.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1\",\"ContainerEntrypoint\":[\"python\",\"/opt/ml/processing/code/process.py\"]},\"ProcessingInputs\":[{\"InputName\":\"pose-data\",\"S3Input\":{\"S3Uri\":\"s3://${aws_s3_bucket.monitoring_data.bucket}/pose-data\",\"LocalPath\":\"/opt/ml/processing/input/pose\",\"S3DataType\":\"S3Prefix\",\"S3InputMode\":\"File\"}},{\"InputName\":\"code\",\"S3Input\":{\"S3Uri\":\"s3://${aws_s3_bucket.baseline_dataset.bucket}/code\",\"LocalPath\":\"/opt/ml/processing/code\",\"S3DataType\":\"S3Prefix\",\"S3InputMode\":\"File\"}}],\"ProcessingOutputs\":[{\"OutputName\":\"features\",\"S3Output\":{\"S3Uri\":\"s3://${aws_s3_bucket.monitoring_data.bucket}/features\",\"LocalPath\":\"/opt/ml/processing/output/features\",\"S3UploadMode\":\"EndOfJob\"}}],\"RoleArn\":\"${aws_iam_role.sagemaker_role.arn}\"}}},{\"Name\":\"TrainModel\",\"Type\":\"Training\",\"DependsOn\":[\"FeatureProcessing\"],\"Arguments\":{\"AlgorithmSpecification\":{\"TrainingImage\":\"433757028032.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1\",\"TrainingInputMode\":\"File\"},\"InputDataConfig\":[{\"ChannelName\":\"train\",\"DataSource\":{\"S3DataSource\":{\"S3Uri\":\"s3://${aws_s3_bucket.monitoring_data.bucket}/features/train\",\"S3DataType\":\"S3Prefix\"}}},{\"ChannelName\":\"validation\",\"DataSource\":{\"S3DataSource\":{\"S3Uri\":\"s3://${aws_s3_bucket.monitoring_data.bucket}/features/validation\",\"S3DataType\":\"S3Prefix\"}}}],\"OutputDataConfig\":{\"S3OutputPath\":\"s3://${aws_s3_bucket.monitoring_data.bucket}/models\"},\"ResourceConfig\":{\"InstanceCount\":1,\"InstanceType\":\"ml.m5.xlarge\",\"VolumeSizeInGB\":30},\"StoppingCondition\":{\"MaxRuntimeInSeconds\":3600},\"RoleArn\":\"${aws_iam_role.sagemaker_role.arn}\"}}},{\"Name\":\"ModelEvaluation\",\"Type\":\"Processing\",\"DependsOn\":[\"TrainModel\"],\"Arguments\":{\"ProcessingResources\":{\"ClusterConfig\":{\"InstanceCount\":1,\"InstanceType\":\"ml.m5.large\",\"VolumeSizeInGB\":20}},\"AppSpecification\":{\"ImageUri\":\"683313688378.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1\",\"ContainerEntrypoint\":[\"python\",\"/opt/ml/processing/code/evaluate.py\"]},\"ProcessingInputs\":[{\"InputName\":\"test-data\",\"S3Input\":{\"S3Uri\":\"s3://${aws_s3_bucket.monitoring_data.bucket}/features/test\",\"LocalPath\":\"/opt/ml/processing/input/test\",\"S3DataType\":\"S3Prefix\",\"S3InputMode\":\"File\"}},{\"InputName\":\"model\",\"S3Input\":{\"S3Uri\":\"s3://${aws_s3_bucket.monitoring_data.bucket}/models\",\"LocalPath\":\"/opt/ml/processing/input/model\",\"S3DataType\":\"S3Prefix\",\"S3InputMode\":\"File\"}},{\"InputName\":\"code\",\"S3Input\":{\"S3Uri\":\"s3://${aws_s3_bucket.baseline_dataset.bucket}/code\",\"LocalPath\":\"/opt/ml/processing/code\",\"S3DataType\":\"S3Prefix\",\"S3InputMode\":\"File\"}}],\"ProcessingOutputs\":[{\"OutputName\":\"evaluation\",\"S3Output\":{\"S3Uri\":\"s3://${aws_s3_bucket.monitoring_data.bucket}/evaluation\",\"LocalPath\":\"/opt/ml/processing/output/evaluation\",\"S3UploadMode\":\"EndOfJob\"}}],\"RoleArn\":\"${aws_iam_role.sagemaker_role.arn}\"}}},{\"Name\":\"UpdateEndpoint\",\"Type\":\"RegisterModel\",\"DependsOn\":[\"ModelEvaluation\"],\"Arguments\":{\"Model\":{\"PrimaryContainer\":{\"Image\":\"433757028032.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1\",\"ModelDataUrl.$\":\"$.Steps.TrainModel.ModelArtifacts.S3ModelArtifacts\",\"Environment\":{\"SAGEMAKER_PROGRAM\":\"inference.py\",\"SAGEMAKER_SUBMIT_DIRECTORY\":\"/opt/ml/model/code\"}},\"ModelName.$\":\"Join('-', ['${var.project_name}', '${var.environment}', $.Steps.TrainModel.TrainingJobName])\"},\"EndpointName\":\"${var.project_name}-${var.environment}-endpoint\",\"ContentTypes\":[\"text/csv\"],\"ResponseTypes\":[\"text/csv\"]}}]}"
+          "Version": "2020-12-01",
+          "Steps": [
+            {
+              "Name": "FeatureProcessing",
+              "Type": "Processing",
+              "Arguments": {
+                "ProcessingResources": {
+                  "ClusterConfig": {
+                    "InstanceCount": 1,
+                    "InstanceType": "ml.m5.xlarge",
+                    "VolumeSizeInGB": 30
+                  }
+                },
+                "AppSpecification": {
+                  "ImageUri": "683313688378.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1",
+                  "ContainerEntrypoint": ["python", "/opt/ml/processing/code/process.py"]
+                },
+                "ProcessingInputs": [
+                  {
+                    "InputName": "pose-data",
+                    "S3Input": {
+                      "S3Uri": "s3://${aws_s3_bucket.monitoring_data.bucket}/pose-data",
+                      "LocalPath": "/opt/ml/processing/input/pose",
+                      "S3DataType": "S3Prefix",
+                      "S3InputMode": "File"
+                    }
+                  },
+                  {
+                    "InputName": "code",
+                    "S3Input": {
+                      "S3Uri": "s3://${aws_s3_bucket.baseline_dataset.bucket}/code",
+                      "LocalPath": "/opt/ml/processing/code",
+                      "S3DataType": "S3Prefix",
+                      "S3InputMode": "File"
+                    }
+                  }
+                ],
+                "ProcessingOutputs": [
+                  {
+                    "OutputName": "features",
+                    "S3Output": {
+                      "S3Uri": "s3://${aws_s3_bucket.monitoring_data.bucket}/features",
+                      "LocalPath": "/opt/ml/processing/output/features",
+                      "S3UploadMode": "EndOfJob"
+                    }
+                  }
+                ],
+                "RoleArn": "${aws_iam_role.sagemaker_role.arn}"
+              }
+            },
+            {
+              "Name": "TrainModel",
+              "Type": "Training",
+              "DependsOn": ["FeatureProcessing"],
+              "Arguments": {
+                "AlgorithmSpecification": {
+                  "TrainingImage": "433757028032.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1",
+                  "TrainingInputMode": "File"
+                },
+                "InputDataConfig": [
+                  {
+                    "ChannelName": "train",
+                    "DataSource": {
+                      "S3DataSource": {
+                        "S3Uri": "s3://${aws_s3_bucket.monitoring_data.bucket}/features/train",
+                        "S3DataType": "S3Prefix"
+                      }
+                    }
+                  },
+                  {
+                    "ChannelName": "validation",
+                    "DataSource": {
+                      "S3DataSource": {
+                        "S3Uri": "s3://${aws_s3_bucket.monitoring_data.bucket}/features/validation",
+                        "S3DataType": "S3Prefix"
+                      }
+                    }
+                  }
+                ],
+                "OutputDataConfig": {
+                  "S3OutputPath": "s3://${aws_s3_bucket.monitoring_data.bucket}/models"
+                },
+                "ResourceConfig": {
+                  "InstanceCount": 1,
+                  "InstanceType": "ml.m5.xlarge",
+                  "VolumeSizeInGB": 30
+                },
+                "StoppingCondition": {
+                  "MaxRuntimeInSeconds": 3600
+                },
+                "RoleArn": "${aws_iam_role.sagemaker_role.arn}"
+              }
+            },
+            {
+              "Name": "ModelEvaluation",
+              "Type": "Processing",
+              "DependsOn": ["TrainModel"],
+              "Arguments": {
+                "ProcessingResources": {
+                  "ClusterConfig": {
+                    "InstanceCount": 1,
+                    "InstanceType": "ml.m5.large",
+                    "VolumeSizeInGB": 20
+                  }
+                },
+                "AppSpecification": {
+                  "ImageUri": "683313688378.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1",
+                  "ContainerEntrypoint": ["python", "/opt/ml/processing/code/evaluate.py"]
+                },
+                "ProcessingInputs": [
+                  {
+                    "InputName": "test-data",
+                    "S3Input": {
+                      "S3Uri": "s3://${aws_s3_bucket.monitoring_data.bucket}/features/test",
+                      "LocalPath": "/opt/ml/processing/input/test",
+                      "S3DataType": "S3Prefix",
+                      "S3InputMode": "File"
+                    }
+                  },
+                  {
+                    "InputName": "model",
+                    "S3Input": {
+                      "S3Uri": "s3://${aws_s3_bucket.monitoring_data.bucket}/models",
+                      "LocalPath": "/opt/ml/processing/input/model",
+                      "S3DataType": "S3Prefix",
+                      "S3InputMode": "File"
+                    }
+                  },
+                  {
+                    "InputName": "code",
+                    "S3Input": {
+                      "S3Uri": "s3://${aws_s3_bucket.baseline_dataset.bucket}/code",
+                      "LocalPath": "/opt/ml/processing/code",
+                      "S3DataType": "S3Prefix",
+                      "S3InputMode": "File"
+                    }
+                  }
+                ],
+                "ProcessingOutputs": [
+                  {
+                    "OutputName": "evaluation",
+                    "S3Output": {
+                      "S3Uri": "s3://${aws_s3_bucket.monitoring_data.bucket}/evaluation",
+                      "LocalPath": "/opt/ml/processing/output/evaluation",
+                      "S3UploadMode": "EndOfJob"
+                    }
+                  }
+                ],
+                "RoleArn": "${aws_iam_role.sagemaker_role.arn}"
+              }
+            },
+            {
+              "Name": "UpdateEndpoint",
+              "Type": "RegisterModel",
+              "DependsOn": ["ModelEvaluation"],
+              "Arguments": {
+                "Model": {
+                  "PrimaryContainer": {
+                    "Image": "433757028032.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1",
+                    "ModelDataUrl.$": "$.Steps.TrainModel.ModelArtifacts.S3ModelArtifacts",
+                    "Environment": {
+                      "SAGEMAKER_PROGRAM": "inference.py",
+                      "SAGEMAKER_SUBMIT_DIRECTORY": "/opt/ml/model/code"
+                    }
+                  },
+                  "ModelName.$": "Join('-', ['${var.project_name}', '${var.environment}', $.Steps.TrainModel.TrainingJobName])"
+                },
+                "EndpointName": "${var.project_name}-${var.environment}-endpoint",
+                "ContentTypes": ["text/csv"],
+                "ResponseTypes": ["text/csv"]
+              }
+            }
+          ]
         },
         "RoleArn": "${aws_iam_role.sagemaker_role.arn}"
       }
