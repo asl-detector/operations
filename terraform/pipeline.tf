@@ -19,7 +19,7 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
               }
             },
             "AppSpecification" : {
-              "ImageUri" : "683313688378.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1",
+              "ImageUri" : "121021644041.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:1.0-1-cpu-py3",
               "ContainerEntrypoint" : ["python", "/opt/ml/processing/code/process.py"]
             },
             "ProcessingInputs" : [
@@ -63,7 +63,7 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
           "DependsOn" : ["FeatureProcessing"],
           "Arguments" : {
             "AlgorithmSpecification" : {
-              "TrainingImage" : "433757028032.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1",
+              "TrainingImage" : "121021644041.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1.5-1",
               "TrainingInputMode" : "File"
             },
             "InputDataConfig" : [
@@ -113,7 +113,7 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
               }
             },
             "AppSpecification" : {
-              "ImageUri" : "683313688378.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1",
+              "ImageUri" : "121021644041.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:1.0-1-cpu-py3",
               "ContainerEntrypoint" : ["python", "/opt/ml/processing/code/evaluate.py"]
             },
             "ProcessingInputs" : [
@@ -173,7 +173,7 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
               }
             },
             "AppSpecification" : {
-              "ImageUri" : "683313688378.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1",
+              "ImageUri" : "121021644041.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:1.0-1-cpu-py3",
               "ContainerEntrypoint" : ["python", "/opt/ml/processing/code/package_model.py", "--model", "/opt/ml/processing/input/model/model.tar.gz", "--output-dir", "/opt/ml/processing/output/packaged"]
             },
             "ProcessingInputs" : [
@@ -232,7 +232,7 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
             "InferenceSpecification" : {
               "Containers" : [
                 {
-                  "Image" : "433757028032.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1",
+                  "Image" : "121021644041.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1.5-1",
                   "ModelDataUrl" : {
                     "Get" : "Steps.PackageModel.ProcessingOutputConfig.Outputs['packaged-model'].S3Output.S3Uri"
                   }
