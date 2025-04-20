@@ -21,6 +21,13 @@ resource "aws_s3_object" "train_script" {
   etag   = filemd5("../code/train.py")
 }
 
+resource "aws_s3_object" "inference_script" {
+  bucket = aws_s3_bucket.baseline_dataset.bucket
+  key    = "code/inference.py"
+  source = "../code/inference.py"
+  etag   = filemd5("../code/inference.py")
+}
+
 resource "aws_s3_object" "data_constraints" {
   bucket = aws_s3_bucket.baseline_dataset.bucket
   key    = "constraints/data_constraints.json"

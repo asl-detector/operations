@@ -190,7 +190,7 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
             },
             "AppSpecification" : {
               "ImageUri" : "246618743249.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1-cpu-py3",
-              "ContainerEntrypoint" : ["bash", "-c", "pip install -r /opt/ml/processing/code/requirements.txt && python /opt/ml/processing/code/package_model.py --model /opt/ml/processing/input/model/model.tar.gz --output-dir /opt/ml/processing/output/packaged"]
+              "ContainerEntrypoint" : ["bash", "-c", "pip install -r /opt/ml/processing/code/requirements.txt && python /opt/ml/processing/code/package_model.py --model /opt/ml/processing/input/model --output-dir /opt/ml/processing/output/packaged"]
             }
             "ProcessingInputs" : [
               {
@@ -249,9 +249,7 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
               "Containers" : [
                 {
                   "Image" : "433757028032.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1",
-                  "ModelDataUrl" : {
-                    "Get" : "Steps.PackageModel.ProcessingOutputConfig.Outputs['packaged-model'].S3Output.S3Uri"
-                  }
+                  "ModelDataUrl" : "s3://${aws_s3_bucket.monitoring_data.bucket}/packaged-models/initial-model.tar.gz"
                 }
               ],
               "SupportedContentTypes" : ["text/csv"],
@@ -279,6 +277,7 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
     aws_s3_object.evaluate_script,
     aws_s3_object.train_script,
     aws_s3_object.package_script,
+    aws_s3_object.inference_script,
     aws_s3_object.debug_utils_script,
     aws_sagemaker_model_package_group.asl_model_group
   ]
