@@ -14,14 +14,14 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
             "ProcessingResources" : {
               "ClusterConfig" : {
                 "InstanceCount" : 1,
-                "InstanceType" : "ml.t3.medium",
+                "InstanceType" : "ml.m5.large",
                 "VolumeSizeInGB" : 30
               }
             },
             "AppSpecification" : {
               "ImageUri" : "246618743249.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1-cpu-py3",
-              "ContainerEntrypoint" : ["python", "/opt/ml/processing/code/process.py"]
-            },
+              "ContainerEntrypoint" : ["bash", "-c", "pip install -r /opt/ml/processing/code/requirements.txt && python /opt/ml/processing/code/process.py"]
+            }
             "ProcessingInputs" : [
               {
                 "InputName" : "pose-data",
@@ -66,6 +66,20 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
               "TrainingImage" : "433757028032.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1",
               "TrainingInputMode" : "File"
             },
+            "HyperParameters" : {
+              "num_round" : "300",
+              "max_depth" : "6",
+              "eta" : "0.05",
+              "gamma" : "0.1",
+              "min_child_weight" : "2",
+              "subsample" : "0.8",
+              "colsample_bytree" : "0.8",
+              "objective" : "binary:logistic",
+              "eval_metric" : "auc",
+              "csv_weights" : "0",
+              "csv_header" : "absent",
+              "label_column" : "0"
+            }
             "InputDataConfig" : [
               {
                 "ChannelName" : "train",
@@ -74,7 +88,8 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
                     "S3Uri" : "s3://${aws_s3_bucket.monitoring_data.bucket}/features/train",
                     "S3DataType" : "S3Prefix"
                   }
-                }
+                },
+                "ContentType" : "text/csv"
               },
               {
                 "ChannelName" : "validation",
@@ -83,17 +98,18 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
                     "S3Uri" : "s3://${aws_s3_bucket.monitoring_data.bucket}/features/validation",
                     "S3DataType" : "S3Prefix"
                   }
-                }
+                },
+                "ContentType" : "text/csv"
               }
-            ],
+            ]
             "OutputDataConfig" : {
               "S3OutputPath" : "s3://${aws_s3_bucket.monitoring_data.bucket}/models"
             },
             "ResourceConfig" : {
               "InstanceCount" : 1,
-              "InstanceType" : "ml.t3.medium",
+              "InstanceType" : "ml.m5.large",
               "VolumeSizeInGB" : 30
-            },
+            }
             "StoppingCondition" : {
               "MaxRuntimeInSeconds" : 3600
             },
@@ -108,14 +124,14 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
             "ProcessingResources" : {
               "ClusterConfig" : {
                 "InstanceCount" : 1,
-                "InstanceType" : "ml.t3.medium",
+                "InstanceType" : "ml.m5.large",
                 "VolumeSizeInGB" : 20
               }
             },
             "AppSpecification" : {
               "ImageUri" : "246618743249.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1-cpu-py3",
-              "ContainerEntrypoint" : ["python", "/opt/ml/processing/code/evaluate.py"]
-            },
+              "ContainerEntrypoint" : ["bash", "-c", "pip install -r /opt/ml/processing/code/requirements.txt && python /opt/ml/processing/code/evaluate.py"]
+            }
             "ProcessingInputs" : [
               {
                 "InputName" : "test-data",
@@ -168,14 +184,14 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
             "ProcessingResources" : {
               "ClusterConfig" : {
                 "InstanceCount" : 1,
-                "InstanceType" : "ml.t3.medium",
+                "InstanceType" : "ml.m5.large",
                 "VolumeSizeInGB" : 20
               }
             },
             "AppSpecification" : {
               "ImageUri" : "246618743249.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1-cpu-py3",
-              "ContainerEntrypoint" : ["python", "/opt/ml/processing/code/package_model.py", "--model", "/opt/ml/processing/input/model/model.tar.gz", "--output-dir", "/opt/ml/processing/output/packaged"]
-            },
+              "ContainerEntrypoint" : ["bash", "-c", "pip install -r /opt/ml/processing/code/requirements.txt && python /opt/ml/processing/code/package_model.py --model /opt/ml/processing/input/model/model.tar.gz --output-dir /opt/ml/processing/output/packaged"]
+            }
             "ProcessingInputs" : [
               {
                 "InputName" : "model",

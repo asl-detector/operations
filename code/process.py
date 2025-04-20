@@ -156,9 +156,11 @@ def process_json_files(input_dir, output_dir, window_size_sec=3.0, overlap_ratio
         test_df = df.copy()
 
         # Save the dummy datasets
-        train_df.to_csv(f"{output_dir}/train/training.csv", index=False)
-        val_df.to_csv(f"{output_dir}/validation/validation.csv", index=False)
-        test_df.to_csv(f"{output_dir}/test/test.csv", index=False)
+        train_df.to_csv(f"{output_dir}/train/training.csv", index=False, header=False)
+        val_df.to_csv(
+            f"{output_dir}/validation/validation.csv", index=False, header=False
+        )
+        test_df.to_csv(f"{output_dir}/test/test.csv", index=False, header=False)
         print("Saved dummy datasets to continue the pipeline")
         return
 
@@ -384,9 +386,21 @@ def process_json_files(input_dir, output_dir, window_size_sec=3.0, overlap_ratio
     # Save datasets
     try:
         print("Saving datasets to CSV")
-        train_df.to_csv(f"{output_dir}/train/training.csv", index=False)
-        val_df.to_csv(f"{output_dir}/validation/validation.csv", index=False)
-        test_df.to_csv(f"{output_dir}/test/test.csv", index=False)
+        cols = train_df.columns.tolist()
+        cols.remove("label")
+        cols = ["label"] + cols
+
+        # Reorder all dataframes
+        train_df = train_df[cols]
+        val_df = val_df[cols]
+        test_df = test_df[cols]
+
+        # Save without headers
+        train_df.to_csv(f"{output_dir}/train/training.csv", index=False, header=False)
+        val_df.to_csv(
+            f"{output_dir}/validation/validation.csv", index=False, header=False
+        )
+        test_df.to_csv(f"{output_dir}/test/test.csv", index=False, header=False)
         print(
             f"Saved {len(train_df)} training samples, {len(val_df)} validation samples, and {len(test_df)} test samples"
         )

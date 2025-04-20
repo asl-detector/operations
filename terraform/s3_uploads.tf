@@ -105,3 +105,10 @@ resource "aws_s3_object" "debug_utils_script" {
   source = "../code/debug_utils.py"
   etag   = filemd5("../code/debug_utils.py")
 }
+
+resource "aws_s3_object" "requirements_file" {
+  bucket = aws_s3_bucket.baseline_dataset.bucket
+  key    = "code/requirements.txt"
+  source = "../code/requirements.txt"
+  etag   = filemd5("../code/requirements.txt")
+}
