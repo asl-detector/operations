@@ -70,6 +70,21 @@ resource "aws_s3_object" "package_script" {
   etag   = filemd5("../code/package_model.py")
 }
 
+# Create proper directory structure for input data
+resource "aws_s3_object" "asl_directory" {
+  bucket       = aws_s3_bucket.monitoring_data.bucket
+  key          = "pose-data/asl/"
+  content      = ""
+  content_type = "application/x-directory"
+}
+
+resource "aws_s3_object" "no_asl_directory" {
+  bucket       = aws_s3_bucket.monitoring_data.bucket
+  key          = "pose-data/no_asl/"
+  content      = ""
+  content_type = "application/x-directory"
+}
+
 resource "aws_s3_object" "test_positive" {
   bucket = aws_s3_bucket.monitoring_data.bucket
   key    = "pose-data/asl/ash_landmark.json"
