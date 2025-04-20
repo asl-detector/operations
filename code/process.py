@@ -6,17 +6,41 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import glob
 import sys
+import traceback
+
+# Add debug statements to see what's happening
+print("Starting process.py script")
+print(f"Python version: {sys.version}")
+print(f"Current directory: {os.getcwd()}")
 
 # Add the directory containing train.py to the Python path
 sys.path.append("/opt/ml/processing/code")
+print(f"Python path: {sys.path}")
 
-# Import from your existing train.py
-from train import extract_features
+try:
+    # Import from your existing train.py
+    print("Attempting to import extract_features from train")
+    from train import extract_features
+
+    print("Successfully imported extract_features")
+except ImportError as e:
+    print(f"Failed to import extract_features: {e}")
+    print(
+        f"Directory contents of /opt/ml/processing/code: {os.listdir('/opt/ml/processing/code')}"
+    )
+    sys.exit(1)
 
 
 def process_json_files(input_dir, output_dir, window_size_sec=3.0, overlap_ratio=0.5):
     """Process all JSON files in the input directory and extract features"""
     print(f"Processing files from {input_dir} to {output_dir}")
+
+    # Check if the input directory exists and what's in it
+    if not os.path.exists(input_dir):
+        print(f"ERROR: Input directory {input_dir} does not exist!")
+        sys.exit(1)
+
+    print(f"Input directory contents: {os.listdir(input_dir)}")
 
     # Create output directories
     os.makedirs(f"{output_dir}/train", exist_ok=True)
@@ -24,12 +48,51 @@ def process_json_files(input_dir, output_dir, window_size_sec=3.0, overlap_ratio
     os.makedirs(f"{output_dir}/test", exist_ok=True)
 
     # Find all JSON files
-    asl_files = glob.glob(os.path.join(input_dir, "asl", "*.json"))
-    no_asl_files = glob.glob(os.path.join(input_dir, "no_asl", "*.json"))
+    asl_dir = os.path.join(input_dir, "asl")
+    no_asl_dir = os.path.join(input_dir, "no_asl")
+
+    # Check if subdirectories exist
+    asl_dir_exists = os.path.exists(asl_dir)
+    no_asl_dir_exists = os.path.exists(no_asl_dir)
+
+    print(f"ASL directory exists: {asl_dir_exists}")
+    print(f"Non-ASL directory exists: {no_asl_dir_exists}")
+
+    asl_files = []
+    no_asl_files = []
+
+    # Look for files in subdirectories if they exist
+    if asl_dir_exists:
+        asl_files = glob.glob(os.path.join(asl_dir, "*.json"))
+
+    if no_asl_dir_exists:
+        no_asl_files = glob.glob(os.path.join(no_asl_dir, "*.json"))
+
+    # If no files found in subdirectories, look directly in input_dir
+    if len(asl_files) == 0 and len(no_asl_files) == 0:
+        print(
+            "No files found in asl/no_asl subdirectories. Looking for files directly in input directory."
+        )
+        all_json_files = glob.glob(os.path.join(input_dir, "*.json"))
+        print(
+            f"Found {len(all_json_files)} JSON files in input directory: {all_json_files}"
+        )
+
+        # Classify files based on filename
+        for file_path in all_json_files:
+            filename = os.path.basename(file_path).lower()
+            if "asl" in filename or "ash" in filename:
+                print(f"Classifying {filename} as ASL file")
+                asl_files.append(file_path)
+            else:
+                print(f"Classifying {filename} as non-ASL file")
+                no_asl_files.append(file_path)
 
     print(f"Found {len(asl_files)} ASL files and {len(no_asl_files)} non-ASL files")
 
-    # Process ASL files
+    if len(asl_files) == 0 and len(no_asl_files) == 0:
+        print("ERROR: No JSON files found to process!")
+        sys.exit(1)
     asl_features = []
     for file_path in asl_files:
         try:
@@ -87,15 +150,19 @@ def process_json_files(input_dir, output_dir, window_size_sec=3.0, overlap_ratio
                     continue
 
                 window_data = frames[i:end_idx]
-                features = extract_features(window_data, fps)
+                try:
+                    features = extract_features(window_data, fps)
 
-                features["file_name"] = os.path.basename(file_path)
-                features["window_start_frame"] = i
-                features["window_end_frame"] = end_idx
-                features["window_duration"] = (end_idx - i) / fps
-                features["label"] = 0
+                    features["file_name"] = os.path.basename(file_path)
+                    features["window_start_frame"] = i
+                    features["window_end_frame"] = end_idx
+                    features["window_duration"] = (end_idx - i) / fps
+                    features["label"] = 0
 
-                no_asl_features.append(features)
+                    no_asl_features.append(features)
+                except Exception as e:
+                    print(f"Error extracting features from {file_path}: {e}")
+                    continue
         except Exception as e:
             print(f"Error processing {file_path}: {e}")
 

@@ -72,14 +72,14 @@ resource "aws_s3_object" "package_script" {
 
 resource "aws_s3_object" "test_positive" {
   bucket = aws_s3_bucket.monitoring_data.bucket
-  key    = "pose-data/ash_landmark.json"
+  key    = "pose-data/asl/ash_landmark.json"
   source = "../../output/ash_landmarks.json"
   etag   = filemd5("../../output/ash_landmarks.json")
 }
 
 resource "aws_s3_object" "test_negative" {
   bucket = aws_s3_bucket.monitoring_data.bucket
-  key    = "pose-data/JAKE_landmark.json"
+  key    = "pose-data/no_asl/JAKE_landmark.json"
   source = "../../output/JAKE_landmarks.json"
   etag   = filemd5("../../output/JAKE_landmarks.json")
 }

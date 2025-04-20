@@ -52,6 +52,18 @@ Example JSON structure
 
 
 def extract_features(window_data, fps):
+    print(f"extract_features called with {len(window_data)} frames and fps={fps}")
+
+    try:
+        # Check the format of the first frame
+        if window_data and len(window_data) > 0:
+            print(f"First frame keys: {list(window_data[0].keys())}")
+            if "hands" in window_data[0]:
+                if window_data[0]["hands"]:
+                    print(f"First hand keys: {list(window_data[0]['hands'][0].keys())}")
+    except Exception as e:
+        print(f"Error inspecting window_data: {e}")
+
     right_hands = []
     left_hands = []
     frame_counts = 0
@@ -62,13 +74,17 @@ def extract_features(window_data, fps):
             continue
 
         for hand in frame["hands"]:
-            landmarks = np.array(
-                [[lm["x"], lm["y"], lm["z"]] for lm in hand["landmarks"]]
-            )
-            if hand["handedness"] == "Right":
-                right_hands.append(landmarks)
-            else:
-                left_hands.append(landmarks)
+            try:
+                landmarks = np.array(
+                    [[lm["x"], lm["y"], lm["z"]] for lm in hand["landmarks"]]
+                )
+                if hand["handedness"] == "Right":
+                    right_hands.append(landmarks)
+                else:
+                    left_hands.append(landmarks)
+            except Exception as e:
+                print(f"Error processing hand in frame {frame_counts}: {e}")
+                print(f"Hand data: {hand}")
 
     if len(right_hands) == 0 and len(left_hands) == 0:
         features = {"hand_presence_ratio": 0, "any_hand_detected": 0}
