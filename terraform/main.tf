@@ -3,7 +3,7 @@ data "terraform_remote_state" "org_structure" {
   backend = "s3"
   config = {
     bucket = "terraform-state-asl-foundation"
-    key    = "aws_organization_structure/terraform.tfstate"
+    key    = "organization/terraform.tfstate"
     region = "us-west-2"
   }
 }
