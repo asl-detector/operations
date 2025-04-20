@@ -48,20 +48,21 @@ print(f"Code directory contents: {os.listdir(code_dir)}")
 
 # Try to import extract_features from train.py
 try:
-    # Check if train.py exists first
     if not os.path.exists(os.path.join(code_dir, "train.py")):
         log_error("train.py does not exist in the code directory!")
         sys.exit(1)
 
-    print("File content of train.py (first 50 lines):")
-    with open(os.path.join(code_dir, "train.py"), "r") as f:
-        lines = f.readlines()
-        for i, line in enumerate(lines[:50]):
-            print(f"{i + 1}: {line.rstrip()}")
-
     print("\nAttempting to import extract_features from train")
     start_time = time.time()
-    from train import extract_features
+
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "train", os.path.join(code_dir, "train.py")
+    )
+    train_module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(train_module)
+    extract_features = train_module.extract_features
 
     end_time = time.time()
     print(

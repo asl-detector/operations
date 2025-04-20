@@ -3,7 +3,7 @@ import boto3
 client = boto3.client("sagemaker")
 
 # Use your PipelineExecutionArn from the error message
-execution_arn = "arn:aws:sagemaker:us-west-2:223537960975:pipeline/asl-detection-dev-retraining-pipeline/execution/cd80ovbna8n9"
+execution_arn = "arn:aws:sagemaker:us-west-2:223537960975:pipeline/asl-detection-dev-retraining-pipeline/execution/ut2syzhb3zmn"
 
 # List the steps for this execution
 response = client.list_pipeline_execution_steps(PipelineExecutionArn=execution_arn)

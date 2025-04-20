@@ -99,4 +99,9 @@ resource "aws_s3_object" "test_negative" {
   etag   = filemd5("../../output/JAKE_landmarks.json")
 }
 
-
+resource "aws_s3_object" "debug_utils_script" {
+  bucket = aws_s3_bucket.baseline_dataset.bucket
+  key    = "code/debug_utils.py"
+  source = "../code/debug_utils.py"
+  etag   = filemd5("../code/debug_utils.py")
+}
