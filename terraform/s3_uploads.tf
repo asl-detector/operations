@@ -21,6 +21,13 @@ resource "aws_s3_object" "train_script" {
   etag   = filemd5("../code/train.py")
 }
 
+resource "aws_s3_object" "inference_script" {
+  bucket = aws_s3_bucket.baseline_dataset.bucket
+  key    = "code/inference.py"
+  source = "../code/inference.py"
+  etag   = filemd5("../code/inference.py")
+}
+
 resource "aws_s3_object" "data_constraints" {
   bucket = aws_s3_bucket.baseline_dataset.bucket
   key    = "constraints/data_constraints.json"
@@ -70,18 +77,45 @@ resource "aws_s3_object" "package_script" {
   etag   = filemd5("../code/package_model.py")
 }
 
+# Create proper directory structure for input data
+resource "aws_s3_object" "asl_directory" {
+  bucket       = aws_s3_bucket.monitoring_data.bucket
+  key          = "pose-data/asl/"
+  content      = ""
+  content_type = "application/x-directory"
+}
+
+resource "aws_s3_object" "no_asl_directory" {
+  bucket       = aws_s3_bucket.monitoring_data.bucket
+  key          = "pose-data/no_asl/"
+  content      = ""
+  content_type = "application/x-directory"
+}
+
 resource "aws_s3_object" "test_positive" {
   bucket = aws_s3_bucket.monitoring_data.bucket
-  key    = "pose-data/ash_landmark.json"
+  key    = "pose-data/asl/ash_landmark.json"
   source = "../../output/ash_landmarks.json"
   etag   = filemd5("../../output/ash_landmarks.json")
 }
 
 resource "aws_s3_object" "test_negative" {
   bucket = aws_s3_bucket.monitoring_data.bucket
-  key    = "pose-data/JAKE_landmark.json"
+  key    = "pose-data/no_asl/JAKE_landmark.json"
   source = "../../output/JAKE_landmarks.json"
   etag   = filemd5("../../output/JAKE_landmarks.json")
 }
 
+resource "aws_s3_object" "debug_utils_script" {
+  bucket = aws_s3_bucket.baseline_dataset.bucket
+  key    = "code/debug_utils.py"
+  source = "../code/debug_utils.py"
+  etag   = filemd5("../code/debug_utils.py")
+}
 
+resource "aws_s3_object" "requirements_file" {
+  bucket = aws_s3_bucket.baseline_dataset.bucket
+  key    = "code/requirements.txt"
+  source = "../code/requirements.txt"
+  etag   = filemd5("../code/requirements.txt")
+}
