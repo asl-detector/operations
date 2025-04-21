@@ -84,6 +84,15 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
                 }
               },
               {
+                "InputName" : "baseline-data",
+                "S3Input" : {
+                  "S3Uri" : "s3://${aws_s3_bucket.baseline_dataset.bucket}/data",
+                  "LocalPath" : "/opt/ml/processing/input/baseline",
+                  "S3DataType" : "S3Prefix",
+                  "S3InputMode" : "File"
+                }
+              },
+              {
                 "InputName" : "code",
                 "S3Input" : {
                   "S3Uri" : "s3://${aws_s3_bucket.baseline_dataset.bucket}/code",

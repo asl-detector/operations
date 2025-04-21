@@ -379,3 +379,119 @@ resource "aws_lambda_permission" "allow_eventbridge_notify" {
   principal     = "events.amazonaws.com"
   source_arn    = aws_cloudwatch_event_rule.model_registered.arn
 }
+
+# Lambda function to copy models to artifacts account
+resource "aws_lambda_function" "copy_model_to_artifacts" {
+  function_name = "${var.project_name}-${var.environment}-copy-model-to-artifacts"
+  role          = aws_iam_role.copy_model_lambda_role.arn
+  handler       = "index.handler"
+  runtime       = "python3.11"
+  timeout       = 60
+
+  filename         = "${path.module}/lambda/copy_model_function.zip"
+  source_code_hash = filebase64sha256("${path.module}/lambda/copy_model_function.zip")
+
+  environment {
+    variables = {
+      SOURCE_BUCKET = aws_s3_bucket.monitoring_data.bucket
+      TARGET_BUCKET = "asl-dataset-model-serving-asl-dataset-00"
+      ROLE_ARN      = "arn:aws:iam::993598117255:role/operations-upload-role"
+    }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      filename,
+      source_code_hash,
+    ]
+  }
+}
+
+# IAM role for the Lambda function
+resource "aws_iam_role" "copy_model_lambda_role" {
+  name = "${var.project_name}-${var.environment}-copy-model-lambda-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect = "Allow"
+      Principal = {
+        Service = "lambda.amazonaws.com"
+      }
+      Action = "sts:AssumeRole"
+    }]
+  })
+}
+
+# Policy for the Lambda role
+resource "aws_iam_role_policy" "copy_model_lambda_policy" {
+  name = "copy-model-policy"
+  role = aws_iam_role.copy_model_lambda_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ]
+        Resource = "arn:aws:logs:*:*:*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:GetObject",
+          "s3:ListBucket"
+        ]
+        Resource = [
+          aws_s3_bucket.monitoring_data.arn,
+          "${aws_s3_bucket.monitoring_data.arn}/*"
+        ]
+      },
+      {
+        Effect   = "Allow"
+        Action   = "sts:AssumeRole"
+        Resource = "arn:aws:iam::993598117255:role/operations-upload-role"
+      }
+    ]
+  })
+}
+# EventBridge rule to detect when a new model is uploaded in the pipeline
+resource "aws_cloudwatch_event_rule" "model_updated_rule" {
+  name        = "${var.project_name}-${var.environment}-model-updated"
+  description = "Detect when a new model is created and copy to artifacts account"
+
+  event_pattern = jsonencode({
+    "source" : ["aws.s3"],
+    "detail-type" : ["Object Created"],
+    "detail" : {
+      "bucket" : {
+        "name" : [aws_s3_bucket.monitoring_data.bucket]
+      },
+      "object" : {
+        "key" : [{
+          "prefix" : "packaged-models/"
+        }]
+      }
+    }
+  })
+}
+
+# Target for the EventBridge rule
+resource "aws_cloudwatch_event_target" "trigger_copy_lambda" {
+  rule      = aws_cloudwatch_event_rule.model_updated_rule.name
+  target_id = "TriggerCopyLambda"
+  arn       = aws_lambda_function.copy_model_to_artifacts.arn
+}
+
+# Permission for EventBridge to invoke the Lambda
+resource "aws_lambda_permission" "allow_eventbridge_to_lambda" {
+  statement_id  = "AllowExecutionFromEventBridge"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.copy_model_to_artifacts.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.model_updated_rule.arn
+}

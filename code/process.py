@@ -89,7 +89,42 @@ def create_fallback_features(file_path):
     return features
 
 
-def process_json_files(input_dir, output_dir, window_size_sec=3.0, overlap_ratio=0.5):
+def load_baseline_data(baseline_dir):
+    """Load baseline data from CSV files in the baseline directory"""
+    print(f"Loading baseline data from {baseline_dir}")
+
+    # Find all CSV files in the baseline directory
+    csv_files = glob.glob(os.path.join(baseline_dir, "*.csv"))
+    print(f"Found {len(csv_files)} CSV files in baseline directory")
+
+    if not csv_files:
+        print("No baseline CSV files found!")
+        return pd.DataFrame()
+
+    # Load the first CSV file (baseline.csv)
+    baseline_path = csv_files[0]
+    try:
+        # Try to load with headers first
+        df = pd.read_csv(baseline_path)
+
+        # Check if the first column might be the label
+        if "label" not in df.columns and len(df.columns) > 1:
+            print("CSV doesn't have a 'label' column. Assuming first column is label.")
+            column_names = ["label"] + [
+                f"feature_{i}" for i in range(len(df.columns) - 1)
+            ]
+            df = pd.read_csv(baseline_path, header=None, names=column_names)
+
+        print(f"Loaded baseline data with shape: {df.shape}")
+        return df
+    except Exception as e:
+        print(f"Error loading baseline CSV: {e}")
+        return pd.DataFrame()
+
+
+def process_json_files(
+    input_dir, output_dir, window_size_sec=3.0, overlap_ratio=0.5, return_df=False
+):
     """Process all JSON files in the input directory and extract features"""
     print(f"Processing files from {input_dir} to {output_dir}")
 
@@ -149,6 +184,9 @@ def process_json_files(input_dir, output_dir, window_size_sec=3.0, overlap_ratio
             {"hand_presence_ratio": 0.2, "any_hand_detected": 0, "label": 0},
         ]
         df = pd.DataFrame(dummy_features)
+
+        if return_df:
+            return df
 
         # Split the dummy data
         train_df = df.copy()
@@ -325,6 +363,9 @@ def process_json_files(input_dir, output_dir, window_size_sec=3.0, overlap_ratio
         # Print column names for debugging
         print(f"DataFrame columns: {df.columns.tolist()}")
 
+    if return_df:
+        return df
+
     # Split data
     try:
         print("Splitting data into train/validation/test sets")
@@ -412,17 +453,136 @@ def process_json_files(input_dir, output_dir, window_size_sec=3.0, overlap_ratio
 if __name__ == "__main__":
     try:
         # SageMaker Processing paths
-        input_dir = "/opt/ml/processing/input/pose"
+        pose_input_dir = "/opt/ml/processing/input/pose"
+        baseline_dir = "/opt/ml/processing/input/baseline"
         output_dir = "/opt/ml/processing/output/features"
 
         print(
-            f"Starting processing with input_dir={input_dir}, output_dir={output_dir}"
+            f"Starting processing with pose_input_dir={pose_input_dir}, baseline_dir={baseline_dir}, output_dir={output_dir}"
         )
 
         # Make sure output directory exists
         os.makedirs(output_dir, exist_ok=True)
 
-        process_json_files(input_dir, output_dir)
+        # Load baseline data if available
+        baseline_df = load_baseline_data(baseline_dir)
+        has_baseline = not baseline_df.empty
+        if has_baseline:
+            print(
+                f"Loaded baseline dataset with {len(baseline_df)} samples and {baseline_df.shape[1]} columns"
+            )
+        else:
+            print("No baseline data found or loaded")
+
+        # Process new JSON files and get features DataFrame
+        new_features_df = process_json_files(pose_input_dir, None, return_df=True)
+
+        # Combine with baseline if available
+        if has_baseline and new_features_df is not None and not new_features_df.empty:
+            print("Combining new features with baseline data")
+            print(f"New features shape: {new_features_df.shape}")
+            print(f"Baseline shape: {baseline_df.shape}")
+
+            # Ensure compatible columns
+            common_cols = list(set(new_features_df.columns) & set(baseline_df.columns))
+            if common_cols:
+                print(f"Using {len(common_cols)} common columns for combined dataset")
+                combined_df = pd.concat(
+                    [new_features_df[common_cols], baseline_df[common_cols]],
+                    ignore_index=True,
+                )
+                print(f"Combined dataset shape: {combined_df.shape}")
+            else:
+                print("No common columns found. Using new features only.")
+                combined_df = new_features_df
+        else:
+            print("Using only new features for training")
+            combined_df = new_features_df
+
+        # Process the combined dataset (or just new features if no baseline)
+        if combined_df is not None and not combined_df.empty:
+            # Process the features and save to specified directories
+            os.makedirs(f"{output_dir}/train", exist_ok=True)
+            os.makedirs(f"{output_dir}/validation", exist_ok=True)
+            os.makedirs(f"{output_dir}/test", exist_ok=True)
+
+            # Handle missing values
+            combined_df = combined_df.dropna(axis=1, how="all")
+            combined_df = combined_df.fillna(0)
+
+            # Split the data
+            meta_columns = [
+                "file_name",
+                "window_start_frame",
+                "window_end_frame",
+                "window_duration",
+            ]
+            feature_cols = [
+                col
+                for col in combined_df.columns
+                if col != "label" and col not in meta_columns
+            ]
+
+            # Make sure the label column exists
+            if "label" not in combined_df.columns:
+                log_error("Label column is missing from the DataFrame!")
+                combined_df["label"] = 0
+
+            # Split the data
+            X = combined_df[feature_cols]
+            y = combined_df["label"]
+
+            # Use stratified split if we have both classes
+            if len(y.unique()) > 1:
+                X_train, X_temp, y_train, y_temp = train_test_split(
+                    X, y, test_size=0.3, random_state=42, stratify=y
+                )
+                X_val, X_test, y_val, y_test = train_test_split(
+                    X_temp, y_temp, test_size=0.5, random_state=42, stratify=y_temp
+                )
+            else:
+                # Simple split if we only have one class
+                X_train, X_temp = train_test_split(X, test_size=0.3, random_state=42)
+                X_val, X_test = train_test_split(X_temp, test_size=0.5, random_state=42)
+                y_train = y.iloc[X_train.index]
+                y_val = y.iloc[X_val.index]
+                y_test = y.iloc[X_test.index]
+
+            # Rebuild the DataFrames with labels
+            train_df = pd.concat([X_train, y_train], axis=1)
+            val_df = pd.concat([X_val, y_val], axis=1)
+            test_df = pd.concat([X_test, y_test], axis=1)
+
+            print(f"Train set: {len(train_df)} samples")
+            print(f"Validation set: {len(val_df)} samples")
+            print(f"Test set: {len(test_df)} samples")
+
+            # Save datasets
+            print("Saving datasets to CSV")
+            cols = train_df.columns.tolist()
+            if "label" in cols:
+                cols.remove("label")
+                cols = ["label"] + cols
+
+            # Reorder all dataframes
+            train_df = train_df[cols]
+            val_df = val_df[cols]
+            test_df = test_df[cols]
+
+            # Save without headers
+            train_df.to_csv(
+                f"{output_dir}/train/training.csv", index=False, header=False
+            )
+            val_df.to_csv(
+                f"{output_dir}/validation/validation.csv", index=False, header=False
+            )
+            test_df.to_csv(f"{output_dir}/test/test.csv", index=False, header=False)
+            print(
+                f"Saved {len(train_df)} training samples, {len(val_df)} validation samples, and {len(test_df)} test samples"
+            )
+        else:
+            process_json_files(pose_input_dir, output_dir)
+
         print("Processing completed successfully!")
     except Exception as e:
         log_error("Unhandled exception in process.py", e)
