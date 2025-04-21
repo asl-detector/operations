@@ -8,8 +8,59 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
       "Version" : "2020-12-01",
       "Steps" : [
         {
+          "Name" : "GenerateBaseline",
+          "Type" : "Processing",
+          "Arguments" : {
+            "ProcessingResources" : {
+              "ClusterConfig" : {
+                "InstanceCount" : 1,
+                "InstanceType" : "ml.m5.large",
+                "VolumeSizeInGB" : 20
+              }
+            },
+            "AppSpecification" : {
+              "ImageUri" : "246618743249.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1-cpu-py3",
+              "ContainerEntrypoint" : ["bash", "-c", "pip install -r /opt/ml/processing/code/requirements.txt && python /opt/ml/processing/code/generate_baseline.py --csv /opt/ml/processing/input/baseline-data/baseline.csv --output-dir /opt/ml/processing/output/baseline-outputs"]
+            },
+            "ProcessingInputs" : [
+              {
+                "InputName" : "baseline-data",
+                "S3Input" : {
+                  "S3Uri" : "s3://${aws_s3_bucket.baseline_dataset.bucket}/data",
+                  "LocalPath" : "/opt/ml/processing/input/baseline-data",
+                  "S3DataType" : "S3Prefix",
+                  "S3InputMode" : "File"
+                }
+              },
+              {
+                "InputName" : "code",
+                "S3Input" : {
+                  "S3Uri" : "s3://${aws_s3_bucket.baseline_dataset.bucket}/code",
+                  "LocalPath" : "/opt/ml/processing/code",
+                  "S3DataType" : "S3Prefix",
+                  "S3InputMode" : "File"
+                }
+              }
+            ],
+            "ProcessingOutputConfig" : {
+              "Outputs" : [
+                {
+                  "OutputName" : "baseline-outputs",
+                  "S3Output" : {
+                    "S3Uri" : "s3://${aws_s3_bucket.baseline_dataset.bucket}",
+                    "LocalPath" : "/opt/ml/processing/output/baseline-outputs",
+                    "S3UploadMode" : "EndOfJob"
+                  }
+                }
+              ]
+            },
+            "RoleArn" : "${aws_iam_role.sagemaker_role.arn}"
+          }
+        },
+        {
           "Name" : "FeatureProcessing",
           "Type" : "Processing",
+          "DependsOn" : ["GenerateBaseline"],
           "Arguments" : {
             "ProcessingResources" : {
               "ClusterConfig" : {
@@ -279,6 +330,8 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
     aws_s3_object.package_script,
     aws_s3_object.inference_script,
     aws_s3_object.debug_utils_script,
+    aws_s3_object.generate_baseline_script,
+    aws_s3_object.baseline_dataset,
     aws_sagemaker_model_package_group.asl_model_group
   ]
 }

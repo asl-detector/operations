@@ -119,3 +119,17 @@ resource "aws_s3_object" "requirements_file" {
   source = "../code/requirements.txt"
   etag   = filemd5("../code/requirements.txt")
 }
+
+resource "aws_s3_object" "baseline_dataset" {
+  bucket = aws_s3_bucket.baseline_dataset.bucket
+  key    = "data/baseline.csv"
+  source = "../baseline.csv"
+  etag   = filemd5("../baseline.csv")
+}
+
+resource "aws_s3_object" "generate_baseline_script" {
+  bucket = aws_s3_bucket.baseline_dataset.bucket
+  key    = "code/generate_baseline.py"
+  source = "../code/generate_baseline.py"
+  etag   = filemd5("../code/generate_baseline.py")
+}
