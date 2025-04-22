@@ -120,6 +120,13 @@ resource "aws_s3_object" "requirements_file" {
   etag   = filemd5("../code/requirements.txt")
 }
 
+resource "aws_s3_object" "xgboost_training_config" {
+  bucket = aws_s3_bucket.baseline_dataset.bucket
+  key    = "config/xgboost_training_config.json"
+  source = "./xgboost_training_config.json"
+  etag   = filemd5("./xgboost_training_config.json")
+}
+
 # resource "aws_s3_object" "baseline_dataset" {
 #   bucket = aws_s3_bucket.baseline_dataset.bucket
 #   key    = "data/baseline.csv"

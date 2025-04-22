@@ -39,16 +39,19 @@ def handler(event, context):
             # Default to the latest model
             source_key = "packaged-models/model.tar.gz"
 
-        # Only process model files
-        if not source_key.endswith(".tar.gz"):
+        # Update this section to accept JSON files as well
+        if not (source_key.endswith(".tar.gz") or source_key.endswith(".json")):
             print(f"Skipping non-model file: {source_key}")
             return {
                 "statusCode": 200,
                 "body": json.dumps({"message": "Skipped non-model file"}),
             }
 
-        # Define target key - simple name in model-serving bucket
-        target_key = "models/asl-detection-model.tar.gz"
+        # Define target key - update based on file extension
+        if source_key.endswith(".json"):
+            target_key = "models/asl-detection-model.json"
+        else:
+            target_key = "models/asl-detection-model.tar.gz"
 
         print(
             f"Copying {source_key} from {source_bucket} to {target_bucket}/{target_key}"

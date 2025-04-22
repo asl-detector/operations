@@ -7,123 +7,123 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
     pipeline_definition_body = jsonencode({
       "Version" : "2020-12-01",
       "Steps" : [
-        {
-          "Name" : "GenerateBaseline",
-          "Type" : "Processing",
-          "Arguments" : {
-            "ProcessingResources" : {
-              "ClusterConfig" : {
-                "InstanceCount" : 1,
-                "InstanceType" : "ml.m5.large",
-                "VolumeSizeInGB" : 20
-              }
-            },
-            "AppSpecification" : {
-              "ImageUri" : "246618743249.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1-cpu-py3",
-              "ContainerEntrypoint" : ["bash", "-c", "pip install -r /opt/ml/processing/code/requirements.txt && python /opt/ml/processing/code/generate_baseline.py --csv /opt/ml/processing/input/baseline-data/baseline.csv --output-dir /opt/ml/processing/output/baseline-outputs"]
-            },
-            "ProcessingInputs" : [
-              {
-                "InputName" : "baseline-data",
-                "S3Input" : {
-                  "S3Uri" : "s3://${aws_s3_bucket.baseline_dataset.bucket}/data",
-                  "LocalPath" : "/opt/ml/processing/input/baseline-data",
-                  "S3DataType" : "S3Prefix",
-                  "S3InputMode" : "File"
-                }
-              },
-              {
-                "InputName" : "code",
-                "S3Input" : {
-                  "S3Uri" : "s3://${aws_s3_bucket.baseline_dataset.bucket}/code",
-                  "LocalPath" : "/opt/ml/processing/code",
-                  "S3DataType" : "S3Prefix",
-                  "S3InputMode" : "File"
-                }
-              }
-            ],
-            "ProcessingOutputConfig" : {
-              "Outputs" : [
-                {
-                  "OutputName" : "baseline-outputs",
-                  "S3Output" : {
-                    "S3Uri" : "s3://${aws_s3_bucket.baseline_dataset.bucket}",
-                    "LocalPath" : "/opt/ml/processing/output/baseline-outputs",
-                    "S3UploadMode" : "EndOfJob"
-                  }
-                }
-              ]
-            },
-            "RoleArn" : "${aws_iam_role.sagemaker_role.arn}"
-          }
-        },
-        {
-          "Name" : "FeatureProcessing",
-          "Type" : "Processing",
-          "DependsOn" : ["GenerateBaseline"],
-          "Arguments" : {
-            "ProcessingResources" : {
-              "ClusterConfig" : {
-                "InstanceCount" : 1,
-                "InstanceType" : "ml.m5.large",
-                "VolumeSizeInGB" : 30
-              }
-            },
-            "AppSpecification" : {
-              "ImageUri" : "246618743249.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1-cpu-py3",
-              "ContainerEntrypoint" : ["bash", "-c", "pip install -r /opt/ml/processing/code/requirements.txt && python /opt/ml/processing/code/process.py"]
-            }
-            "ProcessingInputs" : [
-              {
-                "InputName" : "pose-data",
-                "S3Input" : {
-                  "S3Uri" : "s3://${aws_s3_bucket.monitoring_data.bucket}/pose-data",
-                  "LocalPath" : "/opt/ml/processing/input/pose",
-                  "S3DataType" : "S3Prefix",
-                  "S3InputMode" : "File"
-                }
-              },
-              {
-                "InputName" : "baseline-data",
-                "S3Input" : {
-                  "S3Uri" : "s3://${aws_s3_bucket.baseline_dataset.bucket}/data",
-                  "LocalPath" : "/opt/ml/processing/input/baseline",
-                  "S3DataType" : "S3Prefix",
-                  "S3InputMode" : "File"
-                }
-              },
-              {
-                "InputName" : "code",
-                "S3Input" : {
-                  "S3Uri" : "s3://${aws_s3_bucket.baseline_dataset.bucket}/code",
-                  "LocalPath" : "/opt/ml/processing/code",
-                  "S3DataType" : "S3Prefix",
-                  "S3InputMode" : "File"
-                }
-              }
-            ],
-            "ProcessingOutputConfig" : {
-              "Outputs" : [
-                {
-                  "OutputName" : "features",
-                  "S3Output" : {
-                    "S3Uri" : "s3://${aws_s3_bucket.monitoring_data.bucket}/features",
-                    "LocalPath" : "/opt/ml/processing/output/features",
-                    "S3UploadMode" : "EndOfJob"
-                  }
-                }
-              ]
-            },
-            "RoleArn" : "${aws_iam_role.sagemaker_role.arn}"
-          }
-        },
+        # {
+        #   "Name" : "GenerateBaseline",
+        #   "Type" : "Processing",
+        #   "Arguments" : {
+        #     "ProcessingResources" : {
+        #       "ClusterConfig" : {
+        #         "InstanceCount" : 1,
+        #         "InstanceType" : "ml.m5.large",
+        #         "VolumeSizeInGB" : 20
+        #       }
+        #     },
+        #     "AppSpecification" : {
+        #       "ImageUri" : "246618743249.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1-cpu-py3",
+        #       "ContainerEntrypoint" : ["bash", "-c", "pip install -r /opt/ml/processing/code/requirements.txt && python /opt/ml/processing/code/generate_baseline.py --csv /opt/ml/processing/input/baseline-data/baseline.csv --output-dir /opt/ml/processing/output/baseline-outputs"]
+        #     },
+        #     "ProcessingInputs" : [
+        #       {
+        #         "InputName" : "baseline-data",
+        #         "S3Input" : {
+        #           "S3Uri" : "s3://${aws_s3_bucket.baseline_dataset.bucket}/data",
+        #           "LocalPath" : "/opt/ml/processing/input/baseline-data",
+        #           "S3DataType" : "S3Prefix",
+        #           "S3InputMode" : "File"
+        #         }
+        #       },
+        #       {
+        #         "InputName" : "code",
+        #         "S3Input" : {
+        #           "S3Uri" : "s3://${aws_s3_bucket.baseline_dataset.bucket}/code",
+        #           "LocalPath" : "/opt/ml/processing/code",
+        #           "S3DataType" : "S3Prefix",
+        #           "S3InputMode" : "File"
+        #         }
+        #       }
+        #     ],
+        #     "ProcessingOutputConfig" : {
+        #       "Outputs" : [
+        #         {
+        #           "OutputName" : "baseline-outputs",
+        #           "S3Output" : {
+        #             "S3Uri" : "s3://${aws_s3_bucket.baseline_dataset.bucket}",
+        #             "LocalPath" : "/opt/ml/processing/output/baseline-outputs",
+        #             "S3UploadMode" : "EndOfJob"
+        #           }
+        #         }
+        #       ]
+        #     },
+        #     "RoleArn" : "${aws_iam_role.sagemaker_role.arn}"
+        #   }
+        # },
+        # {
+        #   "Name" : "FeatureProcessing",
+        #   "Type" : "Processing",
+        #   # "DependsOn" : ["GenerateBaseline"],
+        #   "Arguments" : {
+        #     "ProcessingResources" : {
+        #       "ClusterConfig" : {
+        #         "InstanceCount" : 1,
+        #         "InstanceType" : "ml.m5.large",
+        #         "VolumeSizeInGB" : 30
+        #       }
+        #     },
+        #     "AppSpecification" : {
+        #       "ImageUri" : "246618743249.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1-cpu-py3",
+        #       "ContainerEntrypoint" : ["bash", "-c", "pip install -r /opt/ml/processing/code/requirements.txt && python /opt/ml/processing/code/process.py"]
+        #     }
+        #     "ProcessingInputs" : [
+        #       {
+        #         "InputName" : "pose-data",
+        #         "S3Input" : {
+        #           "S3Uri" : "s3://${aws_s3_bucket.monitoring_data.bucket}/pose-data",
+        #           "LocalPath" : "/opt/ml/processing/input/pose",
+        #           "S3DataType" : "S3Prefix",
+        #           "S3InputMode" : "File"
+        #         }
+        #       },
+        #       {
+        #         "InputName" : "baseline-data",
+        #         "S3Input" : {
+        #           "S3Uri" : "s3://${aws_s3_bucket.baseline_dataset.bucket}/data",
+        #           "LocalPath" : "/opt/ml/processing/input/baseline",
+        #           "S3DataType" : "S3Prefix",
+        #           "S3InputMode" : "File"
+        #         }
+        #       },
+        #       {
+        #         "InputName" : "code",
+        #         "S3Input" : {
+        #           "S3Uri" : "s3://${aws_s3_bucket.baseline_dataset.bucket}/code",
+        #           "LocalPath" : "/opt/ml/processing/code",
+        #           "S3DataType" : "S3Prefix",
+        #           "S3InputMode" : "File"
+        #         }
+        #       }
+        #     ],
+        #     "ProcessingOutputConfig" : {
+        #       "Outputs" : [
+        #         {
+        #           "OutputName" : "features",
+        #           "S3Output" : {
+        #             "S3Uri" : "s3://${aws_s3_bucket.monitoring_data.bucket}/features",
+        #             "LocalPath" : "/opt/ml/processing/output/features",
+        #             "S3UploadMode" : "EndOfJob"
+        #           }
+        #         }
+        #       ]
+        #     },
+        #     "RoleArn" : "${aws_iam_role.sagemaker_role.arn}"
+        #   }
+        # },
         {
           "Name" : "TrainModel",
           "Type" : "Training",
-          "DependsOn" : ["FeatureProcessing"],
+          # "DependsOn" : ["FeatureProcessing"],
           "Arguments" : {
             "AlgorithmSpecification" : {
-              "TrainingImage" : "433757028032.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1",
+              "TrainingImage" : "246618743249.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-xgboost:1.7-1",
               "TrainingInputMode" : "File"
             },
             "HyperParameters" : {
@@ -135,11 +135,8 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
               "subsample" : "0.8",
               "colsample_bytree" : "0.8",
               "objective" : "binary:logistic",
-              "eval_metric" : "auc",
-              "csv_weights" : "0",
-              "csv_header" : "absent",
-              "label_column" : "0"
-            }
+              "eval_metric" : "auc"
+            },
             "InputDataConfig" : [
               {
                 "ChannelName" : "train",
@@ -149,7 +146,8 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
                     "S3DataType" : "S3Prefix"
                   }
                 },
-                "ContentType" : "text/csv"
+                "ContentType" : "text/csv",
+                "CompressionType" : "None"
               },
               {
                 "ChannelName" : "validation",
@@ -159,8 +157,9 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
                     "S3DataType" : "S3Prefix"
                   }
                 },
-                "ContentType" : "text/csv"
-              }
+                "ContentType" : "text/csv",
+                "CompressionType" : "None"
+              },
             ]
             "OutputDataConfig" : {
               "S3OutputPath" : "s3://${aws_s3_bucket.monitoring_data.bucket}/models"
