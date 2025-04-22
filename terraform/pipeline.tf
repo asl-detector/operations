@@ -117,70 +117,70 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
         #     "RoleArn" : "${aws_iam_role.sagemaker_role.arn}"
         #   }
         # },
-        {
-          "Name" : "TrainModel",
-          "Type" : "Training",
-          "Arguments" : {
-            "AlgorithmSpecification" : {
-              "TrainingImage" : "246618743249.dkr.ecr.us-west-2.amazonaws.com/sagemaker-xgboost:1.7-1",
-              "TrainingInputMode" : "File",
-              "EnableSageMakerMetricsTimeSeries" : true
-            },
-            "HyperParameters" : {
-              "num-round" : "10",
-              "max-depth" : "3",
-              "eta" : "0.05",
-              "gamma" : "0.1",
-              "min-child-weight" : "2",
-              "subsample" : "0.8",
-              "colsample-bytree" : "0.8",
-              "objective" : "binary:logistic",
-              "eval-metric" : "auc",
-              "sagemaker_program" : "train.py",
-              "sagemaker_submit_directory" : "s3://asl-detection-dev-baseline-7jjirv6s/code/train-source.tar.gz"
-            },
-            "InputDataConfig" : [
-              {
-                "ChannelName" : "train",
-                "DataSource" : {
-                  "S3DataSource" : {
-                    "S3Uri" : "s3://${aws_s3_bucket.monitoring_data.bucket}/features/train",
-                    "S3DataType" : "S3Prefix"
-                  }
-                },
-                "ContentType" : "text/csv",
-                "CompressionType" : "None"
-              },
-              {
-                "ChannelName" : "validation",
-                "DataSource" : {
-                  "S3DataSource" : {
-                    "S3Uri" : "s3://${aws_s3_bucket.monitoring_data.bucket}/features/validation",
-                    "S3DataType" : "S3Prefix"
-                  }
-                },
-                "ContentType" : "text/csv",
-                "CompressionType" : "None"
-              }
-            ],
-            "OutputDataConfig" : {
-              "S3OutputPath" : "s3://${aws_s3_bucket.monitoring_data.bucket}/models"
-            },
-            "ResourceConfig" : {
-              "InstanceCount" : 1,
-              "InstanceType" : "ml.m5.large",
-              "VolumeSizeInGB" : 30
-            },
-            "StoppingCondition" : {
-              "MaxRuntimeInSeconds" : 3600
-            },
-            "RoleArn" : "${aws_iam_role.sagemaker_role.arn}"
-          }
-        },
+        # {
+        #   "Name" : "TrainModel",
+        #   "Type" : "Training",
+        #   "Arguments" : {
+        #     "AlgorithmSpecification" : {
+        #       "TrainingImage" : "246618743249.dkr.ecr.us-west-2.amazonaws.com/sagemaker-xgboost:1.7-1",
+        #       "TrainingInputMode" : "File",
+        #       "EnableSageMakerMetricsTimeSeries" : true
+        #     },
+        #     "HyperParameters" : {
+        #       "num-round" : "10",
+        #       "max-depth" : "3",
+        #       "eta" : "0.05",
+        #       "gamma" : "0.1",
+        #       "min-child-weight" : "2",
+        #       "subsample" : "0.8",
+        #       "colsample-bytree" : "0.8",
+        #       "objective" : "binary:logistic",
+        #       "eval-metric" : "auc",
+        #       "sagemaker_program" : "train.py",
+        #       "sagemaker_submit_directory" : "s3://asl-detection-dev-baseline-7jjirv6s/code/train-source.tar.gz"
+        #     },
+        #     "InputDataConfig" : [
+        #       {
+        #         "ChannelName" : "train",
+        #         "DataSource" : {
+        #           "S3DataSource" : {
+        #             "S3Uri" : "s3://${aws_s3_bucket.monitoring_data.bucket}/features/train",
+        #             "S3DataType" : "S3Prefix"
+        #           }
+        #         },
+        #         "ContentType" : "text/csv",
+        #         "CompressionType" : "None"
+        #       },
+        #       {
+        #         "ChannelName" : "validation",
+        #         "DataSource" : {
+        #           "S3DataSource" : {
+        #             "S3Uri" : "s3://${aws_s3_bucket.monitoring_data.bucket}/features/validation",
+        #             "S3DataType" : "S3Prefix"
+        #           }
+        #         },
+        #         "ContentType" : "text/csv",
+        #         "CompressionType" : "None"
+        #       }
+        #     ],
+        #     "OutputDataConfig" : {
+        #       "S3OutputPath" : "s3://${aws_s3_bucket.monitoring_data.bucket}/models"
+        #     },
+        #     "ResourceConfig" : {
+        #       "InstanceCount" : 1,
+        #       "InstanceType" : "ml.m5.large",
+        #       "VolumeSizeInGB" : 30
+        #     },
+        #     "StoppingCondition" : {
+        #       "MaxRuntimeInSeconds" : 3600
+        #     },
+        #     "RoleArn" : "${aws_iam_role.sagemaker_role.arn}"
+        #   }
+        # },
         {
           "Name" : "ModelEvaluation",
           "Type" : "Processing",
-          "DependsOn" : ["TrainModel"],
+          # "DependsOn" : ["TrainModel"],
           "Arguments" : {
             "ProcessingResources" : {
               "ClusterConfig" : {

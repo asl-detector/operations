@@ -41,72 +41,60 @@ def handler(event, context):
             source_key = s3_event["object"]["key"]
             print(f"Using source key from event: {source_key}")
 
-        # If not from event or not a valid model file, search for a model
+        # If not from event or not a valid model file, search for the latest model
         if not source_key or not (
             source_key.endswith(".tar.gz") or source_key.endswith(".json")
         ):
-            # Try to find standardized model from evaluation first
-            print("Searching for standardized model...")
+            # Look for the latest model in models/ directory
+            print("Searching for latest model...")
             try:
-                eval_response = s3_source.list_objects_v2(
+                model_response = s3_source.list_objects_v2(
                     Bucket=source_bucket,
-                    Prefix="evaluation/standardized/",
+                    Prefix="models/",
                 )
 
-                if "Contents" in eval_response:
-                    model_files = [
+                if "Contents" in model_response:
+                    model_archives = [
                         obj
-                        for obj in eval_response["Contents"]
-                        if obj["Key"].endswith(".json")
+                        for obj in model_response["Contents"]
+                        if obj["Key"].endswith(".tar.gz")
+                        and "TrainModel" in obj["Key"]
+                        and "output" in obj["Key"]
                     ]
-                    if model_files:
+                    if model_archives:
                         source_key = sorted(
-                            model_files, key=lambda x: x["LastModified"], reverse=True
+                            model_archives,
+                            key=lambda x: x["LastModified"],
+                            reverse=True,
                         )[0]["Key"]
-                        print(f"Found standardized model: {source_key}")
+                        print(f"Found latest model archive: {source_key}")
             except Exception as e:
-                print(f"Error searching for standardized model: {e}")
+                print(f"Error searching for model: {e}")
 
-            # If still no model found, try direct model from training
+            # If still no model found, try standardized model from evaluation
             if not source_key:
-                print("Searching for direct training output...")
+                print("Searching for standardized model...")
                 try:
-                    # Try to get directly from the URI provided
-                    source_key = "models/pipelines-4dcua81pcark-TrainModel-SvOWwwZnZS/output/model.tar.gz"
+                    eval_response = s3_source.list_objects_v2(
+                        Bucket=source_bucket,
+                        Prefix="evaluation/standardized/",
+                    )
 
-                    # Check if this specific model exists
-                    try:
-                        s3_source.head_object(Bucket=source_bucket, Key=source_key)
-                        print(f"Found specific model at {source_key}")
-                    except:
-                        print(
-                            f"Specific model not found, searching for latest model..."
-                        )
-                        source_key = None
-
-                    # If specific model not found, look for latest
-                    if not source_key:
-                        model_response = s3_source.list_objects_v2(
-                            Bucket=source_bucket,
-                            Prefix="models/",
-                        )
-
-                        if "Contents" in model_response:
-                            model_archives = [
-                                obj
-                                for obj in model_response["Contents"]
-                                if obj["Key"].endswith(".tar.gz")
-                                and "TrainModel" in obj["Key"]
-                            ]
-                            if model_archives:
-                                source_key = sorted(
-                                    model_archives,
-                                    key=lambda x: x["LastModified"],
-                                    reverse=True,
-                                )[0]["Key"]
-                                print(f"Found latest model archive: {source_key}")
+                    if "Contents" in eval_response:
+                        model_files = [
+                            obj
+                            for obj in eval_response["Contents"]
+                            if obj["Key"].endswith(".json")
+                        ]
+                        if model_files:
+                            source_key = sorted(
+                                model_files,
+                                key=lambda x: x["LastModified"],
+                                reverse=True,
+                            )[0]["Key"]
+                            print(f"Found standardized model: {source_key}")
                 except Exception as e:
-                    print(f"Error searching for training output: {e}")
+                    print(f"Error searching for standardized model: {e}")
 
         if not source_key:
             return {

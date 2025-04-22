@@ -380,7 +380,6 @@ resource "aws_lambda_permission" "allow_eventbridge_notify" {
   source_arn    = aws_cloudwatch_event_rule.model_registered.arn
 }
 
-# Lambda function to copy models to artifacts account
 resource "aws_lambda_function" "copy_model_to_artifacts" {
   function_name = "${var.project_name}-${var.environment}-copy-model-to-artifacts"
   role          = aws_iam_role.copy_model_lambda_role.arn
