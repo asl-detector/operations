@@ -1,6 +1,6 @@
 numpy
 pandas
 scikit-learn
-xgboost==1.7.4
+xgboost==3.0.0
 tqdm
 matplotlib

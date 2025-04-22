@@ -13,3 +13,8 @@ variable "environment" {
   description = "Environment (dev/prod)"
   default     = "dev"
 }
+
+variable "custom_xgboost_image" {
+  description = "ECR URI for custom XGBoost container"
+  default     = "223537960975.dkr.ecr.us-west-2.amazonaws.com/custom-xgboost-universal:1.7.4-universal"
+}

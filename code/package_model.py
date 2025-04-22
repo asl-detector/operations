@@ -1,64 +1,96 @@
-import argparse
+#!/usr/bin/env python
 import os
-import json
+import tarfile
+import shutil
 import xgboost as xgb
-import pickle
+import sys
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--model", type=str, required=True)
-    parser.add_argument("--output-dir", type=str, required=True)
-    args = parser.parse_args()
+def package_model(model_path, output_dir):
+    """Package the model for deployment using XGBoost 1.7.4"""
+    print(f"Packaging model from {model_path}")
+    print(f"XGBoost version: {xgb.__version__}")
 
-    # Find the model file
-    model_dir = args.model
-    model_files = [
-        f
-        for f in os.listdir(model_dir)
-        if f.endswith(".model") or f.endswith(".tar.gz")
-    ]
+    # Create output directory
+    os.makedirs(output_dir, exist_ok=True)
 
-    if not model_files:
-        raise ValueError(f"No model files found in {model_dir}")
+    # Find model tarball
+    model_tarball = None
+    for root, dirs, files in os.walk(model_path):
+        for file in files:
+            if file.endswith(".tar.gz"):
+                model_tarball = os.path.join(root, file)
+                break
+        if model_tarball:
+            break
 
-    model_path = os.path.join(model_dir, model_files[0])
+    if not model_tarball:
+        print("No model tarball found!")
+        return
 
-    # Load the model
-    if model_path.endswith(".tar.gz"):
-        # Extract model from tarball if needed
-        import tarfile
+    print(f"Found model tarball: {model_tarball}")
 
-        with tarfile.open(model_path) as tar:
-            tar.extractall(path=os.path.join(args.output_dir, "extracted"))
-        # Find the extracted model file
-        extracted_dir = os.path.join(args.output_dir, "extracted")
-        for root, _, files in os.walk(extracted_dir):
-            for file in files:
-                if file.endswith(".model"):
-                    model_path = os.path.join(root, file)
-                    break
+    # Create temporary directory for extraction
+    temp_dir = os.path.join(output_dir, "temp")
+    os.makedirs(temp_dir, exist_ok=True)
 
-    # Load the XGBoost model
     try:
-        # First try loading as a pickle file
-        with open(model_path, "rb") as f:
-            model = pickle.load(f)
-    except:
-        # If that fails, try loading as an XGBoost model
-        model = xgb.Booster()
-        model.load_model(model_path)
+        # Extract the tarball
+        with tarfile.open(model_tarball, "r:gz") as tar:
+            tar.extractall(temp_dir)
 
-    # Convert model to JSON
-    json_model = model.save_config()
+        # Look for the model file
+        model_file = None
+        for root, dirs, files in os.walk(temp_dir):
+            for file in files:
+                if file.endswith(".json") or file == "xgboost-model":
+                    model_file = os.path.join(root, file)
+                    break
+            if model_file:
+                break
 
-    # Save JSON model
-    output_path = os.path.join(args.output_dir, "model.json")
-    with open(output_path, "w") as f:
-        f.write(json_model)
+        if not model_file:
+            print("No model file found in the archive!")
+            return
 
-    print(f"Model saved as JSON to {output_path}")
+        print(f"Found model file: {model_file}")
+
+        # If it's already a JSON file, just copy it
+        if model_file.endswith(".json"):
+            shutil.copy(model_file, os.path.join(output_dir, "xgboost-model.json"))
+            print(
+                f"Copied JSON model to: {os.path.join(output_dir, 'xgboost-model.json')}"
+            )
+        else:
+            # Try to load and save as JSON
+            try:
+                # Load model
+                bst = xgb.Booster()
+                bst.load_model(model_file)
+
+                # Save as JSON
+                json_path = os.path.join(output_dir, "xgboost-model.json")
+                bst.save_model(json_path)
+                print(f"Saved model as JSON to: {json_path}")
+            except Exception as e:
+                print(f"Error converting model to JSON: {e}")
+                # Fallback to copying original
+                shutil.copy(model_file, os.path.join(output_dir, "xgboost-model"))
+                print(
+                    f"Copied original model to: {os.path.join(output_dir, 'xgboost-model')}"
+                )
+
+    finally:
+        # Clean up
+        shutil.rmtree(temp_dir)
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model", required=True, help="Path to model directory")
+    parser.add_argument("--output-dir", required=True, help="Output directory")
+    args = parser.parse_args()
+
+    package_model(args.model, args.output_dir)

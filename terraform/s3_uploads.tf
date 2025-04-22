@@ -14,7 +14,7 @@ resource "aws_s3_object" "evaluate_script" {
   etag   = filemd5("../code/evaluate.py")
 }
 
-resource "aws_s3_object" "train_script" {
+resource "aws_s3_object" "custom_train_script" {
   bucket = aws_s3_bucket.baseline_dataset.bucket
   key    = "code/train.py"
   source = "../code/train.py"

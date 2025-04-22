@@ -78,7 +78,7 @@ def monitor_pipeline_execution(execution_arn, interval=15):
 
 
 # Replace with your execution ARN
-execution_arn = "arn:aws:sagemaker:us-west-2:223537960975:pipeline/asl-detection-dev-retraining-pipeline/execution/cwqu8hpobvns"
+execution_arn = "arn:aws:sagemaker:us-west-2:223537960975:pipeline/asl-detection-dev-retraining-pipeline/execution/5g7ah0ezib8i"
 
 # Start monitoring
 try:
