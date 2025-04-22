@@ -39,39 +39,10 @@ def evaluate_model(model_dir, test_data_dir, output_dir):
     with tarfile.open(most_recent_model) as tar:
         tar.extractall(extract_dir)
 
-    # Look for model files with various extensions
-    model_file = None
-    for root, dirs, files in os.walk(extract_dir):
-        for file in files:
-            # XGBoost 1.7 model file can have various names
-            if (
-                file == "xgboost-model"
-                or file == "model"
-                or file.endswith(".model")
-                or file.endswith(".json")
-            ):
-                model_file = os.path.join(root, file)
-                print(f"Found model file: {model_file}")
-                break
-        if model_file:
-            break
+    model_file = os.path.join(extract_dir, "xgboost-model.json")
 
-    if not model_file:
-        # If still not found, check common paths
-        potential_paths = [
-            os.path.join(extract_dir, "xgboost-model"),
-            os.path.join(extract_dir, "model"),
-            os.path.join(extract_dir, "model.json"),
-        ]
-
-        for path in potential_paths:
-            if os.path.exists(path):
-                model_file = path
-                print(f"Found model at common path: {model_file}")
-                break
-
-    if not model_file:
-        raise ValueError("No model file found in extracted archive!")
+    if not os.path.exists(model_file):
+        raise ValueError("xgboost-model.json file not found in extracted archive!")
 
     print(f"Loading model from {model_file}")
     model = xgb.Booster()
