@@ -738,22 +738,12 @@ def main():
             X_train, X_test, y_train, y_test
         )
 
-        top_features = feature_importance.head(30)["Feature"].tolist()
-
         model.save_model(args.model_output + ".json")
+        print(f"Model saved to {args.model_output}.json")
 
-        model_data = {
-            "model": model,
-            "scaler": scaler,
-            "feature_names": X.columns.tolist(),
-            "top_features": top_features,
-        }
-        model.save_model(args.model_output + ".json")
-
-        # Pickle format (for backward compatibility)
-        with open(args.model_output, "wb") as f:
-            pickle.dump(model_data, f)
-        print(f"XGBoost model saved to {args.model_output}")
+        # Also save metadata separately if needed
+        with open(args.model_output + ".meta.pkl", "wb") as f:
+            pickle.dump({"scaler": scaler, "feature_names": X.columns.tolist()}, f)
 
 
 if __name__ == "__main__":

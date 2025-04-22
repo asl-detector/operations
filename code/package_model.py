@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 import os
 import tarfile
-import pickle
-import xgboost as xgb
+import shutil
 
 
 def package_model(model_path, output_dir):
@@ -13,70 +12,30 @@ def package_model(model_path, output_dir):
     package_dir = os.path.join(output_dir, "package")
     os.makedirs(package_dir, exist_ok=True)
 
-    # Find the actual model file
-    model_data = None
+    # Find JSON model files
+    model_file = None
     if os.path.isdir(model_path):
-        # Search recursively for model files
-        model_files = []
         for root, dirs, files in os.walk(model_path):
             for file in files:
-                if file == "model" or file == "xgboost-model":
-                    model_files.append(os.path.join(root, file))
+                if file.endswith(".json"):
+                    model_file = os.path.join(root, file)
+                    break
+            if model_file:
+                break
+    else:
+        model_file = model_path
 
-        if not model_files:
-            print("No model files found!")
-            return
-
-        # Use the most recent model file
-        model_path = model_files[0]
-
-    # Load the model
-    try:
-        print(f"Loading model from {model_path}")
-        with open(model_path, "rb") as f:
-            model_data = pickle.load(f)
-    except Exception as e:
-        print(f"Error loading model: {e}")
+    if not model_file:
+        print("No model file found!")
         return
 
-    # Extract the XGBoost model and other components
-    if isinstance(model_data, dict) and "model" in model_data:
-        xgb_model = model_data["model"]
-        # Save other model components (scaler, feature names, etc.)
-        metadata = {k: v for k, v in model_data.items() if k != "model"}
-        metadata_path = os.path.join(package_dir, "model_metadata.pkl")
-        with open(metadata_path, "wb") as f:
-            pickle.dump(metadata, f)
-    else:
-        xgb_model = model_data
-
-    # Save the XGBoost model in both formats
-    # 1. JSON format (version-independent)
-    xgb_model_json_path = os.path.join(package_dir, "xgboost-model.json")
-    xgb_model.save_model(xgb_model_json_path)
-    print(f"Saved XGBoost model in JSON format to {xgb_model_json_path}")
-
-    # 2. Also as the standard name without extension (backwards compatibility)
-    xgb_model_noext_path = os.path.join(package_dir, "xgboost-model")
-    xgb_model.save_model(xgb_model_noext_path)
-    print(f"Saved XGBoost model without extension to {xgb_model_noext_path}")
-
-    # 3. Pickle format (for backward compatibility)
-    pkl_model_path = os.path.join(package_dir, "xgboost-model.pkl")
-    with open(pkl_model_path, "wb") as f:
-        pickle.dump(xgb_model, f)
-    print(f"Saved pickle model to {pkl_model_path}")
+    # Just copy the model file to the package directory
+    shutil.copy(model_file, os.path.join(package_dir, "xgboost-model.json"))
 
     # Create tarball
     tar_path = os.path.join(output_dir, "model.tar.gz")
-    print(f"Creating tarball at {tar_path}")
-
     with tarfile.open(tar_path, "w:gz") as tar:
-        for root, dirs, files in os.walk(package_dir):
-            for file in files:
-                file_path = os.path.join(root, file)
-                archive_name = os.path.relpath(file_path, package_dir)
-                print(f"Adding {file_path} as {archive_name}")
-                tar.add(file_path, arcname=archive_name)
+        for file in os.listdir(package_dir):
+            tar.add(os.path.join(package_dir, file), arcname=file)
 
     print(f"Model packaged successfully to {tar_path}")
