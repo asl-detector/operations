@@ -748,6 +748,9 @@ def main():
             "feature_names": X.columns.tolist(),
             "top_features": top_features,
         }
+        model.save_model(args.model_output + ".json")
+
+        # Pickle format (for backward compatibility)
         with open(args.model_output, "wb") as f:
             pickle.dump(model_data, f)
         print(f"XGBoost model saved to {args.model_output}")

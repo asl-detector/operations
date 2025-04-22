@@ -54,11 +54,47 @@ def evaluate_model(model_dir, test_data_dir, output_dir):
         except Exception as e:
             raise ValueError(f"Error extracting tar.gz: {e}")
 
-    # Now load the model
     try:
         print(f"Loading model from {model_path}")
-        with open(model_path, "rb") as f:
-            model_data = pickle.load(f)
+
+        # First, try to load as a native XGBoost model file
+        if model_path.endswith(".json"):
+            try:
+                model = xgb.Booster()
+                model.load_model(model_path)
+                print("Loaded native XGBoost model")
+                model_data = model  # Use the model directly
+            except Exception as e:
+                print(f"Error loading native model: {e}")
+                raise
+        else:
+            # Try to load as a pickle file
+            try:
+                with open(model_path, "rb") as f:
+                    model_data = pickle.load(f)
+                    print("Loaded pickle model")
+            except xgb.core.XGBoostError as e:
+                # Handle XGBoost version compatibility error
+                if "serialisation_header" in str(e):
+                    print("XGBoost version compatibility issue detected")
+                    # If the model_path is a pickle file of an xgboost model,
+                    # we need to handle this differently
+                    # First, check if there's a .json version of the same model
+                    json_model_path = os.path.splitext(model_path)[0] + ".json"
+                    if os.path.exists(json_model_path):
+                        print(f"Found JSON model version at {json_model_path}")
+                        model = xgb.Booster()
+                        model.load_model(json_model_path)
+                        model_data = model
+                    else:
+                        raise ValueError(
+                            f"XGBoost version compatibility issue and no JSON model found: {e}"
+                        )
+                else:
+                    raise
+            except Exception as e:
+                print(f"Error loading pickle model: {e}")
+                raise
 
         # Model could be the object itself or in a dictionary
         if isinstance(model_data, dict) and "model" in model_data:
@@ -67,12 +103,8 @@ def evaluate_model(model_dir, test_data_dir, output_dir):
         else:
             model = model_data
             print("Loaded model directly")
-
-        # Continue with evaluation...
     except Exception as e:
         raise ValueError(f"Failed to load model: {e}")
-
-    # Rest of evaluation code remains the same...
 
     # Load test data
     test_data_path = os.path.join(test_data_dir, "test.csv")

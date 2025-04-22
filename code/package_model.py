@@ -49,10 +49,15 @@ def package_model(model_path, output_dir):
     else:
         xgb_model = model_data
 
-    # Save the XGBoost model using its native format (version-independent)
     xgb_model_path = os.path.join(package_dir, "xgboost-model.json")
     xgb_model.save_model(xgb_model_path)
     print(f"Saved XGBoost model to {xgb_model_path}")
+
+    # Also save the pickle version for backward compatibility
+    pkl_model_path = os.path.join(package_dir, "xgboost-model.pkl")
+    with open(pkl_model_path, "wb") as f:
+        pickle.dump(xgb_model, f)
+    print(f"Saved pickle model to {pkl_model_path}")
 
     # Create tarball
     tar_path = os.path.join(output_dir, "model.tar.gz")
