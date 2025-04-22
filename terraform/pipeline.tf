@@ -287,36 +287,6 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
             "RoleArn" : "${aws_iam_role.sagemaker_role.arn}"
           }
         },
-        {
-          "Name" : "RegisterModel",
-          "Type" : "RegisterModel",
-          "DependsOn" : ["PackageModel"],
-          "Arguments" : {
-            "ModelPackageGroupName" : "${var.project_name}-${var.environment}-models",
-            "ModelPackageDescription" : "ASL detection model for edge deployment",
-            "ModelApprovalStatus" : "Approved",
-            "ModelMetrics" : {
-              "ModelQuality" : {
-                "Statistics" : {
-                  "ContentType" : "application/json",
-                  "S3Uri" : {
-                    "Get" : "Steps.ModelEvaluation.ProcessingOutputConfig.Outputs['evaluation'].S3Output.S3Uri"
-                  }
-                }
-              }
-            },
-            "InferenceSpecification" : {
-              "Containers" : [
-                {
-                  "Image" : "433757028032.dkr.ecr.${var.aws_region}.amazonaws.com/xgboost:1",
-                  "ModelDataUrl" : "s3://${aws_s3_bucket.monitoring_data.bucket}/packaged-models/initial-model.tar.gz"
-                }
-              ],
-              "SupportedContentTypes" : ["text/csv"],
-              "SupportedResponseMIMETypes" : ["text/csv"]
-            }
-          }
-        }
       ]
     })
   }
@@ -340,7 +310,7 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
     aws_s3_object.inference_script,
     aws_s3_object.debug_utils_script,
     aws_s3_object.generate_baseline_script,
-    aws_s3_object.baseline_dataset,
+    # aws_s3_object.baseline_dataset,
     aws_sagemaker_model_package_group.asl_model_group
   ]
 }

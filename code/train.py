@@ -740,6 +740,8 @@ def main():
 
         top_features = feature_importance.head(30)["Feature"].tolist()
 
+        model.save_model(args.model_output + ".json")
+
         model_data = {
             "model": model,
             "scaler": scaler,

@@ -14,69 +14,65 @@ import shutil
 def evaluate_model(model_dir, test_data_dir, output_dir):
     """Evaluate the model on test data"""
     print(f"Evaluating model from {model_dir} on test data from {test_data_dir}")
-
-    # Print contents of model directory for debugging
     print(f"Model directory contents: {os.listdir(model_dir)}")
 
-    # Search for the model in various formats and locations
-    model = None
-
-    # Look for model.tar.gz files in subdirectories
-    tar_files = []
+    # Search for model files recursively
+    model_paths = []
     for root, dirs, files in os.walk(model_dir):
         for file in files:
-            if file.endswith(".tar.gz"):
-                file_path = os.path.join(root, file)
-                print(f"Found tar.gz file: {file_path}")
-                tar_files.append(file_path)
+            if file.endswith(".tar.gz") or file == "model":
+                model_paths.append(os.path.join(root, file))
 
-    # Try to load the most recent model (assume last in list)
-    if tar_files:
-        tar_path = tar_files[-1]
-        print(f"Attempting to load model from {tar_path}")
+    if not model_paths:
+        raise ValueError(f"ERROR: No model file found in {model_dir}")
+
+    # Sort by modification time to get the latest
+    model_paths.sort(key=lambda x: os.path.getmtime(x), reverse=True)
+    model_path = model_paths[0]
+    print(f"Using model file: {model_path}")
+
+    # Create a temporary directory for extraction if needed
+    tmp_dir = os.path.join(model_dir, "tmp_extract")
+    os.makedirs(tmp_dir, exist_ok=True)
+
+    # Handle tar.gz files
+    if model_path.endswith(".tar.gz"):
         try:
-            # Create a temporary directory
-            tmp_dir = os.path.join(model_dir, "tmp_extract")
-            os.makedirs(tmp_dir, exist_ok=True)
-
-            # Extract the tar file
-            with tarfile.open(tar_path) as tar:
+            print(f"Extracting tar.gz file: {model_path}")
+            with tarfile.open(model_path) as tar:
                 tar.extractall(path=tmp_dir)
 
-            # Look for the model file
-            print(f"Extracted files: {os.listdir(tmp_dir)}")
+            print(f"Extracted contents: {os.listdir(tmp_dir)}")
 
-            # Try to find model file
-            model_paths = []
+            # Look for model file in extracted contents
             for root, dirs, files in os.walk(tmp_dir):
                 for file in files:
-                    if file == "model":
-                        model_paths.append(os.path.join(root, file))
-
-            if model_paths:
-                print(f"Found model file: {model_paths[0]}")
-                try:
-                    # Try to load as XGBoost native model
-                    model = xgb.Booster()
-                    model.load_model(model_paths[0])
-                    print("Successfully loaded XGBoost model")
-                except Exception as e:
-                    print(f"Failed to load as XGBoost native model: {e}")
-                    # Try to load as pickle
-                    try:
-                        model = pickle.load(open(model_paths[0], "rb"))
-                        print("Successfully loaded pickle model")
-                    except Exception as e2:
-                        print(f"Failed to load as pickle: {e2}")
+                    if file == "xgboost-model" or file == "model":
+                        model_path = os.path.join(root, file)
+                        print(f"Found model at: {model_path}")
+                        break
         except Exception as e:
-            print(f"Error extracting/loading model: {e}")
+            raise ValueError(f"Error extracting tar.gz: {e}")
 
-    # If we still don't have a model, create a dummy one for testing
-    if model is None:
-        print("WARNING: Could not find valid model, creating dummy model for testing")
-        dummy_model = xgb.XGBClassifier(n_estimators=1)
-        dummy_model.fit(np.random.random((10, 5)), np.random.randint(0, 2, 10))
-        model = dummy_model
+    # Now load the model
+    try:
+        print(f"Loading model from {model_path}")
+        with open(model_path, "rb") as f:
+            model_data = pickle.load(f)
+
+        # Model could be the object itself or in a dictionary
+        if isinstance(model_data, dict) and "model" in model_data:
+            model = model_data["model"]
+            print("Loaded model from dictionary")
+        else:
+            model = model_data
+            print("Loaded model directly")
+
+        # Continue with evaluation...
+    except Exception as e:
+        raise ValueError(f"Failed to load model: {e}")
+
+    # Rest of evaluation code remains the same...
 
     # Load test data
     test_data_path = os.path.join(test_data_dir, "test.csv")

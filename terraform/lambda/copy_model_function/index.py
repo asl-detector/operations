@@ -32,26 +32,23 @@ def handler(event, context):
         )
 
         # Get the key of the model file from the event if provided
-        # Otherwise use a default path
         if "Records" in event and len(event["Records"]) > 0:
             s3_event = event["Records"][0]["s3"]
             source_key = s3_event["object"]["key"]
         else:
-            source_key = "packaged-models/initial-model.tar.gz"
+            # Default to the latest model
+            source_key = "packaged-models/model.tar.gz"
 
         # Only process model files
         if not source_key.endswith(".tar.gz"):
             print(f"Skipping non-model file: {source_key}")
             return {
                 "statusCode": 200,
-                "body": json.dumps(
-                    {"message": "Skipped non-model file", "source_key": source_key}
-                ),
+                "body": json.dumps({"message": "Skipped non-model file"}),
             }
 
-        # Define target key - we'll use the same path in target bucket
-        # But you might want to organize differently in the target bucket
-        target_key = "models/" + source_key.split("/")[-1]
+        # Define target key - simple name in model-serving bucket
+        target_key = "models/asl-detection-model.tar.gz"
 
         print(
             f"Copying {source_key} from {source_bucket} to {target_bucket}/{target_key}"
@@ -61,6 +58,20 @@ def handler(event, context):
         copy_source = {"Bucket": source_bucket, "Key": source_key}
         s3_target.copy_object(
             CopySource=copy_source, Bucket=target_bucket, Key=target_key
+        )
+
+        # Create version metadata
+        version_info = {
+            "modelVersion": datetime.datetime.now().strftime("%Y%m%d%H%M%S"),
+            "sourceUrl": f"s3://{source_bucket}/{source_key}",
+            "creationTime": datetime.datetime.now().isoformat(),
+        }
+
+        s3_target.put_object(
+            Bucket=target_bucket,
+            Key="models/version.json",
+            Body=json.dumps(version_info, indent=2),
+            ContentType="application/json",
         )
 
         return {
