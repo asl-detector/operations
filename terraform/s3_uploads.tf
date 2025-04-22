@@ -95,15 +95,15 @@ resource "aws_s3_object" "no_asl_directory" {
 resource "aws_s3_object" "test_positive" {
   bucket = aws_s3_bucket.monitoring_data.bucket
   key    = "pose-data/asl/ash_landmark.json"
-  source = "../../output/ash_landmarks.json"
-  etag   = filemd5("../../output/ash_landmarks.json")
+  source = "./test_data/ash_landmark.json"
+  etag   = filemd5("./test_data/ash_landmark.json")
 }
 
 resource "aws_s3_object" "test_negative" {
   bucket = aws_s3_bucket.monitoring_data.bucket
   key    = "pose-data/no_asl/JAKE_landmark.json"
-  source = "../../output/JAKE_landmarks.json"
-  etag   = filemd5("../../output/JAKE_landmarks.json")
+  source = "./test_data/JAKE_landmark.json"
+  etag   = filemd5("./test_data/JAKE_landmark.json")
 }
 
 resource "aws_s3_object" "debug_utils_script" {
@@ -118,13 +118,6 @@ resource "aws_s3_object" "requirements_file" {
   key    = "code/requirements.txt"
   source = "../code/requirements.txt"
   etag   = filemd5("../code/requirements.txt")
-}
-
-resource "aws_s3_object" "xgboost_training_config" {
-  bucket = aws_s3_bucket.baseline_dataset.bucket
-  key    = "config/xgboost_training_config.json"
-  source = "./xgboost_training_config.json"
-  etag   = filemd5("./xgboost_training_config.json")
 }
 
 # resource "aws_s3_object" "baseline_dataset" {

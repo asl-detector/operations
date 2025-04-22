@@ -1,6 +1,7 @@
 import boto3
 import os
 import json
+import datetime
 
 
 def handler(event, context):
@@ -31,23 +32,89 @@ def handler(event, context):
             aws_session_token=credentials["SessionToken"],
         )
 
-        # Get the key of the model file from the event if provided
+        # Determine source key
+        source_key = None
+
+        # Check if triggered by S3 event
         if "Records" in event and len(event["Records"]) > 0:
             s3_event = event["Records"][0]["s3"]
             source_key = s3_event["object"]["key"]
-        else:
-            # Default to the latest model
-            source_key = "packaged-models/model.tar.gz"
+            print(f"Using source key from event: {source_key}")
 
-        # Update this section to accept JSON files as well
-        if not (source_key.endswith(".tar.gz") or source_key.endswith(".json")):
-            print(f"Skipping non-model file: {source_key}")
+        # If not from event or not a valid model file, search for a model
+        if not source_key or not (
+            source_key.endswith(".tar.gz") or source_key.endswith(".json")
+        ):
+            # Try to find standardized model from evaluation first
+            print("Searching for standardized model...")
+            try:
+                eval_response = s3_source.list_objects_v2(
+                    Bucket=source_bucket,
+                    Prefix="evaluation/standardized/",
+                )
+
+                if "Contents" in eval_response:
+                    model_files = [
+                        obj
+                        for obj in eval_response["Contents"]
+                        if obj["Key"].endswith(".json")
+                    ]
+                    if model_files:
+                        source_key = sorted(
+                            model_files, key=lambda x: x["LastModified"], reverse=True
+                        )[0]["Key"]
+                        print(f"Found standardized model: {source_key}")
+            except Exception as e:
+                print(f"Error searching for standardized model: {e}")
+
+            # If still no model found, try direct model from training
+            if not source_key:
+                print("Searching for direct training output...")
+                try:
+                    # Try to get directly from the URI provided
+                    source_key = "models/pipelines-4dcua81pcark-TrainModel-SvOWwwZnZS/output/model.tar.gz"
+
+                    # Check if this specific model exists
+                    try:
+                        s3_source.head_object(Bucket=source_bucket, Key=source_key)
+                        print(f"Found specific model at {source_key}")
+                    except:
+                        print(
+                            f"Specific model not found, searching for latest model..."
+                        )
+                        source_key = None
+
+                    # If specific model not found, look for latest
+                    if not source_key:
+                        model_response = s3_source.list_objects_v2(
+                            Bucket=source_bucket,
+                            Prefix="models/",
+                        )
+
+                        if "Contents" in model_response:
+                            model_archives = [
+                                obj
+                                for obj in model_response["Contents"]
+                                if obj["Key"].endswith(".tar.gz")
+                                and "TrainModel" in obj["Key"]
+                            ]
+                            if model_archives:
+                                source_key = sorted(
+                                    model_archives,
+                                    key=lambda x: x["LastModified"],
+                                    reverse=True,
+                                )[0]["Key"]
+                                print(f"Found latest model archive: {source_key}")
+                except Exception as e:
+                    print(f"Error searching for training output: {e}")
+
+        if not source_key:
             return {
-                "statusCode": 200,
-                "body": json.dumps({"message": "Skipped non-model file"}),
+                "statusCode": 404,
+                "body": json.dumps("No model file found to copy"),
             }
 
-        # Define target key - update based on file extension
+        # Define target key based on file extension
         if source_key.endswith(".json"):
             target_key = "models/asl-detection-model.json"
         else:

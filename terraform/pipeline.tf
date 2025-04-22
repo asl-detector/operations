@@ -19,7 +19,7 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
         #       }
         #     },
         #     "AppSpecification" : {
-        #       "ImageUri" : "246618743249.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1-cpu-py3",
+        # "ImageUri": "683313688378.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:1.2-1-cpu-py310"
         #       "ContainerEntrypoint" : ["bash", "-c", "pip install -r /opt/ml/processing/code/requirements.txt && python /opt/ml/processing/code/generate_baseline.py --csv /opt/ml/processing/input/baseline-data/baseline.csv --output-dir /opt/ml/processing/output/baseline-outputs"]
         #     },
         #     "ProcessingInputs" : [
@@ -70,7 +70,7 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
         #       }
         #     },
         #     "AppSpecification" : {
-        #       "ImageUri" : "246618743249.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1-cpu-py3",
+        # "ImageUri": "683313688378.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:1.2-1-cpu-py310"
         #       "ContainerEntrypoint" : ["bash", "-c", "pip install -r /opt/ml/processing/code/requirements.txt && python /opt/ml/processing/code/process.py"]
         #     }
         #     "ProcessingInputs" : [
@@ -127,8 +127,8 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
               "TrainingInputMode" : "File"
             },
             "HyperParameters" : {
-              "num_round" : "300",
-              "max_depth" : "6",
+              "num_round" : "10",
+              "max_depth" : "3",
               "eta" : "0.05",
               "gamma" : "0.1",
               "min_child_weight" : "2",
@@ -188,8 +188,8 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
               }
             },
             "AppSpecification" : {
-              "ImageUri" : "246618743249.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1-cpu-py3",
-              "ContainerEntrypoint" : ["bash", "-c", "pip install -r /opt/ml/processing/code/requirements.txt && python /opt/ml/processing/code/evaluate.py"]
+              "ImageUri" : "246618743249.dkr.ecr.us-west-2.amazonaws.com/sagemaker-scikit-learn:1.2-1",
+              "ContainerEntrypoint" : ["bash", "-c", "pip install xgboost==1.7.4 pandas scikit-learn matplotlib && python /opt/ml/processing/code/evaluate.py"]
             }
             "ProcessingInputs" : [
               {
@@ -248,9 +248,9 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
               }
             },
             "AppSpecification" : {
-              "ImageUri" : "246618743249.dkr.ecr.${var.aws_region}.amazonaws.com/sagemaker-scikit-learn:0.23-1-cpu-py3",
+              "ImageUri" : "246618743249.dkr.ecr.us-west-2.amazonaws.com/sagemaker-scikit-learn:1.2-1",
               "ContainerEntrypoint" : ["bash", "-c", "pip install -r /opt/ml/processing/code/requirements.txt && python /opt/ml/processing/code/package_model.py --model /opt/ml/processing/input/model --output-dir /opt/ml/processing/output/packaged"]
-            }
+            },
             "ProcessingInputs" : [
               {
                 "InputName" : "model",
@@ -285,7 +285,7 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
             },
             "RoleArn" : "${aws_iam_role.sagemaker_role.arn}"
           }
-        },
+        }
       ]
     })
   }

@@ -459,7 +459,7 @@ resource "aws_iam_role_policy" "copy_model_lambda_policy" {
     ]
   })
 }
-# EventBridge rule to detect when a new model is uploaded in the pipeline
+
 resource "aws_cloudwatch_event_rule" "model_updated_rule" {
   name        = "${var.project_name}-${var.environment}-model-updated"
   description = "Detect when a new model is created and copy to artifacts account"
@@ -473,7 +473,7 @@ resource "aws_cloudwatch_event_rule" "model_updated_rule" {
       },
       "object" : {
         "key" : [{
-          "prefix" : "packaged-models/"
+          "prefix" : "models/"
         }]
       }
     }
