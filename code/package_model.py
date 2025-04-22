@@ -2,6 +2,7 @@
 import os
 import tarfile
 import pickle
+import xgboost as xgb
 
 
 def package_model(model_path, output_dir):
@@ -49,11 +50,18 @@ def package_model(model_path, output_dir):
     else:
         xgb_model = model_data
 
-    xgb_model_path = os.path.join(package_dir, "xgboost-model.json")
-    xgb_model.save_model(xgb_model_path)
-    print(f"Saved XGBoost model to {xgb_model_path}")
+    # Save the XGBoost model in both formats
+    # 1. JSON format (version-independent)
+    xgb_model_json_path = os.path.join(package_dir, "xgboost-model.json")
+    xgb_model.save_model(xgb_model_json_path)
+    print(f"Saved XGBoost model in JSON format to {xgb_model_json_path}")
 
-    # Also save the pickle version for backward compatibility
+    # 2. Also as the standard name without extension (backwards compatibility)
+    xgb_model_noext_path = os.path.join(package_dir, "xgboost-model")
+    xgb_model.save_model(xgb_model_noext_path)
+    print(f"Saved XGBoost model without extension to {xgb_model_noext_path}")
+
+    # 3. Pickle format (for backward compatibility)
     pkl_model_path = os.path.join(package_dir, "xgboost-model.pkl")
     with open(pkl_model_path, "wb") as f:
         pickle.dump(xgb_model, f)

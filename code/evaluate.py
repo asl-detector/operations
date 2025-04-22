@@ -44,28 +44,46 @@ def evaluate_model(model_dir, test_data_dir, output_dir):
 
             print(f"Extracted contents: {os.listdir(tmp_dir)}")
 
-            # Look for model file in extracted contents
-            for root, dirs, files in os.walk(tmp_dir):
-                for file in files:
-                    if file == "xgboost-model" or file == "model":
-                        model_path = os.path.join(root, file)
-                        print(f"Found model at: {model_path}")
+            # Look for model files in extracted contents - try different naming conventions
+            model_file_patterns = [
+                "xgboost-model.json",
+                "xgboost-model",
+                "model",
+                "xgboost-model.pkl",
+            ]
+            found_model = False
+
+            for pattern in model_file_patterns:
+                for root, dirs, files in os.walk(tmp_dir):
+                    for file in files:
+                        if file == pattern:
+                            model_path = os.path.join(root, file)
+                            print(f"Found model at: {model_path}")
+                            found_model = True
+                            break
+                    if found_model:
                         break
+                if found_model:
+                    break
+
+            if not found_model:
+                raise ValueError(f"No model file found in extracted contents")
+
         except Exception as e:
             raise ValueError(f"Error extracting tar.gz: {e}")
 
     try:
         print(f"Loading model from {model_path}")
 
-        # First, try to load as a native XGBoost model file
+        # First, try to load as a native XGBoost model file if it has .json extension
         if model_path.endswith(".json"):
             try:
                 model = xgb.Booster()
                 model.load_model(model_path)
-                print("Loaded native XGBoost model")
+                print("Loaded native XGBoost JSON model")
                 model_data = model  # Use the model directly
             except Exception as e:
-                print(f"Error loading native model: {e}")
+                print(f"Error loading native JSON model: {e}")
                 raise
         else:
             # Try to load as a pickle file
@@ -77,16 +95,42 @@ def evaluate_model(model_dir, test_data_dir, output_dir):
                 # Handle XGBoost version compatibility error
                 if "serialisation_header" in str(e):
                     print("XGBoost version compatibility issue detected")
-                    # If the model_path is a pickle file of an xgboost model,
-                    # we need to handle this differently
-                    # First, check if there's a .json version of the same model
-                    json_model_path = os.path.splitext(model_path)[0] + ".json"
-                    if os.path.exists(json_model_path):
-                        print(f"Found JSON model version at {json_model_path}")
-                        model = xgb.Booster()
-                        model.load_model(json_model_path)
-                        model_data = model
-                    else:
+
+                    # Try multiple fallback file naming patterns
+                    fallback_paths = [
+                        os.path.splitext(model_path)[0]
+                        + ".json",  # Standard .json extension
+                        model_path + ".json",  # Add .json extension
+                        os.path.join(
+                            os.path.dirname(model_path), "xgboost-model.json"
+                        ),  # Look for standard name
+                    ]
+
+                    model_loaded = False
+                    for json_path in fallback_paths:
+                        if os.path.exists(json_path):
+                            print(f"Found JSON model version at {json_path}")
+                            model = xgb.Booster()
+                            model.load_model(json_path)
+                            model_data = model
+                            model_loaded = True
+                            break
+
+                    # If we still haven't loaded a model, let's try loading directly as a booster
+                    if not model_loaded:
+                        try:
+                            print(f"Trying to load {model_path} directly as a booster")
+                            model = xgb.Booster()
+                            model.load_model(model_path)
+                            model_data = model
+                            model_loaded = True
+                        except Exception as direct_load_error:
+                            print(f"Direct load failed: {direct_load_error}")
+
+                    if not model_loaded:
+                        # List all files in the directory to help debug
+                        model_dir = os.path.dirname(model_path)
+                        print(f"Files in model directory: {os.listdir(model_dir)}")
                         raise ValueError(
                             f"XGBoost version compatibility issue and no JSON model found: {e}"
                         )
@@ -103,6 +147,7 @@ def evaluate_model(model_dir, test_data_dir, output_dir):
         else:
             model = model_data
             print("Loaded model directly")
+
     except Exception as e:
         raise ValueError(f"Failed to load model: {e}")
 
