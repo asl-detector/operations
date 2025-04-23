@@ -1,0 +1,25 @@
+# This predefined usage file attempts to set each usage-based cost as
+# $5/month for common configurations, helping engineers understand that
+# these resources are not free.
+# See docs: https://infracost.io/usage-file/
+version: 0.1
+resource_type_default_usage:
+  aws_s3_bucket:
+    object_tags: 5000000 # Total object tags. Only for AWS provider V3.
+    standard: # Usages of S3 Standard:
+      storage_gb: 225 # Total storage in GB.
+      monthly_tier_1_requests: 1000000 # Monthly PUT, COPY, POST, LIST requests (Tier 1).
+      monthly_tier_2_requests: 12500000 # Monthly GET, SELECT, and all other requests (Tier 2).
+      monthly_select_data_scanned_gb: 2500 # Monthly data scanned by S3 Select in GB.
+      monthly_select_data_returned_gb: 7250 # Monthly data returned by S3 Select in GB.
+  aws_lambda_function:
+    monthly_requests: 25000000 # Monthly requests to the Lambda function.
+    request_duration_ms: 25 # Average duration of each request in milliseconds.
+  aws_sagemaker_model_package_group:
+    monthly_model_versions: 10 # Monthly number of model versions registered
+  aws_sagemaker_endpoint:
+    monthly_usage_hours: 720 # Monthly usage hours for the endpoint
+  aws_cloudwatch_event_rule:
+    monthly_custom_events: 5000000 # Monthly custom events published
+  aws_codebuild_project:
+    monthly_build_mins: 500 # Monthly total duration of builds in minutes
