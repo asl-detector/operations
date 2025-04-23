@@ -1,0 +1,1 @@
+{"statusCode": 200, "body": "{\"message\": \"Model copied successfully\", \"source\": \"s3://asl-detection-dev-monitoring-7jjirv6s/models/pipelines-k3uyw3v758kv-TrainModel-yqiemky2Bm/output/model.tar.gz\", \"destination\": \"s3://asl-dataset-model-serving-asl-dataset-00/models/asl-detection-model.tar.gz\"}"}

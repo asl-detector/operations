@@ -2,6 +2,7 @@ import boto3
 import os
 import json
 import datetime
+import tempfile
 
 
 def handler(event, context):
@@ -112,11 +113,13 @@ def handler(event, context):
             f"Copying {source_key} from {source_bucket} to {target_bucket}/{target_key}"
         )
 
-        # Copy the object
-        copy_source = {"Bucket": source_bucket, "Key": source_key}
-        s3_target.copy_object(
-            CopySource=copy_source, Bucket=target_bucket, Key=target_key
-        )
+        # CHANGE THIS PART: Use a temporary file instead of direct copy_object
+        with tempfile.NamedTemporaryFile() as tmp_file:
+            # Download from source bucket using source credentials
+            s3_source.download_file(source_bucket, source_key, tmp_file.name)
+
+            # Upload to target bucket using target credentials
+            s3_target.upload_file(tmp_file.name, target_bucket, target_key)
 
         # Create version metadata
         version_info = {
