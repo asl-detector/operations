@@ -46,7 +46,6 @@ if not os.path.exists(code_dir):
 
 print(f"Code directory contents: {os.listdir(code_dir)}")
 
-# Try to import extract_features from train.py
 try:
     if not os.path.exists(os.path.join(code_dir, "train.py")):
         log_error("train.py does not exist in the code directory!")
@@ -58,7 +57,7 @@ try:
     import importlib.util
 
     spec = importlib.util.spec_from_file_location(
-        "train", os.path.join(code_dir, "train.py")
+        "local_train", os.path.join(code_dir, "local_train.py")
     )
     train_module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(train_module)

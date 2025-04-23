@@ -4,7 +4,7 @@ import json
 import numpy as np
 import pandas as pd
 import argparse
-from train import extract_features
+from local_train import extract_features
 
 
 def generate_baseline_files(input_csv=None, input_json_dir=None, output_dir="model"):

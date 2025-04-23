@@ -257,6 +257,7 @@ resource "awscc_sagemaker_pipeline" "model_retraining_pipeline" {
     aws_s3_object.process_script,
     aws_s3_object.evaluate_script,
     aws_s3_object.custom_train_script,
+    aws_s3_object.extract_script,
     aws_s3_object.package_script,
     aws_s3_object.inference_script,
     aws_s3_object.debug_utils_script,

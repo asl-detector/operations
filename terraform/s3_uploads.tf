@@ -21,6 +21,13 @@ resource "aws_s3_object" "custom_train_script" {
   etag   = filemd5("../code/train.py")
 }
 
+resource "aws_s3_object" "extract_script" {
+  bucket = aws_s3_bucket.baseline_dataset.bucket
+  key    = "code/local_train.py"
+  source = "../code/local_train.py"
+  etag   = filemd5("../code/local_train.py")
+}
+
 resource "aws_s3_object" "inference_script" {
   bucket = aws_s3_bucket.baseline_dataset.bucket
   key    = "code/inference.py"
